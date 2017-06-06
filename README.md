@@ -50,7 +50,7 @@ De visualisaties zijn als volgt:
    De bar naar links geeft de hoeveelheid mannen aan, naar rechts de hoeveelheid vrouwen.
    Hierbij worden de percentuele waarden weergegeven naast de bars, en de absolute gegevens met behul van een tooltip.
    
-   ![Visualisatie 4](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%204.jpg)
+   ![Visualisatie 4](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%204%20nieuw.jpg)
 
 # Data
 Voor dit project wordt data van The World Bank en van UNHCR gebruikt. 
