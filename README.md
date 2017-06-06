@@ -12,6 +12,8 @@ Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 Er zijn 4 visualisaties, die als volgt geplaats worden:
 ![Visualisatie overview](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%20overview.jpg)
 
+De visualisaties zijn als volgt:
+
 1. Wereldkaart - 
    Dit is een kaart met overview, de start van de visualisatie.
    De kaart laat met kleuren de hoeveelheden van vluchtelingen per land zien.
@@ -24,6 +26,8 @@ Er zijn 4 visualisaties, die als volgt geplaats worden:
    In het conflictgebied verschijnen pijlen, die wijzen van welk land naar welk land de vluchtelingen stromen. 
    Hoe dikker de pijl, des te meer vluchtelingen.
    Nu kan ook op de landen geklikt worden, waardoor visualisatie 4 verandert.
+   
+   ![Visualisaties](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%201.jpg)
       
 2. Tijdlijn van land - 
    Deze visualisatie is een line graph van het land dat is aangeklikt.
@@ -41,8 +45,6 @@ Er zijn 4 visualisaties, die als volgt geplaats worden:
    Elke bar is een leeftijdsgroep en de lengte van de bar geeft de hoeveelheid vluchtelingen per geslacht aan in die leeftijdsgroep.
    De bar naar links geeft de hoeveelheid mannen aan, naar rechts de hoeveelheid vrouwen.
    Hierbij worden de percentuele waarden weergegeven naast de bars, en de absolute gegevens met behul van een tooltip.
-   
-![Visualisaties](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%201.jpg)
 
 # Data
 Voor dit project wordt data van The World Bank en van UNHCR gebruikt. 
