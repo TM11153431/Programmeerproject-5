@@ -42,7 +42,7 @@ De visualisaties zijn als volgt:
    De hoogte geeft aan hoeveel vluchtelingen vanuit het vluchtland naar dat land zijn gevlucht.
    Eventueel kan hier een tooltip aan toegevoegd worden, waarbij de precieze waarden weergegeven worden.
    
-   ![Visualisatie 3](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%203.jpg)
+   ![Visualisatie 3](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%203%20nieuw.jpg)
    
 4. Geslacht en leeftijd van vluchtelingen - 
    Deze visualisatie is een two-sided barchart van het land dat is aangeklikt.
