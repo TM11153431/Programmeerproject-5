@@ -10,7 +10,7 @@ Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 
 # Visualisaties
 Er zijn 4 visualisaties:
-1. Wereldkaart
+1. Wereldkaart - 
    Dit is een kaart met overview, de start van de visualisatie.
    De kaart laat met kleuren de hoeveelheden van vluchtelingen per land zien.
    Gekozen kan worden voor origin/asylum en absolute waarden/percentages van inwoners.
@@ -23,18 +23,18 @@ Er zijn 4 visualisaties:
    Hoe dikker de pijl, des te meer vluchtelingen.
    Nu kan ook op de landen geklikt worden, waardoor visualisatie 4 verandert.
       
-2. Tijdlijn van land
+2. Tijdlijn van land - 
    Deze visualisatie is een line graph van het land dat is aangeklikt.
    Op de y-as staan de aantallen (of percentages als dit is aangeklikt?) vluchtelingen en op de x-as staat de tijd.
    Deze grafiek bevat een tooltip: de precieze waarden worden weergegeven wanneer over de lijn gehovered wordt.
    
-3. Uitstroom naar landen
+3. Uitstroom naar landen - 
    Deze visualisatie is een barchart van de hoeveelheid vluchtelingen in alle instroomlanden en blijft gelijk per conflictgebied.
    Elke bar is een land, waarheen de vluchtelingen vluchten.
    De hoogte geeft aan hoeveel vluchtelingen vanuit het vluchtland naar dat land zijn gevlucht.
    Eventueel kan hier een tooltip aan toegevoegd worden, waarbij de precieze waarden weergegeven worden.
    
-4. Geslacht en leeftijd van vluchtelingen
+4. Geslacht en leeftijd van vluchtelingen - 
    Deze visualisatie is een two-sided barchart van het land dat is aangeklikt.
    Elke bar is een leeftijdsgroep en de lengte van de bar geeft de hoeveelheid vluchtelingen per geslacht aan in die leeftijdsgroep.
    De bar naar links geeft de hoeveelheid mannen aan, naar rechts de hoeveelheid vrouwen.
