@@ -1,14 +1,14 @@
 # Programmeerproject Sanne Berendschot
 
-# TITEL
+# Titel
 Vluchtelingen over de wereld en in conflictgebieden
 
-# DOEL
+# Doel
 Mijn project visualiseert de vluchtelingen over de gehele wereld: Waar komen ze vandaan? en: Waar gaan ze heen?
 Daarnaast worden 5 conflictsituatie's gevisualiseerd: Hierin wordt duidelijk van welk land ze vluchten en naar welke nabijgelegen landen.
 Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 
-# VISUALISATIES
+# Visualisaties
 Er zijn 4 visualisaties:
 1. Wereldkaart
    Dit is een kaart met overview, de start van de visualisatie.
@@ -40,13 +40,13 @@ Er zijn 4 visualisaties:
    De bar naar links geeft de hoeveelheid mannen aan, naar rechts de hoeveelheid vrouwen.
    Hierbij worden de percentuele waarden weergegeven naast de bars, en de absolute gegevens met behul van een tooltip.
 
-# DATA
+# Data
 Voor dit project wordt data van The World Bank en van UNHCR gebruikt. 
 Er zijn twee datasets nodig: één voor de wereldkaart en de tijdlijn (visualisatie 1 en 2) en één voor de informatie per conflictgebied (visualisatie 3 en 4). 
 De twee datasets worden één keer in het goede format gemaakt en vervolgens gebruikt voor de visualisaties.
 Op deze sites zijn ook vergelijkbare visualisaties te vinden, die ik heb gebruikt om mijn eigen idee vorm te geven.
 
-# EVENTUELE PROBLEMEN
+# Eventuele problemen
 De grote moeilijkheid in mijn project is om te zorgen dat de sterren op de kaart goed werken, en dat de pijlen goed tevoorschijn komen.
 Wanneer de sterren niet lukt, kan dit vervangen worden door een dropdown menu. Hierin staan 6 keuzes: de wereldkaart en de 5 conflictgebieden. Op die manier kunnen de verschillende kaarten weergegeven worden.
 Wanneer de pijlen niet lukken, kan dit vervangen worden door de hoeveelheid vluchtelingen aan te geven met kleuren, net zoals de standaard wereldkaart.
