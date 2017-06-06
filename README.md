@@ -27,12 +27,14 @@ De visualisaties zijn als volgt:
    Hoe dikker de pijl, des te meer vluchtelingen.
    Nu kan ook op de landen geklikt worden, waardoor visualisatie 4 verandert.
    
-   ![Visualisaties](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%201.jpg)
+   ![Visualisatie 1](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%201.jpg)
       
 2. Tijdlijn van land - 
    Deze visualisatie is een line graph van het land dat is aangeklikt.
    Op de y-as staan de aantallen (of percentages als dit is aangeklikt?) vluchtelingen en op de x-as staat de tijd.
    Deze grafiek bevat een tooltip: de precieze waarden worden weergegeven wanneer over de lijn gehovered wordt.
+   
+   ![Visualisatie 2](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%202.jpg)
    
 3. Uitstroom naar landen - 
    Deze visualisatie is een barchart van de hoeveelheid vluchtelingen in alle instroomlanden en blijft gelijk per conflictgebied.
@@ -40,11 +42,15 @@ De visualisaties zijn als volgt:
    De hoogte geeft aan hoeveel vluchtelingen vanuit het vluchtland naar dat land zijn gevlucht.
    Eventueel kan hier een tooltip aan toegevoegd worden, waarbij de precieze waarden weergegeven worden.
    
+   ![Visualisatie 3](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%203.jpg)
+   
 4. Geslacht en leeftijd van vluchtelingen - 
    Deze visualisatie is een two-sided barchart van het land dat is aangeklikt.
    Elke bar is een leeftijdsgroep en de lengte van de bar geeft de hoeveelheid vluchtelingen per geslacht aan in die leeftijdsgroep.
    De bar naar links geeft de hoeveelheid mannen aan, naar rechts de hoeveelheid vrouwen.
    Hierbij worden de percentuele waarden weergegeven naast de bars, en de absolute gegevens met behul van een tooltip.
+   
+   ![Visualisatie 4](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%204.jpg)
 
 # Data
 Voor dit project wordt data van The World Bank en van UNHCR gebruikt. 
