@@ -39,6 +39,8 @@ Er zijn 4 visualisaties:
    Elke bar is een leeftijdsgroep en de lengte van de bar geeft de hoeveelheid vluchtelingen per geslacht aan in die leeftijdsgroep.
    De bar naar links geeft de hoeveelheid mannen aan, naar rechts de hoeveelheid vrouwen.
    Hierbij worden de percentuele waarden weergegeven naast de bars, en de absolute gegevens met behul van een tooltip.
+   
+![Visualisaties][doc/Sketches visualisaties.pdf]
 
 # Data
 Voor dit project wordt data van The World Bank en van UNHCR gebruikt. 
