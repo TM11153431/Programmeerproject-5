@@ -9,7 +9,9 @@ Daarnaast worden 5 conflictsituatie's gevisualiseerd: Hierin wordt duidelijk van
 Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 
 # Visualisaties
-Er zijn 4 visualisaties:
+Er zijn 4 visualisaties, die als volgt geplaats worden:
+![Visualisatie overview](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%20overview.jpg)
+
 1. Wereldkaart - 
    Dit is een kaart met overview, de start van de visualisatie.
    De kaart laat met kleuren de hoeveelheden van vluchtelingen per land zien.
