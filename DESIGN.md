@@ -50,5 +50,26 @@ Er zijn twee datasets nodig: één voor de wereldkaart en de tijdlijn (visualisa
 De twee datasets worden één keer in het goede format gemaakt en vervolgens gebruikt voor de visualisaties.
 Op deze sites zijn ook vergelijkbare visualisaties te vinden, die ik heb gebruikt om mijn eigen idee vorm te geven.
 
+# Code
+Mijn plan is om één main file te maken, waarin de datasets worden ingeladen en alle functies aangeroepen worden. 
+In 4 andere files, voor elke visualisatie één, staan de relevante functies voor die visualisatie.
+
 # Libraries
 De libraries die gebruikt zijn, zijn als volgt: D3, Queue, Datamaps, Topojson en Bootstrap
+
+# Plan
+Stappenplan van stukjes code die ik in volgorde ga uitvoeren:
+- Wereldkaart 
+- Tijdlijn linken aan wereldkaart
+- Knoppen Origin/Asylum
+- Slider wereldkaart voor verschillende jaren
+- Dataset voor visualisatie 3 en 4 in goed format
+- Barchart
+- Barchart linken aan wereldkaart
+- Two-sided barchart
+- Two-sided barchart linken aan wereldkaart
+- Sterren op wereldkaart
+- Tooltips maken
+- Eventueel knoppen voor abs/% maken
+- Layout mooi maken
+- Code opschonen
