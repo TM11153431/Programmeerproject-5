@@ -1,13 +1,5 @@
 # Programmeerproject Sanne Berendschot
 
-# Titel
-Vluchtelingen over de wereld en in conflictgebieden
-
-# Doel
-Mijn project visualiseert de vluchtelingen over de gehele wereld: Waar komen ze vandaan? en: Waar gaan ze heen?
-Daarnaast worden 5 conflictsituatie's gevisualiseerd: Hierin wordt duidelijk van welk land ze vluchten en naar welke nabijgelegen landen.
-Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
-
 # Visualisaties
 Er zijn 4 visualisaties, die als volgt geplaats worden:
 ![Visualisatie overview](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%20overview.jpg)
@@ -58,7 +50,5 @@ Er zijn twee datasets nodig: één voor de wereldkaart en de tijdlijn (visualisa
 De twee datasets worden één keer in het goede format gemaakt en vervolgens gebruikt voor de visualisaties.
 Op deze sites zijn ook vergelijkbare visualisaties te vinden, die ik heb gebruikt om mijn eigen idee vorm te geven.
 
-# Eventuele problemen
-De grote moeilijkheid in mijn project is om te zorgen dat de sterren op de kaart goed werken, en dat de pijlen goed tevoorschijn komen.
-Wanneer de sterren niet lukt, kan dit vervangen worden door een dropdown menu. Hierin staan 6 keuzes: de wereldkaart en de 5 conflictgebieden. Op die manier kunnen de verschillende kaarten weergegeven worden.
-Wanneer de pijlen niet lukken, kan dit vervangen worden door de hoeveelheid vluchtelingen aan te geven met kleuren, net zoals de standaard wereldkaart.
+# Libraries
+De libraries die gebruikt zijn, zijn als volgt: D3, Queue, Datamaps, Topojson en Bootstrap
