@@ -21,7 +21,7 @@ Vervolgens heb ik ervoor gezorgd dat de link goed werkt tussen visualisatie 1 en
 Dit is ook helemaal gelukt. :)
 Het updaten van de kleuren van de map had nog nooit gewerkt, 
 en dat heb ik vandaag ook werkend gemaakt.
-Daarnaa heb ik de barchart die ik in week 3 heb gemaakt gekopieerd en in mijn code geplakt.
+Daarna heb ik de barchart die ik in week 3 heb gemaakt gekopieerd en in mijn code geplakt.
 Om dit werkend te krijgen moesten er wat dingen veranderd worden en nu kan je de visualisatie zien.
 Deze visualisatie is nog met de oude data en de assen kloppen nog niet, maar er staat alvast iets.
 Tot slot heb ik mijn code een beetje opgeschoond, 
