@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<!-- Naam: Sanne Berendschot
+Studentnummer: 10269290
+Minor Programmeren, Programmeerproject -->
+
+<html>
+	<head>
+		<title>
+			Programmeerproject Sanne Berendschot
+		</title>
+
+		<meta charset="utf-8">
+		<script src="http://d3js.org/queue.v1.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+		<script src="/datamaps.world.min.js"></script>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="refugees.css">
+
+		<script src="refugees.js"></script>
+		
+	</head>
+
+	<body>
+		<h1>Refugees in the world and in conflict areas</h1>	
+		
+		<p>My project visualises refugees over the whole world:<br>
+		Where do they come from? and: Where are they going?<br>
+		Besides that, 5 conflict areas are being visualised.<br>
+		Hereby it becomes clear from which country they flee and to which near countries.<br> 
+		Also, the gender and age of the refugees are given.</p>
+
+		<h2 class="graphTitle">Overview World</h2>
+			
+		<div id ="wrapper">
+			<div class="btn btn-default">
+			    <input name="updateButtonFrom" 
+			           type="button" 
+			           value="Origin" 
+			           onclick="updateDataFrom()"/>
+			</div>
+			<div class="btn btn-default">
+			    <input name="updateButtonTo" 
+			           type="button" 
+			           value="Asylum" 
+			           onclick="updateDataTo()"/>
+			</div>
+		</div>
+
+		<div id ="wrapper">
+			<div class="btn btn-default">
+			    <input name="updateButtonAbsolute" 
+			           type="button" 
+			           value="Absolute values" 
+			           onclick="updateDataAbsolute()"/>
+			</div>
+			<div class="btn btn-default">
+			    <input name="updateButtonPercentage" 
+			           type="button" 
+			           value="Percentage of inhabitants" 
+			           onclick="updateDataPercentage()"/>
+			</div>
+		</div>
+
+		<div id="container1" style="position: relative; width: 700px; height: 500px;"></div>
+		
+		<div id="container2" style="position: relative; width: 800px; height: 500px;"></div>
+
+		<div id="container3" style="position: relative; width: 700px; height: 500px;"></div>
+
+		<div id="container4" style="position: relative; width: 700px; height: 500px;"></div>
+
+		<img src="Voorbeeld two-sided barchart.png" alt="Example" style="width:828px;height:134px;">
+	 	
+	 	<br><br><br><br><br>
+		
+		<p>Source: <a href="http://www.worldbank.org/">The World Bank</a> and <a href="http://data2.unhcr.org/en/situations">UNHCR</a></p>
+		
+		<p>Made by Sanne Berendschot, 10269290 <br>
+		Minor Programmeren, Programmeerproject</p>
+	</body>
+
+
+</html>
