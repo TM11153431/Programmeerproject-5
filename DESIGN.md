@@ -69,6 +69,7 @@ Stappenplan van stukjes code die ik in volgorde ga uitvoeren:
 - Two-sided barchart
 - Two-sided barchart linken aan wereldkaart
 - Sterren op wereldkaart
+- Pijlen maken
 - Tooltips maken
 - Eventueel knoppen voor abs/% maken
 - Layout mooi maken
