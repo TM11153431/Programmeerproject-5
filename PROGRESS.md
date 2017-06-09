@@ -1,3 +1,6 @@
+# Dag 0 - 6 juni: 
+
+
 # Dag 1 - 7 juni: 
 Aangezien de laatste opdracht van Data Processing voor een deel lijkt op wat ik nu ga maken, 
 heb ik de code van die opdracht gekopieerd en de HTML alvast aangepast.
