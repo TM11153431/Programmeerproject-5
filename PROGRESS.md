@@ -46,8 +46,13 @@ Dat is gelukt. :)
 
 # Zondag 11 juni:
 Vandaag heb ik mijn code verder opgeschoond en stukken code in functies gezet.
+In elk geval heb ik alle stukken code die herhaaldelijk worden gebruikt in functies gezet,
+maar ook stukken die bij elkaar horen, om de 'main' code overzichtelijk te maken.
 Ik vind het nog lastig om te weten wat goede dingen zijn om in verschillende functies te zetten,
 en hoe ver je hiermee moet gaan.
 Dit ga ik morgen aan de assistenten vragen.
 Verder heb ik de tooltip geïmplementeerd voor de tijdlijn.
-Deze werkt nog niet heel goed, dus hier moet ik nog verder naar kijken.
+Deze werkt nog niet heel goed, aangezien je heel precies over de stipjes moet gaan om de informatie te zien.
+Hier moet ik dus nog verder naar kijken.
+Tot slot heb ik een slider gemaakt voor mijn wereldkaart.
+Nu is het mogelijk om de wereldkaart te bekijken in verschillende jaren.
