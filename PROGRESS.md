@@ -1,5 +1,6 @@
 # Dag 0 - 6 juni: 
-
+Vandaag ben ik de hele dag bezig geweest met het uitwerken van mijn idee en het maken van het onderzoeksvoorstel.
+Dit is te vinden in de README.md
 
 # Dag 1 - 7 juni: 
 Aangezien de laatste opdracht van Data Processing voor een deel lijkt op wat ik nu ga maken, 
@@ -30,3 +31,23 @@ Deze visualisatie is nog met de oude data en de assen kloppen nog niet, maar er 
 Tot slot heb ik mijn code een beetje opgeschoond, 
 want er stond ondertussen heel veel troep tussen.
 Nu is het voor mezelf weer duidelijk wat wat is.
+
+# Dag 3 - 9 juni:
+Tijdens de presentatie heb ik zeer nuttige feedback gekregen.
+Ik kan kijken of ik een zoomfunctie kan implementeren, 
+zodat je kan inzoomen op verschillende delen van de wereld.
+Daarnaast kan ik een link toevoegen tussen visualisatie 3 en 4, 
+zodat je ook op de barchart kan klikken zodat visualisatie 4 verandert.
+Tot slot moet ik gaan nadenken over het storytelling aspect van mijn project.
+Bij de presentatie van Sebastiaan zag ik dat hij een icoontje had bij de titel van zijn project, 
+bovenin, waar je tussen je verschillende sites kan klikken.
+Dit heet een favicon en Sebastiaan heeft me verteld hoe dat geïmplementeerd moet worden.
+Dat is gelukt. :)
+
+# Zondag 11 juni:
+Vandaag heb ik mijn code verder opgeschoond en stukken code in functies gezet.
+Ik vind het nog lastig om te weten wat goede dingen zijn om in verschillende functies te zetten,
+en hoe ver je hiermee moet gaan.
+Dit ga ik morgen aan de assistenten vragen.
+Verder heb ik de tooltip geïmplementeerd voor de tijdlijn.
+Deze werkt nog niet heel goed, dus hier moet ik nog verder naar kijken.
