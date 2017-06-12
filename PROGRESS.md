@@ -65,3 +65,8 @@ Vandaag heb ik veel tijd gestopt in het maken van een correct json file,
 die ik kan gebruiken voor visualisatie 3 en 4.
 De data heb ik ingeladen en gebruikt voor visualisatie 3.
 De barchart werkt nu voor de nieuwe data.
+Vervolgens ben ik aan de slag gegaan met het linken van de wereldkaart en de barchart,
+dat is ook redelijk gelukt!
+De titel en de assen veranderen op dit moment goed mee wanneer je op één van de 5 conflictlanden klikt.
+Het enige wat nog moet veranderen zijn de bars zelf.
+Daar ga ik morgen mee verder.
