@@ -56,3 +56,12 @@ Deze werkt nog niet heel goed, aangezien je heel precies over de stipjes moet ga
 Hier moet ik dus nog verder naar kijken.
 Tot slot heb ik een slider gemaakt voor mijn wereldkaart.
 Nu is het mogelijk om de wereldkaart te bekijken in verschillende jaren.
+
+# Dag 4 - 12 juni:
+Visualisatie 1 en 2 zijn tot op zekere hoogte klaar, 
+dus ben ik vandaag aan de slag gegaan met visualisatie 3: de barchart.
+Deze werkte nog op de oude data, die ik met Data Processing had gebruikt.
+Vandaag heb ik veel tijd gestopt in het maken van een correct json file, 
+die ik kan gebruiken voor visualisatie 3 en 4.
+De data heb ik ingeladen en gebruikt voor visualisatie 3.
+De barchart werkt nu voor de nieuwe data.
