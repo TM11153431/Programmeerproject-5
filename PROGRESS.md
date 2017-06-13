@@ -79,3 +79,11 @@ Alle andere landen in de barchart telden dus op tot deze bar.
 Dat vond ik raar, en daarom heb ik ervoor gekozen om deze bar weg te halen,
 en het aantal vluchtelingen in totaal uit dat land als comment naast de grafiek te zetten.
 Daarnaast heb ik een opzetje gemaakt voor de tooltip van de barchart.
+Verder ben ik begonnen aan de two-sided barchart.
+Er staat al een groot deel! De opzet is er in elk geval.
+Het werkt op dit moment alleen voor de data die als eerst wordt ingeladen,
+ik moet hem dus nog updaten wanneer een nieuw land wordt geklikt.
+Morgen wil ik dit doen: de link maken tussen de barchart en de two-sided barchart.
+Daarnaast klopt de omlijning nog niet helemaal, een deel van de two-sided barchart valt buiten een vak,
+waardoor een stukje niet te zien is.
+Er moet dus zeker nog veel aan gebeuren, maar het begin is er.
