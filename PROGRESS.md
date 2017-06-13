@@ -70,3 +70,12 @@ dat is ook redelijk gelukt!
 De titel en de assen veranderen op dit moment goed mee wanneer je op één van de 5 conflictlanden klikt.
 Het enige wat nog moet veranderen zijn de bars zelf.
 Daar ga ik morgen mee verder.
+
+# Dag 5 - 13 juni:
+Het is gelukt om de barchart goed de laten meeveranderen, 
+wanneer op één van de 5 conflictlanden wordt geklikt!
+Gister bevatte de barchart ook het land waar de vluchtelingen vandaan komen.
+Alle andere landen in de barchart telden dus op tot deze bar.
+Dat vond ik raar, en daarom heb ik ervoor gekozen om deze bar weg te halen,
+en het aantal vluchtelingen in totaal uit dat land als comment naast de grafiek te zetten.
+Daarnaast heb ik een opzetje gemaakt voor de tooltip van de barchart.
