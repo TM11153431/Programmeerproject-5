@@ -86,4 +86,5 @@ ik moet hem dus nog updaten wanneer een nieuw land wordt geklikt.
 Morgen wil ik dit doen: de link maken tussen de barchart en de two-sided barchart.
 Daarnaast klopt de omlijning nog niet helemaal, een deel van de two-sided barchart valt buiten een vak,
 waardoor een stukje niet te zien is.
+Ook mist de as nog bij de chart: female, male en age.
 Er moet dus zeker nog veel aan gebeuren, maar het begin is er.
