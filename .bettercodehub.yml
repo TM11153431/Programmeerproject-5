@@ -1,8 +1,0 @@
-exclude:
-- /Progress/Dag 1/refugees.js
-- /Progress/Dag 2/refugees.js
-- /Progress/Dag 4/refugees.js
-- /Progress/Zondag 11 juni/refugees.js
-component_depth: 1
-languages:
-- javascript
