@@ -1,0 +1,119 @@
+/*Naam: Sanne Berendschot
+Studentnummer: 10269290
+Minor Programmeren, Programmeerprojects*/
+
+body {
+	font: 13px sans-serif;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 160px;					
+    height: 35px;					
+    padding: 4px;				
+    font: 12px sans-serif;		
+    background: lightgrey;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+
+.bar {
+    fill: brown;
+}
+
+.axis text {
+    font: 13px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.domain {
+    fill: none;
+}
+
+.x text {
+    font: 13px sans-serif;
+}
+
+.graphTitle {
+    font: 20px sans-serif;
+    font-weight: bold;
+}
+
+.axisTitle {
+    font: 16px sans-serif;
+}
+
+.axisTitleMale {
+    font: 16px sans-serif;
+}
+
+.axisTitleFemale {
+    font: 16px sans-serif;
+}
+
+#legendTitle {
+    font: 12px sans-serif;
+}
+
+#legendX {
+    font: 10px sans-serif;
+}
+
+#wrapper {
+    overflow: hidden;
+}
+
+#buttonWomen {
+    float: left;
+}
+
+#container1 {
+    display: inline-block;
+}
+
+#container2 {
+    display: inline-block;
+}
+
+#container3 {
+    display: inline-block;
+}
+
+#container4 {
+    display: inline-block;
+}
+
+.left {
+    stroke: white;
+    fill: #FFB266; 
+}
+
+.right {
+    stroke: white;
+    fill: brown; 
+}
+
+.bar:hover {
+  fill: #FFB266;
+}
+
+.tipBarchart {
+    /*position: absolute;         
+    text-align: center;         
+    width: 160px;                   
+    height: 35px;                   
+    padding: 4px;               
+    font: 12px sans-serif;      
+    background: lightgrey;  
+    border: 0px;        
+    border-radius: 8px;         
+    pointer-events: none;*/
+}
