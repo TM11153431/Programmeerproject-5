@@ -94,6 +94,8 @@ Vandaag heb ik as gemaakt voor de two-sided barchart, waarop staat welk geslacht
 Vervolgens heb ik de barchart gelinkt aan de two-sided barchart.
 Het is gelukt om de two-sided barchart te updaten als je op één van de bars klikt!
 De bars gaan goed mee, de percentages veranderen en de titels ook.
+Helaas staat de bar nog niet helemaal in het midden, en valt er nog steeds een deel weg.
+Ook staan de assen en de percentages niet helemaal op een logische plek.
 Ik heb ervoor gekozen om de two-sided barchart te verwijderen als er op een land geklikt wordt waar geen data van is.
 Er wordt dan in de titel weergegeven dat er geen data beschikbaar is.
 Dit heb ik gedaan, zodat het duidelijk is voor de gebruiker.
