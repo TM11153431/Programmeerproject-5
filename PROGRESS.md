@@ -88,3 +88,8 @@ Daarnaast klopt de omlijning nog niet helemaal, een deel van de two-sided barcha
 waardoor een stukje niet te zien is.
 Ook mist de as nog bij de chart: female, male en age.
 Er moet dus zeker nog veel aan gebeuren, maar het begin is er.
+
+# Dag 6 - 14 juni:
+Vandaag heb ik as gemaakt voor de two-sided barchart, waarop staat welk geslacht het is en welke leeftijdsgroepen.
+Vervolgens heb ik de barchart gelinkt aan de two-sided barchart.
+Het is gelukt om de two-sided barchart te updaten als je op één van de bars klikt!
