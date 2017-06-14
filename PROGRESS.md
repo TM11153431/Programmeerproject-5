@@ -93,3 +93,12 @@ Er moet dus zeker nog veel aan gebeuren, maar het begin is er.
 Vandaag heb ik as gemaakt voor de two-sided barchart, waarop staat welk geslacht het is en welke leeftijdsgroepen.
 Vervolgens heb ik de barchart gelinkt aan de two-sided barchart.
 Het is gelukt om de two-sided barchart te updaten als je op één van de bars klikt!
+De bars gaan goed mee, de percentages veranderen en de titels ook.
+Ik heb ervoor gekozen om de two-sided barchart te verwijderen als er op een land geklikt wordt waar geen data van is.
+Er wordt dan in de titel weergegeven dat er geen data beschikbaar is.
+Dit heb ik gedaan, zodat het duidelijk is voor de gebruiker.
+Op dit moment verandert de kleur van de barchart als je erover heen gaat de muis.
+Ik wil graag dat de kleur verandert in een 'mooie' kleur als de data voor de two-sided barchart beschikbaar is,
+en dat de kleur verandert in grijs als de data voor de two-sided barchart niet beschikbaar is.
+Dit moet ik nog implementeren.
+Wel heb ik er vandaag voor gezorgd dat de tooltip van de barchart de goede waarden weergeeft.
