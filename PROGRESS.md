@@ -116,3 +116,5 @@ Nu had ik bedacht om misschien een maximum waarde in te stellen, waardoor de kle
 en de landen die boven deze maximum waarde zitten zwart te maken.
 Op deze manier top je de data als het ware en kan je wel de verschillen tussen de landen laten zien,
 en de landen met echt hoge waarden worden als één gezien.
+Tot slot heb ik vandaag een beetje geëxperimenteerd met een website template, om mijn website er mooi uit te laten zien.
+Dit is nog niet helemaal zoals ik het wil, dus hier moet ik nog naar kijken.
