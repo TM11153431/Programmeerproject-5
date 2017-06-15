@@ -90,7 +90,7 @@ Ook mist de as nog bij de chart: female, male en age.
 Er moet dus zeker nog veel aan gebeuren, maar het begin is er.
 
 # Dag 6 - 14 juni:
-Vandaag heb ik as gemaakt voor de two-sided barchart, waarop staat welk geslacht het is en welke leeftijdsgroepen.
+Vandaag heb ik een as gemaakt voor de two-sided barchart, waarop staat welk geslacht het is en welke leeftijdsgroepen.
 Vervolgens heb ik de barchart gelinkt aan de two-sided barchart.
 Het is gelukt om de two-sided barchart te updaten als je op één van de bars klikt!
 De bars gaan goed mee, de percentages veranderen en de titels ook.
@@ -104,3 +104,15 @@ Ik wil graag dat de kleur verandert in een 'mooie' kleur als de data voor de two
 en dat de kleur verandert in grijs als de data voor de two-sided barchart niet beschikbaar is.
 Dit moet ik nog implementeren.
 Wel heb ik er vandaag voor gezorgd dat de tooltip van de barchart de goede waarden weergeeft.
+
+# Dag 7 - 15 juni:
+Vandaag heb ik ervoor gezorgd dat de knoppen voor absolute values en percentage of inhabitants werken!
+Daarvoor heb ik eerst nieuwe data opgezocht, van de totale populatie van elk land.
+Vervolgens moest ik ervoor zorgen dat de kaart en de tijdlijn telkens de goede dataset weergeeft.
+Ook bij de slider moest deze nieuwe dataset geïmplementeerd worden.
+Helaas is nog steeds het verschil tussen Syrië en de rest van de landen heel erg groot.
+Ik moet er dus nog goed over nadenken hoe ik de kleuren in de wereldkaart weergeef.
+Nu had ik bedacht om misschien een maximum waarde in te stellen, waardoor de kleuren in de rest van de wereld goed zichtbaar zijn,
+en de landen die boven deze maximum waarde zitten zwart te maken.
+Op deze manier top je de data als het ware en kan je wel de verschillen tussen de landen laten zien,
+en de landen met echt hoge waarden worden als één gezien.
