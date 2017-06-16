@@ -118,3 +118,19 @@ Op deze manier top je de data als het ware en kan je wel de verschillen tussen d
 en de landen met echt hoge waarden worden als één gezien.
 Tot slot heb ik vandaag een beetje geëxperimenteerd met een website template, om mijn website er mooi uit te laten zien.
 Dit is nog niet helemaal zoals ik het wil, dus hier moet ik nog naar kijken.
+
+# Dag 8 - 16 juni:
+Tijdens de presentaties vonden mensen vooral dat de two-sided barchart een vertekend beeld geeft,
+hier moet ik dus wat aan doen!
+Een optie is om een verdeling te maken tussen jongeren en ouderen.
+Wellicht kan ik ervoor zorgen dat, als je een two-sided barchart hebt van jongeren en ouderen,
+je kan klikken op jongeren en dat er dan ingezoomd wordt en je toch ook deze verdeling kan zien.
+Dit kan ik doen als ik uiteindelijk tijd over heb. :)
+Na de presentaties heb ik een mooi template gevonden om mijn website mee te maken,
+aangezien ik erg onder de indruk was van de lay out van de anderen!
+Mijn website ziet er nu echt super mooi uit, al zeg ik het zelf.
+Vervolgens heb ik, voor het storytelling aspect, 
+een grafiek gemaakt van de ontwikkeling van vluchtelingen over de tijd in de hele wereld.
+Dit was even lastig, omdat ik de getallen van alle landen bij elkaar moest optellen, 
+maar dat is gelukkig gelukt!
+Mijn website is nu opgedeeld in vier delen: Story, World Overview, Conflict Areas en Contact.
