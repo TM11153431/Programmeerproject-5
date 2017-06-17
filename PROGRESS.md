@@ -134,3 +134,30 @@ een grafiek gemaakt van de ontwikkeling van vluchtelingen over de tijd in de hel
 Dit was even lastig, omdat ik de getallen van alle landen bij elkaar moest optellen, 
 maar dat is gelukkig gelukt!
 Mijn website is nu opgedeeld in vier delen: Story, World Overview, Conflict Areas en Contact.
+Bij Conflict Areas is er een balk, waarop de 5 conflictlanden staan. 
+Ik heb ervoor gezorgd dat, als je op één van deze landen klikt, de barchart en de two-sided barchart veranderen.
+Nu kan je dus én via de kaart, én via deze balk de grafieken onder Conflict Areas veranderen.
+Ik heb hiervoor gekozen, omdat via de website de vier visualisaties niet echt makkelijk op één pagina te zien zijn,
+en nu kan je wel makkelijk een ander conflictgebied aanklikken als je bij de sectie Conflict Areas bent.
+
+# Zaterdag 17 juni:
+Vandaag heb ik een paar kleinere dingen aan mijn website veranderd, die nog niet klopten.
+Zo heb ik ervoor gezorgd dat er een klikmuis verschijnt 
+wanneer er over een van de 5 conflictgebieden gehoverd wordt in de balk met de muis,
+zodat duidelijk wordt dat je op deze tekst kan klikken.
+Dit is naar mijn idee gebruiksvriendelijker.
+Daarnaast heb ik ervoor gezorgd dat de titel en de as van de legenda bij de kaart verandert,
+wanneer er geswitcht wordt tussen absolute values en percentages of inhabitants.
+Ook heb ik een beetje gespeeld met verschillende kleuren voor mijn kaart, 
+zodat de verschillen duidelijk zichtbaar worden,
+maar daar ben ik nog niet helemaal tevreden over.
+Verder ging het bij de kaart fout wanneer op percentages of inhabitants werd geklikt,
+aangezien sommige datapunten van de populatie niet bekend zijn,
+en er daardoor NaN's in de data komen (er wordt gedeeld door de populatie).
+Nu is dit opgelost, door voor deze NaN's te checken, en de kleur van het land op de default kleur te zetten,
+zodat duidelijk wordt dat er geen data van dat land is.
+Ook wordt het nu goed weergegeven in de tijdlijn.
+Tot slot heb ik ervoor gezorgd dat, wanneer op een land geklikt wordt op de kaart,
+waar geen data van is, dat de timeline helemaal weggaat en de titel verandert in 'no data available'.
+Net zoals bij de two-sided barchart wordt dan heel duidelijk dat er geen data van is,
+en kan er geen verwarring ontstaan over welke data bij welk land hoort.
