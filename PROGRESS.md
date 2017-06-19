@@ -161,3 +161,32 @@ Tot slot heb ik ervoor gezorgd dat, wanneer op een land geklikt wordt op de kaar
 waar geen data van is, dat de timeline helemaal weggaat en de titel verandert in 'no data available'.
 Net zoals bij de two-sided barchart wordt dan heel duidelijk dat er geen data van is,
 en kan er geen verwarring ontstaan over welke data bij welk land hoort.
+
+# Dag 9 - 19 juni:
+Vandaag heb ik de hele dag gewerkt aan de tooltip van de twee timelines.
+Dit was erg ingewikkeld.. Eerst moest ik bedenken welke tooltip ik precies wilde,
+aangezien ik eerst een tooltip had waarbij bolletjes verschenen 
+en je daar precies overheen moest gaan om de exacte data te zien.
+Ik vond dit heel onhandig en wilde dus iets anders.
+Uiteindelijk heb gekozen voor twee crosshairs, verticaal en horizontaal, 
+zodat het voor de gebruiker duidelijk is op welk punt je zit,
+en je aan de assen de exacte data kan aflezen. 
+Om het nog extra duidelijk te maken weergeeft de tooltip ook de exacte data in getallen.
+Eerst had ik dit bij het punt op de grafiek, 
+maar dan verspringt de tekst telkens van plek, en dit vond ik erg onrustig.
+Ik heb er daarom voor gekozen om dit op één plek te houden, zodat het geheel rustiger is,
+en naar mijn idee duidelijker leesbaar en gebruiksvriendelijker.
+Ik heb er voor gekozen om dit tussen de grafiek en de titel te zetten,
+aangezien in de grafiek niet handig was, omdat het dan soms over de lijn heen staat,
+en als het rechts van de grafiek staat steekt het erg uit.
+De plek die ik gekozen heb vond ik mooi passen in het geheel.
+Het duurde een tijd voordat dit goed was,
+aangezien er gekke dingen gebeurden wanneer ik deze twee tooltips in één functie zette.
+Dit leek mij logisch, aangezien het bijna twee keer dezelfde code was.
+Helaas lukte het mij niet om dit goed te programmeren.
+Daarnaast veranderden dingen bij de andere grafiek, wat niet de bedoeling was.
+Uiteindelijk heb ik er twee aparte functies van gemaakt én alle bugs eruit gehaald.
+Nu werkt het gelukkig goed! :)
+Verder heb ik bij alle amounts een komma geplaats bij elk duizendtal.
+Dit gaf Sebastiaan als advies vrijdag, aangezien het dan veel duidelijker af te lezen is.
+Tot slot heb ik wat styling dingen geregeld, zoals de titels van grafieken in het midden zetten.
