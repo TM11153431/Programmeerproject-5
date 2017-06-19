@@ -169,8 +169,9 @@ aangezien ik eerst een tooltip had waarbij bolletjes verschenen
 en je daar precies overheen moest gaan om de exacte data te zien.
 Ik vond dit heel onhandig en wilde dus iets anders.
 Uiteindelijk heb gekozen voor twee crosshairs, verticaal en horizontaal, 
-zodat het voor de gebruiker duidelijk is op welk punt je zit,
-en je aan de assen de exacte data kan aflezen. 
+zodat je niet precies over de lijn hoeft te gaan, 
+en het voor de gebruiker toch duidelijk is op welk punt je zit,
+en je aan de assen de exacte data kan aflezen.
 Om het nog extra duidelijk te maken weergeeft de tooltip ook de exacte data in getallen.
 Eerst had ik dit bij het punt op de grafiek, 
 maar dan verspringt de tekst telkens van plek, en dit vond ik erg onrustig.
