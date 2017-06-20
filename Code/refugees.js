@@ -47,6 +47,7 @@ var xAxisLegend;
 
 var dataBarchart;
 var newDataBarchart;
+var dataBarchartTotal;
 var chart;
 var svgChangeChart;
 var amountOfRefugees;
@@ -77,6 +78,9 @@ var totalMale;
 var svgChangeLeftTwoSided;
 var svgChangeRightTwoSided;
 var svgChangeTwoSided;
+var youngTotal;
+var totalMax;
+var totalMaxYoung;
 
 var marginT = {top: 50, right: 40, bottom: 120, left: 40},
     widthT = 900 - marginT.left - marginT.right,
@@ -147,6 +151,9 @@ var xAxisB = d3.svg.axis()
 var yAxisB = d3.svg.axis()
     .scale(yB)
     .orient("left");
+
+var hoi = 7.1 + 8.2 + 8 
+console.log(hoi)
 
 // load data
 queue()
@@ -238,6 +245,7 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
     dataOriginAsylum = dataOrigin
     toFrom = "from"
     absPerc = "absolute values"
+    youngTotal = "total"
 
     // make the map
     makeMap();
@@ -1237,7 +1245,20 @@ function makeTwoSidedBarchart() {
     widthT2 = widthT - labelArea;
     width2 = widthT2 / 2;
 
-    correctDataFormatTwoSided(0);
+    dataBarchart.forEach(function(d){
+        if (d.female) {
+            d.female["0-17"] = 0;
+            d.male["0-17"] = 0;
+            for (var each in d.female) {
+                if (each == "0-4" || each == "5-11" || each == "12-17") {
+                    d.female["0-17"] += d.female[each]
+                    d.male["0-17"] += d.male[each]
+                }
+            }
+        }
+    })
+
+    correctDataFormatTwoSided(1);
 
     // set age groups
     dataTwoSidedLeft = male
@@ -1246,27 +1267,31 @@ function makeTwoSidedBarchart() {
     // find min and max
     rightMax = 0
     leftMax = 0
+    rightMaxYoung = 0
+    leftMaxYoung = 0
     dataBarchart.forEach(function(d){
         for (var each in d.female) {
             if (each != "total") {
                 if (leftMax < d.female[each]) {
                     leftMax = d.female[each]
                 }
-            }
-        }
-
-        for (var each in d.male) {
-            if (each != "total") {
                 if (rightMax < d.male[each]) {
                     rightMax = d.male[each]
                 }
+                if (each == "0-4" || each == "5-11" || each == "12-17") {
+                    if (leftMaxYoung < d.female[each]) {
+                        leftMaxYoung = d.female[each]
+                    }
+                    if (rightMaxYoung < d.male[each]) {
+                        rightMaxYoung = d.male[each]
+                    }
+                }
             }
         }
-
     })
 
-    totalMax = d3.max([leftMax, rightMax])
-    // MAX VAN ALLES!!!!
+    totalMax = d3.max([leftMax, rightMax]);
+    totalMaxYoung = d3.max([leftMaxYoung, rightMaxYoung])
 
     // set domain
     xL = d3.scale.linear()
@@ -1275,12 +1300,12 @@ function makeTwoSidedBarchart() {
 
     yT = d3.scale.ordinal()
         .domain(ageGroups)
-        .rangeBands([50, heightT-150])
+        .rangeBands([50, heightT-200])
 
-    array = [0, 1, 2, 3, 4]
+    array = [0, 1, 2]
     yD = d3.scale.ordinal()
         .domain(array)
-        .rangeBands([50, heightT-150])
+        .rangeBands([50, heightT-200])
 
     xR = d3.scale.linear()
         .domain([0, totalMax])
@@ -1322,7 +1347,17 @@ function makeTwoSidedBarchart() {
             };
         })
         .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltip.style("visibility", "hidden");});
+        .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
+        .on("click", function(d) { 
+            if (youngTotal == "total") {
+                youngTotal = "young";
+                changeTwoSided() 
+            }
+            else if (youngTotal == "young") {
+                youngTotal = "total";
+                changeTwoSided()
+            };
+        });
 
     svgTwoSided.selectAll("rect.right")
         .data(dataTwoSidedRight)
@@ -1347,7 +1382,17 @@ function makeTwoSidedBarchart() {
             };
         })
         .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltip.style("visibility", "hidden");});
+        .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
+        .on("click", function(d) { 
+            if (youngTotal == "total") {
+                youngTotal = "young";
+                changeTwoSided() 
+            }
+            else if (youngTotal == "young") {
+                youngTotal = "total";
+                changeTwoSided()
+            };
+        });
 
     addPercentages();
 
@@ -1361,7 +1406,37 @@ function changeTwoSided() {
     
     svgChangeTwoSided = d3.select("#container4").transition();
 
-    correctDataFormatTwoSided(1);
+    if (youngTotal == "young") {
+
+        correctDataFormatTwoSided(0);   
+        
+        yT = d3.scale.ordinal()
+            .domain(ageGroups)
+            .rangeBands([50, heightT-200])
+
+        xL = d3.scale.linear()
+            .domain([0, totalMaxYoung])
+            .range([0, width2]);
+
+        xR = d3.scale.linear()
+            .domain([0, totalMaxYoung])
+            .range([0, width2]); 
+    }
+    else if (youngTotal == "total") {
+        correctDataFormatTwoSided(1);
+        
+        yT = d3.scale.ordinal()
+            .domain(ageGroups)
+            .rangeBands([50, heightT-200])
+
+        xL = d3.scale.linear()
+            .domain([0, totalMax])
+            .range([0, width2]);
+
+        xR = d3.scale.linear()
+            .domain([0, totalMax])
+            .range([0, width2]);
+    }
 
     dataTwoSidedLeft = male
     dataTwoSidedRight = female
@@ -1611,20 +1686,30 @@ function correctDataFormatTwoSided(origin) {
     
     female = []
     male = []
-    ageGroups = []
     j = 0
 
+    femaleOld = []
+    maleOld = []
+    ageGroupsOld = []
+
     if (origin == 0) {
+        ageGroups = ["0-4", "5-11", "12-17"]
         dataBarchart.forEach(function(d){
-            if (d.origin == countryStarName && d.origin == d.country) {
+            if (d.origin == countryStarName && d.country == countryTwoSided) {
                 for (var each in d.female) {
-                    if (each != "total") {
-                        ageGroups[j] = each;
-                        female[j] = d.female[each]
-                        male[j] = d.male[each]
-                        j++
+                    if (each == "0-4") {
+                        female[0] = d.female[each]
+                        male[0] = d.male[each]
                     }
-                    else if(each == "total") {
+                    else if (each == "5-11") {
+                        female[1] = d.female[each]
+                        male[1] = d.male[each]
+                    }
+                    else if (each == "12-17") {
+                        female[2] = d.female[each]
+                        male[2] = d.male[each]
+                    }
+                    else if (each == "0-17") {
                         totalFemale = d.female[each];
                         totalMale = d.male[each];
                     }
@@ -1633,24 +1718,30 @@ function correctDataFormatTwoSided(origin) {
         });
     }
     else if (origin == 1) {
+        ageGroups = ["0-17", "18-59", "60+"]
         dataBarchart.forEach(function(d){
             if (d.origin == countryStarName && d.country == countryTwoSided) {
                 for (var each in d.female) {
-                    if (each != "total") {
-                        ageGroups[j] = each;
-                        female[j] = d.female[each]
-                        male[j] = d.male[each]
-                        j++
+                    if (each == "0-17") {
+                        female[0] = d.female[each]
+                        male[0] = d.male[each]
                     }
-                    else if(each == "total") {
+                    else if (each == "18-59") {
+                        female[1] = d.female[each]
+                        male[1] = d.male[each]
+                    }
+                    else if (each == "60+") {
+                        female[2] = d.female[each]
+                        male[2] = d.male[each]
+                    }
+                    else if (each == "total") {
                         totalFemale = d.female[each];
                         totalMale = d.male[each];
                     }
                 }
             };
-        });
+        })
     };
-
 };
 
 function makeTotalGraph() {
