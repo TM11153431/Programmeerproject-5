@@ -97,6 +97,14 @@ div.tooltip {
     fill: #F2D286; 
 }
 
+.left:hover {
+    fill: #ECBA44;
+}
+
+.right:hover {
+    fill: #92382E;
+}
+
 .right {
     stroke: white;
     fill: #A15852; 
