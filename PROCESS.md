@@ -191,3 +191,31 @@ Nu werkt het gelukkig goed! :)
 Verder heb ik bij alle amounts een komma geplaats bij elk duizendtal.
 Dit gaf Sebastiaan als advies vrijdag, aangezien het dan veel duidelijker af te lezen is.
 Tot slot heb ik wat styling dingen geregeld, zoals de titels van grafieken in het midden zetten.
+
+# Dag 10 - 20 juni:
+Vandaag ben ik aan de slag gegaan met m'n two-sided barchart.
+In principe werkte deze, alleen viel er een stuk van de grafiek weg.
+Het duurde een tijdje om dit uit te pluizen, 
+maar uiteindelijk is het gelukt om de grafiek in z'n geheel weer te geven! :)
+Ik heb ervoor gekozen om de maximale waarde van alle waarden als maximum te kiezen,
+en dit niet te laten veranderen per land.
+Zo kan je naar mijn idee beter landen met elkaar vergelijken.
+Er zitten geen landen tussen waarbij de bars op deze manier te klein worden,
+dus zie ik geen negatieve aspecten aan deze keuze.
+Vervolgens heb ik ook aan deze grafiek een tooltip toegevoegd,
+waarmee te zien is hoeveel vluchtelingen er in een groep zitten in absolute getallen.
+Dit is een extra feature voor mensen die nóg dieper de data willen induiken.
+Ook heb ik vandaag gewerkt aan het commentaar over de two-sided barchart, dat de groepen onlogisch zijn.
+Ik heb ervoor gezorgd dat de grafiek drie groepen laat zien: jongeren (0-17 jaar), volwassenen (18-59 jaar) en ouderen (60+).
+Dit is naar mijn idee een logische indeling.
+Zo is goed te zien naar van welk land veel jongeren vluchten en waar zij heen gaan.
+Toch vond ik het zonde om de data over jongeren 'weg te gooien', 
+aangezien dit voor sommige gebruikers wel relevante informatie kan zijn.
+Ik heb er daarom voor gekozen dat je op de two-sided barchart kan klikken,
+en dat dan alleen de leeftijdsgroepen in de jongeren categorie worden weergegeven.
+Op deze manier wordt de gebruiker naar mijn idee niet in verwarring gebracht door hele lange bars,
+maar heeft hij wel toegang tot alle data.
+Helaas werkt deze switch van leeftijdsgroepen en de tooltip met absolute waarden 
+niet meer wanneer er een land wordt aangeklikt nadat er een land is weergegeven waar geen data over beschikbaar is.
+Hier moet ik dus nog goed naar kijken.
+Tot slot is het gelukt om de 5 conflictgebieden op één regel te krijgen. :)
