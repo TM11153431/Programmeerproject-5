@@ -219,3 +219,29 @@ Helaas werkt deze switch van leeftijdsgroepen en de tooltip met absolute waarden
 niet meer wanneer er een land wordt aangeklikt nadat er een land is weergegeven waar geen data over beschikbaar is.
 Hier moet ik dus nog goed naar kijken.
 Tot slot is het gelukt om de 5 conflictgebieden op één regel te krijgen. :)
+
+# Dag 11 - 21 juni:
+Vandaag ben ik aan de slag gegaan met de kleur van de kaart.
+Helaas had ik nog steeds het probleem dat Syrië ontzettend veel vluchtelingen heeft, 
+waardoor de kleurenschaal niet meer duidelijk is voor de andere landen.
+Met Gosia heb ik overlegd, en we hebben bedacht om het ook mogelijk te maken om de kaart met een logaritmische schaal weer te geven.
+Hier ben ik de hele dag mee bezig geweest, aangezien er nu 8 verschillende mogelijkheden zijn om de kaart te zien.
+Absoluut/Percentage + Origin/Asylum + Lineair/Logaritmisch.
+Ook moest de slider aangepast worden, om ook hier de logaritmische schaal te kunnen zien.
+Het ziet er naar mijn idee nu goed uit!
+Het wordt nu heel duidelijk dat Syrië ongelofelijk veel vluchtelingen heeft,
+maar je kan ook goed de verschillen tussen andere landen zien.
+Daarna bedacht ik me dat het leuk is om de totale grafiek, met vluchtelingen over de hele wereld,
+ook te laten zien in percentage van de wereldbevolking,
+aangezien dit wellicht een ander beeld geeft van de ontwikkeling van vluchtelingen in de wereld.
+Ik heb hier een tijdje mee geprutst, aangezien uiteindelijk bleek dat sommige waarden puntjes waren in plaats van nummers,
+waardoor de wereldpopulatie niet goed berekend werd, maar ik NaN's kreeg.
+De wereldpopulatie wordt nu goed berekend, maar toch gaat er nog iets fout het met weergeven van de grafiek.
+Hier ga ik morgen verder naar kijken.
+Verder heb ik vandaag ervoor gezorgd dat de percentages die opgeteld worden bij de jongeren groep,
+wordt afgerond op één cijfer achter de komma.
+Eerst kwam het soms voor dat de percentages niet goed opgeteld werden en je een getal als 2.2222229 kreeg.
+Dit is naar mijn idee niet zo mooi en heb ik ervoor gekozen om dit af te ronden.
+Tot slot heb ik bij de two-sided barchart twee knoppen gemaakt waarop je kan kiezen of je jongeren wilt zien of alle leeftijdsgroepen.
+Dit is naar mijn idee duidelijker dan dat je erop moet klikken.
+Deze feature heb ik wel erbij gelaten, aangezien ik wel denk dat dit een leuke toevoeging is.
