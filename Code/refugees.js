@@ -4,9 +4,13 @@ Minor Programmeren, Programmeerproject*/
 
 // make global variables for the data
 var dataTotal = [];
+var dataTotalAbs = [];
+var dataTotalPop = [];
+var dataTotalPerc = [];
 var svgTotal;
 var svgTooltipTimelineCountry;
 var svgTooltipTimelineTotal;
+var absPercTotal = "absolute values"
 
 var dataTotalAmount;
 var maxDataTotalAmount;
@@ -16,6 +20,10 @@ var svgGraph;
 var map;
 var dataColorsFrom  = {};
 var dataColorsTo = {};
+var dataColorsFromLog = {};
+var dataColorsToLog = {};
+var dataColorsFromLogPerc = {};
+var dataColorsToLogPerc = {};
 var dataOriginAsylum;
 var toFrom;
 var newCountry = "SYR";
@@ -41,6 +49,13 @@ var dataColorsFromPerc = {};
 var dataColorsToPerc = {};
 var absPerc;
 var svgTooltipTimeline;
+var linLog = "lin";
+
+var minLog = 0;
+var maxLog = 15.4;
+
+var minLogPerc = -10;
+var maxLogPerc = 1.5;
 
 var xScale;
 var xAxisLegend;
@@ -56,7 +71,10 @@ var tooltip;
 var colorLeft = "#FFB266"
 colorLeft = "#FCF5DD"
 colorLeft = "#FFE5CC"
+colorLeft = "#FFF0E1"
+colorLeft = "#FFF6EC"
 var colorRight = "#660000"
+//colorRight = "#440000"
 var colorBorder = "#331900"
 colorBorder = "#330000"
 var colorDefault = "#F5F5F5";
@@ -152,9 +170,6 @@ var yAxisB = d3.svg.axis()
     .scale(yB)
     .orient("left");
 
-var hoi = 7.1 + 8.2 + 8 
-console.log(hoi)
-
 // load data
 queue()
     .defer(d3.tsv, "Dataset Origin goed.tsv")   
@@ -181,11 +196,19 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
     var dataYear = dataOrigin.map(function(obj){ return obj[2015]; });
     maxDataYear = Math.max.apply(null, dataYear);
     minDataYear = Math.min.apply(null, dataYear);
-    //maxDataYear = 1000000
+    //maxDataYear = 100000
 
     // make function to scale values to a color for map
     color = d3.scale.linear()
         .domain([minDataYear, maxDataYear])
+        .range([colorLeft,colorRight]);
+
+    colorLog = d3.scale.linear()
+        .domain([minLog, maxLog])
+        .range([colorLeft,colorRight]);
+
+    colorLogPerc = d3.scale.linear()
+        .domain([minLogPerc, maxLogPerc])
         .range([colorLeft,colorRight]);
 
     colorPerc = d3.scale.linear()
@@ -193,31 +216,37 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
         .range([colorLeft,colorRight]);
 
     // put data in dataset in correct format
-    dataOrigin.forEach(function(d){
+    dataOrigin.forEach(function(d) {
         var country = d.Country,
-            value = +d[2015];
-            //value = Math.log(value)
-        dataColorsFrom[country] = { amount: value, fillColor: color(value) };
+            valueLin = +d[2015];
+            valueLog = Math.log(valueLin)
+        dataColorsFrom[country] = { amount: valueLin, fillColor: color(valueLin) };
+        dataColorsFromLog[country] = { amount: valueLog, fillColor: colorLog(valueLog) };
     });
 
-    dataAsylum.forEach(function(d){
+    dataAsylum.forEach(function(d) {
         var country = d.Country,
-            value = +d[2015];
-        dataColorsTo[country] = { amount: value, fillColor: color(value) };
+            valueLin = +d[2015];
+            valueLog = Math.log(valueLin)
+        dataColorsTo[country] = { amount: valueLin, fillColor: color(valueLin) };
+        dataColorsToLog[country] = { amount: valueLog, fillColor: colorLog(valueLog) };
     });
 
-    dataOrigin.forEach(function(d){
-        dataPopulation.forEach(function(e){
+    dataOrigin.forEach(function(d) {
+        dataPopulation.forEach(function(e) {
             if (d.Country == e.countrycode) {
                 var country = d.Country,
                     refugees = +d[2015],
                     population = +e[2015],
                     value = refugees/population*100;
+                    valueLog = Math.log(value)
                 if (!isNaN(value)) {
                     dataColorsFromPerc[country] = { amount: value, fillColor: colorPerc(value) };
+                    dataColorsFromLogPerc[country] = { amount: valueLog, fillColor: colorLogPerc(valueLog) };
                 }
                 else {
                     dataColorsFromPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                    dataColorsFromLogPerc[country] = { amount: "not available", fillColor: colorDefault };   
                 }
             };
         });
@@ -230,15 +259,21 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
                     refugees = +d[2015],
                     population = +e[2015],
                     value = refugees/population*100;
+                    valueLog = Math.log(value);
                 if (!isNaN(value)) {
                     dataColorsToPerc[country] = { amount: value, fillColor: colorPerc(value) };               
+                    dataColorsToLogPerc[country] = { amount: valueLog, fillColor: colorLogPerc(valueLog) };               
                 }
                 else {
-                    dataColorsToPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                    dataColorsToPerc[country] = { amount: "not available", fillColor: colorDefault };  
+                    dataColorsToLogPerc[country] = { amount: "not available", fillColor: colorDefault };   
                 }
             };
         });
     });
+
+    console.log(dataColorsToLogPerc)
+    console.log(dataColorsFromLogPerc)
 
     // set default datasets
     dataset = dataColorsFrom
@@ -682,39 +717,75 @@ function makeSlider() {
         dataOriginAsylum.forEach(function(d){
             var country = d.Country,
                 refugees = +d[year];
-                //value = Math.log(value)
+                refugeesLog = Math.log(refugees)
             if (toFrom == "from" && absPerc == "absolute values") {
-                dataColorsFrom[country] = { amount: refugees, fillColor: color(refugees) };
-                dataset = dataColorsFrom;
+                if (linLog == "lin") {
+                    dataColorsFrom[country] = { amount: refugees, fillColor: color(refugees) };
+                    dataset = dataColorsFrom;
+                }
+                else if (linLog == "log") {
+                    dataColorsFromLog[country] = { amount: refugeesLog, fillColor: colorLog(refugeesLog) };
+                    dataset = dataColorsFromLog;    
+                }
             } else if (toFrom == "to" && absPerc == "absolute values") {
-                dataColorsTo[country] = { amount: refugees, fillColor: color(refugees) };
-                dataset = dataColorsTo;
+                if (linLog == "lin") {
+                    dataColorsTo[country] = { amount: refugees, fillColor: color(refugees) };
+                    dataset = dataColorsTo;
+                }
+                else if (linLog == "log"){
+                    dataColorsToLog[country] = { amount: refugeesLog, fillColor: colorLog(refugeesLog) };
+                    dataset = dataColorsToLog;   
+                }
             } else if (toFrom == "from" && absPerc == "percentage of inhabitants") {
                 dataPopulation.forEach(function(e) {
                     if (d.Country == e.countrycode) {
                         population = +e[year];
-                        value = refugees/population*100;
-                        if (!isNaN(value)) {
-                            dataColorsFromPerc[country] = { amount: value, fillColor: colorPerc(value) };
+                        if (linLog == "lin") {
+                            value = refugees/population*100;
+                            if (!isNaN(value)) {
+                                dataColorsFromPerc[country] = { amount: value, fillColor: colorPerc(value) };
+                            }
+                            else {
+                                dataColorsFromPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                            }
+                            dataset = dataColorsFromPerc;
                         }
-                        else {
-                            dataColorsFromPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                        else if (linLog == "log") {
+                            value = Math.log(refugees/population*100);
+                            if (!isNaN(value)) {
+                                dataColorsFromLogPerc[country] = { amount: value, fillColor: colorLogPerc(value) };
+                            }
+                            else {
+                                dataColorsFromLogPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                            }
+                            dataset = dataColorsFromLogPerc;    
                         }
-                        dataset = dataColorsFromPerc;
                     }
                 })
             } else if (toFrom == "to" && absPerc == "percentage of inhabitants") {
                 dataPopulation.forEach(function(e) {
                     if (d.Country == e.countrycode) {
                         population = +e[year];
-                        value = refugees/population*100;
-                        if (!isNaN(value)) {
-                            dataColorsToPerc[country] = { amount: value, fillColor: colorPerc(value) };
+                        if (linLog == "lin") {
+                            value = refugees/population*100;
+                            if (!isNaN(value)) {
+                                dataColorsToPerc[country] = { amount: value, fillColor: colorPerc(value) };
+                            }
+                            else {
+                                dataColorsToPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                            }
+                            dataset = dataColorsToPerc;
                         }
-                        else {
-                            dataColorsToPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                        else if (linLog == "log") {
+                            value = Math.log(refugees/population*100);
+                            if (!isNaN(value)) {
+                                dataColorsToLogPerc[country] = { amount: value, fillColor: colorLogPerc(value) };
+                            }
+                            else {
+                                dataColorsLogToPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                            }
+                            dataset = dataColorsLogToPerc;
                         }
-                        dataset = dataColorsToPerc;
                     }
                 })
             } else {
@@ -808,24 +879,49 @@ function changeLegendMap() {
     var svgChangeLegend = d3.select(".datamap").transition();
 
     if (absPerc == "absolute values") {
-        // change the title
-        svgChangeLegend.select("#legendTitle")
-            .text("Amount of refugees (in millions)");
+        if (linLog == "lin") {
+            // change the title
+            svgChangeLegend.select("#legendTitle")
+                .text("Amount of refugees (in millions)");
 
-        // change axis
-        xScale = d3.scale.linear()
-            .range([0, legendWidth])
-            .domain([minDataYear, maxDataYear/1000000]);
+            // change axis
+            xScale = d3.scale.linear()
+                .range([0, legendWidth])
+                .domain([minDataYear, maxDataYear/1000000]);
+        }
+        else if (linLog == "log") {
+
+            // change the title
+            svgChangeLegend.select("#legendTitle")
+                .text("Amount of refugees (in logarithm)");
+
+            // change axis
+            xScale = d3.scale.linear()
+                .range([0, legendWidth])
+                .domain([minLog, maxLog]);
+        }
     }
     else if (absPerc == "percentage of inhabitants") {
-        // change the title
-        svgChangeLegend.select("#legendTitle")
-            .text("Percentage refugees of inhabitants")
+        if (linLog == "lin") {
+            // change the title
+            svgChangeLegend.select("#legendTitle")
+                .text("Percentage refugees of inhabitants")
 
-        // change axis
-        xScale = d3.scale.linear()
-            .range([0, legendWidth])
-            .domain([minDataYearPerc, maxDataYearPerc]);
+            // change axis
+            xScale = d3.scale.linear()
+                .range([0, legendWidth])
+                .domain([minDataYearPerc, maxDataYearPerc]);
+        }
+        else if (linLog == "log") {
+        // change the title
+            svgChangeLegend.select("#legendTitle")
+                .text("Percentage refugees of inhabitants (in logarithm)")
+
+            // change axis
+            xScale = d3.scale.linear()
+                .range([0, legendWidth])
+                .domain([minLogPerc, maxLogPerc]);    
+        }
     };
 
     xAxisLegend = d3.svg.axis()
@@ -859,47 +955,103 @@ function changeLegendMap() {
 function updateDataToFrom(input) {
 
     // use correct data
-    if (input == 0 && absPerc == "absolute values" || input == 2 && toFrom == "from") {
-        dataset = dataColorsFrom;
-        dataOriginAsylum = dataOrigin;
-        map.options.data = dataColorsFrom; 
-        toFrom = "from";
-        absPerc = "absolute values";
+    if (linLog == "lin" && input != 5 || input == 4) {
+        if (input == 0 && absPerc == "absolute values" || input == 2 && toFrom == "from" || absPerc == "absolute values" && toFrom == "from" && input == 4) {
+            dataset = dataColorsFrom;
+            dataOriginAsylum = dataOrigin;
+            map.options.data = dataColorsFrom; 
+            toFrom = "from";
+            absPerc = "absolute values";
+            linLog = "lin";
+        }
+        else if (input == 0 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "from" || absPerc == "percentage of inhabitants" && toFrom == "from" && input == 4) {
+            dataset = dataColorsFromPerc;
+            dataOriginAsylum = dataOrigin;
+            map.options.data = dataColorsFromPerc; 
+            toFrom = "from";
+            absPerc = "percentage of inhabitants";
+            linLog = "lin";
+        }
+        else if (input == 1 && absPerc == "absolute values" || input == 2 && toFrom == "to" || absPerc == "absolute values" && toFrom == "to" && input == 4) {
+            dataset = dataColorsTo;
+            dataOriginAsylum = dataAsylum;
+            map.options.data = dataColorsTo; 
+            toFrom = "to";
+            absPerc = "absolute values";   
+            linLog = "lin";
+        }
+        else if (input == 1 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "to" || absPerc == "percentage of inhabitants" && toFrom == "to" && input == 4) {
+            dataset = dataColorsToPerc;
+            dataOriginAsylum = dataAsylum;
+            map.options.data = dataColorsToPerc; 
+            toFrom = "to";
+            absPerc = "percentage of inhabitants"; 
+            linLog = "lin";
+        }
     }
-    else if (input == 0 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "from") {
-        dataset = dataColorsFromPerc;
-        dataOriginAsylum = dataOrigin;
-        map.options.data = dataColorsFromPerc; 
-        toFrom = "from";
-        absPerc = "percentage of inhabitants";
-    }
-    else if (input == 1 && absPerc == "absolute values" || input == 2 && toFrom == "to") {
-        dataset = dataColorsTo;
-        dataOriginAsylum = dataAsylum;
-        map.options.data = dataColorsTo; 
-        toFrom = "to";
-        absPerc = "absolute values";   
-    }
-    else if (input == 1 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "to") {
-        dataset = dataColorsToPerc;
-        dataOriginAsylum = dataAsylum;
-        map.options.data = dataColorsToPerc; 
-        toFrom = "to";
-        absPerc = "percentage of inhabitants"; 
-    }
+    else if (linLog == "log" && input != 4 || input == 5) {
+        if (input == 0 && absPerc == "absolute values" || input == 2 && toFrom == "from" || absPerc == "absolute values" && toFrom == "from" && input == 5) {
+            dataset = dataColorsFromLog;
+            dataOriginAsylum = dataOrigin;
+            map.options.data = dataColorsFromLog; 
+            toFrom = "from";
+            absPerc = "absolute values";
+            linLog = "log";
+        }
+        else if (input == 0 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "from" || absPerc == "percentage of inhabitants" && toFrom == "from" && input == 5) {
+            dataset = dataColorsFromLogPerc;
+            dataOriginAsylum = dataOrigin;
+            map.options.data = dataColorsFromLogPerc; 
+            toFrom = "from";
+            absPerc = "percentage of inhabitants";
+            linLog = "log";
+        }
+        else if (input == 1 && absPerc == "absolute values" || input == 2 && toFrom == "to" || absPerc == "absolute values" && toFrom == "to" && input == 5) {
+            dataset = dataColorsToLog;
+            dataOriginAsylum = dataAsylum;
+            map.options.data = dataColorsToLog; 
+            toFrom = "to";
+            absPerc = "absolute values";   
+            linLog = "log";
+        }
+        else if (input == 1 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "to" || absPerc == "percentage of inhabitants" && toFrom == "to" && input == 5) {
+            dataset = dataColorsToLogPerc;
+            dataOriginAsylum = dataAsylum;
+            map.options.data = dataColorsToLogPerc; 
+            toFrom = "to";
+            absPerc = "percentage of inhabitants"; 
+            linLog = "log";
+        }
+    };
 
-    /*if (input == 0) {
+
+/*    if (input == 4 && toFrom == "from" || linLog == "lin" && input == 0) {
         dataset = dataColorsFrom;
-        dataOriginAsylum = dataOrigin;   
-        map.options.data = dataColorsFrom; 
-        toFrom = "from";
-    } else if (input == 1) {
+        map.options.data = dataColorsFrom;
+        dataOriginAsylum = dataOrigin;
+        toFrom = "from"
+        linLog = "lin"
+    }
+    else if (input == 4 & toFrom == "to" || linLog == "lin" && input == 1) {
         dataset = dataColorsTo;
-        dataOriginAsylum = dataAsylum;
         map.options.data = dataColorsTo;
-        toFrom = "to";
-    } else {
-        console.log("You didn't define ToOrFrom")
+        dataOriginAsylum = dataAsylum;
+        toFrom = "to"
+        linLog = "lin"
+    }
+    else if (input == 5 && toFrom == "from" || linLog == "log" && input == 0) {
+        dataset = dataColorsFromLog;
+        map.options.data = dataColorsFromLog;
+        dataOriginAsylum = dataOrigin;
+        toFrom = "from"
+        linLog = "log"
+    }
+    else if (input == 5 && toFrom == "to" || linLog == "log" && input == 1) {
+        dataset = dataColorsToLog;
+        map.options.data = dataColorsToLog;
+        dataOriginAsylum = dataAsylum;
+        toFrom = "to"
+        linLog = "log"
     }*/
 
     // update colors in map
@@ -947,6 +1099,7 @@ function makeMap() {
             highlightBorderWidth: 2,
             highlightFillColor: function(geo) {
                 return geo["fillColor"] || colorDefault;
+
             },
             highlightBorderColor: "black",
             
@@ -1018,7 +1171,7 @@ function newCountryClicked(geo) {
         countryTwoSided = countryStarName;
 
         // change two-sided barchart
-        changeTwoSided();
+        changeTwoSided(2);
 
     };
 };
@@ -1065,7 +1218,7 @@ function newCountryClickedText(country) {
     countryTwoSided = countryStarName;
 
     // change two-sided barchart
-    changeTwoSided();
+    changeTwoSided(2);
 };
 
 // make the barchart
@@ -1145,7 +1298,7 @@ function makeBarchart() {
         .on("mouseover", function(d) { return tooltip.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
         .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
         .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
-        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided() });
+        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
 
     // add comment
     chart.append("g")
@@ -1236,7 +1389,7 @@ function changeBarchart() {
         .on("mouseover", function(d) { return tooltip.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
         .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
         .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
-        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided() });
+        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
 };
 
 function makeTwoSidedBarchart() { 
@@ -1350,12 +1503,10 @@ function makeTwoSidedBarchart() {
         .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
         .on("click", function(d) { 
             if (youngTotal == "total") {
-                youngTotal = "young";
-                changeTwoSided() 
+                changeTwoSided(0) 
             }
             else if (youngTotal == "young") {
-                youngTotal = "total";
-                changeTwoSided()
+                changeTwoSided(1)
             };
         });
 
@@ -1385,12 +1536,10 @@ function makeTwoSidedBarchart() {
         .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
         .on("click", function(d) { 
             if (youngTotal == "total") {
-                youngTotal = "young";
-                changeTwoSided() 
+                changeTwoSided(0) 
             }
             else if (youngTotal == "young") {
-                youngTotal = "total";
-                changeTwoSided()
+                changeTwoSided(1)
             };
         });
 
@@ -1402,11 +1551,12 @@ function makeTwoSidedBarchart() {
     addTitlesTwoSided();
 };
 
-function changeTwoSided() {
+function changeTwoSided(value) {
     
     svgChangeTwoSided = d3.select("#container4").transition();
 
-    if (youngTotal == "young") {
+    if (value == 0 || value == 2 && youngTotal == "young") {
+        youngTotal = "young"
 
         correctDataFormatTwoSided(0);   
         
@@ -1422,7 +1572,9 @@ function changeTwoSided() {
             .domain([0, totalMaxYoung])
             .range([0, width2]); 
     }
-    else if (youngTotal == "total") {
+    else if (value == 1 || value == 2 && youngTotal == "total") {
+        youngTotal = "total"
+        
         correctDataFormatTwoSided(1);
         
         yT = d3.scale.ordinal()
@@ -1457,10 +1609,10 @@ function changeTwoSided() {
 
         removeBars();
 
-        addBars();
-
         removeAllText();
         svgTwoSided.selectAll(".graphTitle").remove();
+        
+        addBars();
 
         addTitlesTwoSided();
 
@@ -1615,7 +1767,15 @@ function addBars() {
             };
         })
         .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltip.style("visibility", "hidden");});
+        .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
+        .on("click", function(d) { 
+            if (youngTotal == "total") {
+                changeTwoSided(0) 
+            }
+            else if (youngTotal == "young") {
+                changeTwoSided(1)
+            };
+        });
 
     // eventueel waar de bars vandaan komen
     svgChangeRightTwoSided.enter().append("rect")
@@ -1643,7 +1803,15 @@ function addBars() {
             };
         })
         .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltip.style("visibility", "hidden");});
+        .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
+        .on("click", function(d) { 
+            if (youngTotal == "total") {
+                changeTwoSided(0) 
+            }
+            else if (youngTotal == "young") {
+                changeTwoSided(1)
+            };
+        });
 
 };
 
@@ -1698,20 +1866,20 @@ function correctDataFormatTwoSided(origin) {
             if (d.origin == countryStarName && d.country == countryTwoSided) {
                 for (var each in d.female) {
                     if (each == "0-4") {
-                        female[0] = d.female[each]
-                        male[0] = d.male[each]
+                        female[0] = Math.round(d.female[each] * 10) / 10;
+                        male[0] = Math.round(d.male[each] * 10) / 10;
                     }
                     else if (each == "5-11") {
-                        female[1] = d.female[each]
-                        male[1] = d.male[each]
+                        female[1] = Math.round(d.female[each] * 10) / 10;
+                        male[1] = Math.round(d.male[each] * 10) / 10;
                     }
                     else if (each == "12-17") {
-                        female[2] = d.female[each]
-                        male[2] = d.male[each]
+                        female[2] = Math.round(d.female[each] * 10) / 10;
+                        male[2] = Math.round(d.male[each] * 10) / 10;
                     }
                     else if (each == "0-17") {
-                        totalFemale = d.female[each];
-                        totalMale = d.male[each];
+                        totalFemale = Math.round(d.female[each] * 10) / 10;
+                        totalMale = Math.round(d.male[each] * 10) / 10;
                     }
                 }
             };
@@ -1723,20 +1891,20 @@ function correctDataFormatTwoSided(origin) {
             if (d.origin == countryStarName && d.country == countryTwoSided) {
                 for (var each in d.female) {
                     if (each == "0-17") {
-                        female[0] = d.female[each]
-                        male[0] = d.male[each]
+                        female[0] = Math.round(d.female[each] * 10) / 10;
+                        male[0] = Math.round(d.male[each] * 10) / 10;
                     }
                     else if (each == "18-59") {
-                        female[1] = d.female[each]
-                        male[1] = d.male[each]
+                        female[1] = Math.round(d.female[each] * 10) / 10;
+                        male[1] = Math.round(d.male[each] * 10) / 10;
                     }
                     else if (each == "60+") {
-                        female[2] = d.female[each]
-                        male[2] = d.male[each]
+                        female[2] = Math.round(d.female[each] * 10) / 10;
+                        male[2] = Math.round(d.male[each] * 10) / 10;
                     }
                     else if (each == "total") {
-                        totalFemale = d.female[each];
-                        totalMale = d.male[each];
+                        totalFemale = Math.round(d.female[each] * 10) / 10;
+                        totalMale = Math.round(d.male[each] * 10) / 10;
                     }
                 }
             };
@@ -1756,6 +1924,8 @@ function makeTotalGraph() {
 
     // save data in correct format
     correctDataFormatTimelineTotal();
+
+    dataTotal = dataTotalAbs;
     
     // set y-axis for default settings
     setYaxisTimelineTotal();
@@ -1768,7 +1938,7 @@ function makeTotalGraph() {
             .attr("x", widthG / 2)
             .attr("y", - heightG - marginG.top / 2)
             .style("text-anchor", "middle")
-            .text("Amount of refugees in the world over time");
+            .text("Amount of refugees in the world over time in " + absPercTotal);
 
     // make x axis
     svgTotal.append("g")
@@ -1810,16 +1980,32 @@ function makeTotalGraph() {
 // save data in correct format for timeline
 function correctDataFormatTimelineTotal() {
 
-    for (i = 0; i < 26; i++) {
-        object = {amount : 0, year: yearsTime[i], yearx: yearsString[i]}
-        dataTotal[i] = object
-    }
-
     dataOriginAsylum.forEach(function(d) {
         for (i = 0; i < 26; i++) {
-            dataTotal[i].amount += +d[yearsString[i]]  
+            if (!dataTotalAbs[i]) {
+                dataTotalAbs[i] = {amount: 0, year: yearsTime[i], yearx: yearsString[i]}
+            }
+            dataTotalAbs[i].amount += +d[yearsString[i]]  
         }
     });
+
+    dataPopulation.forEach(function(d) {
+        for (i = 0; i < 26; i++) {
+            if (!dataTotalPop[i]) {
+                dataTotalPop[i] = {amount: 0.0, year: yearsTime[i], yearx: yearsString[i]}
+            }
+            if (!isNaN(d[yearsString[i]])) {
+                dataTotalPop[i].amount += +d[yearsString[i]]
+            }
+        }
+    });
+    console.log(dataTotalPop)
+
+    for (i = 0; i < 26; i++) {
+        perc = dataTotalAbs[i].amount / dataTotalPop[i].amount * 100
+        dataTotalPerc[i] = {amount: perc, year: yearsTime[i], yearx: yearsString[i]}
+    }
+    console.log(dataTotalPerc)
 };
 
 // set y-axis of timeline
@@ -1835,4 +2021,29 @@ function setYaxisTimelineTotal() {
     // set domain for timeline
     xG.domain(d3.extent(yearsTime));
     yG.domain([0, maxDataTotalAmount]); 
+};
+
+function updateGraphTotal(value) {
+    if (value == 0) {
+        absPercTotal = "absolute values";
+        dataTotal = dataTotalAbs;
+    }
+    else if (value == 1) {
+        absPercTotal = "percentage of population";
+        dataTotal = dataTotalPerc;
+    }
+
+    // select the section for applying changes
+    svgChangeTimelineTotal = d3.select("#container5").transition();
+    
+    // change the title
+    svgChangeTimelineTotal.select(".graphTitle")
+        .text("Amount of refugees in the world over time in " + absPercTotal)
+
+    // change the line
+    svgChangeTimelineTotal.select(".lineTotal")
+        .duration(750)
+        .attr("d", lineCountry(dataTotal));
+
+    setYaxisTimelineTotal();
 };
