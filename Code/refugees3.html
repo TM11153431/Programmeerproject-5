@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <script src="https://d3js.org/queue.v1.min.js"></script>
+
+    <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
     <script src="datamaps.world.min.js"></script>
@@ -64,7 +64,7 @@ body, html {
 
 /* Third image (Contact) */
 .bgimg-3 {
-    background-image: url("picture6.JPG");
+    background-image: url("picture6.jpg");
     min-height: 400px;
 }
 
@@ -124,6 +124,21 @@ body, html {
     <p class="w3-center"><em>Refugees around the world and in conflict areas</em></p>
     <p>KLEINE UITLEG VAN HET PROJECT? My project visualises refugees over the whole world: Where do they come from? and: Where are they going? Besides that, 5 conflict areas are being visualised. Hereby it becomes clear from which country they flee and to which near countries. Also, the gender and age of the refugees are given.</p>
 
+    <div class="w3-center" id ="wrapper">
+        <div class="btn btn-default">
+            <input name="updateButtonAbs" 
+                type="button" 
+                value="Absolute values" 
+                onclick="updateGraphTotal(0)"/>
+        </div>
+        <div class="btn btn-default">
+            <input name="updateButtonPerc" 
+                type="button" 
+                value="Percentage of population" 
+                onclick="updateGraphTotal(1)"/>
+        </div>
+    </div>
+
     <div class="w3-row">
     <div class="w3-col m6 w3-center w3-padding-large" id="container5" style="position: relative; width: 500px; height: 600px;"></div>
     </div>
@@ -155,7 +170,19 @@ body, html {
 </div>
 
 <div class="w3-row w3-center w3-dark-grey w3-padding-16" id="world">
-    <div class="w3-third">
+    <div class="w3-fifth">
+        <div class="w3-half w3-section">
+            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(2)">Absolute values</span>
+        </div>
+        <div class="w3-half w3-section">
+            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(3)">Percentage of inhabitants</span>
+        </div>
+    </div>
+    <div class="w3-fifth">
+        <div class="w3-section">
+        </div>
+    </div>
+    <div class="w3-fifth">
         <div class="w3-half w3-section">
             <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(0)">Origin</span>
         </div>
@@ -163,18 +190,16 @@ body, html {
             <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(1)">Asylum</span>
         </div>
     </div>
-        <div class="w3-third">
+    <div class="w3-fifth">
+        <div class="w3-section">
+        </div>
+    </div>
+    <div class="w3-fifth">
         <div class="w3-half w3-section">
+            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(4)">Linear</span>
         </div>
         <div class="w3-half w3-section"> 
-        </div>
-        </div>
-    <div class="w3-third">
-        <div class="w3-half w3-section">
-            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(2)">Absolute values</span>
-        </div>
-        <div class="w3-half w3-section">
-            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(3)">Percentage of inhabitants</span>
+            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(5)">Logarithmic</span>
         </div>
     </div>
 </div>
@@ -271,7 +296,25 @@ body, html {
 <div class="w3-row-padding w3-center">
     <div id="container3" style="position: relative; width: 800px; height: 500px;"></div>
 
-    <div id="container4" style="position: relative; width: 900px; height: 500px;"></div>
+    <div id="container4" style="position: relative; width: 900px; height: 200px;"></div>
+
+    <div class="w3-twothird">
+        <div id ="wrapper">
+            <div class="btn btn-default">
+                <input name="updateButtonYoung" 
+                    type="button" 
+                    value="Show only younth" 
+                    onclick="changeTwoSided(0)"/>
+            </div>
+            <div class="btn btn-default">
+                <input name="updateButtonTotal" 
+                    type="button" 
+                    value="Show all age groups" 
+                    onclick="changeTwoSided(1)"/>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
