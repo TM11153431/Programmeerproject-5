@@ -245,3 +245,37 @@ Dit is naar mijn idee niet zo mooi en heb ik ervoor gekozen om dit af te ronden.
 Tot slot heb ik bij de two-sided barchart twee knoppen gemaakt waarop je kan kiezen of je jongeren wilt zien of alle leeftijdsgroepen.
 Dit is naar mijn idee duidelijker dan dat je erop moet klikken.
 Deze feature heb ik wel erbij gelaten, aangezien ik wel denk dat dit een leuke toevoeging is.
+
+# Dag 12 - 22 juni:
+Vandaag heb ik allereerst ervoor gezorgd dat de totale grafiek goed wordt weergegeven,
+de assen gaan goed mee en ook de tooltip werkt. Dat is fijn!
+Daarna heb ik gekeken naar de minimale en maximale waarden van de verschillende datasets die worden weergegeven in de kaart.
+Dit zijn 4 datasets, waarvan ik van sommigen nog de minimale en maximale waarde had 'gehardcode'.
+Dit vind ik niet mooi, dus heb ik een functie geschreven die alle data checkt voor de minimale en maximale waarde,
+voor elke mogelijkheid van datasets.
+Nu weet ik dus ook zeker dat alle data goed wordt weergegeven op de kaart, 
+en dat niet één datapunt geen goede kleur heeft bijvoorbeeld.
+Ik heb ervoor gekozen om de datasets van asylum en origin dezelfde minimale en maximale waarde te geven,
+en dat deze waarden alleen veranderen voor absolute waarde/percentage en lineair/logaritme.
+Dit vind ik logisch, omdat je dan asylum en origin beter met elkaar kan vergelijken,
+dan wanneer je deze schaal wel mee laten veranderen tussen deze categorieën.
+Daarna kwam ik erachter dat de slider niet helemaal goed werkt.
+Wanneer er namelijk naar een ander jaar is geslide, en er vervolgens geklikt wordt op bijvoorbeeld een ander origin/asylum,
+dan liet hij de dataset zien die als laatst was weergeven van deze categorie,
+terwijl dan het jaar weergeven moet worden, waar de slider op dat moment staat.
+Dit is gelukkig nu opgelost. :)
+Vervolgens heb ik ervoor gezorgd dat alle tooltips goed werken:
+De tooltip van de tijdlijn deed heel gek wanneer er geen data weergeven werd, dat is nu ook opgelost.
+Er wordt dan helemaal geen tooltip laten zien, wat naar mijn idee heel logisch is.
+De tooltip van de barchart werkte niet helemaal wanneer er hele lange landen in stonden, dan past het niet.
+Dat was in één regel code geregeld. :)
+Ook heb ik ervoor gezorgd dat de barchart in kleur oplicht wanneer er data is voor de two-sided barchart,
+en grijs oplicht wanneer die data niet beschikbaar is.
+Naar mijn idee is het nu heel duidelijk voor de gebruiker wanneer je op de balk kan klikken, en wanneer niet.
+Tot slot was het zo dat, wanneer de data ingeladen werd, alle lege datapunten als 0 gezien werden.
+Dit klopt niet!
+Vandaag heb ik ervoor gezorgd dat dit niet gebeurt, en dat de lege datapunten ook daadwerkelijk niet weergeven worden.
+Waar de data wel echt 0 is, doet een probleem zich voor wanneer het logaritme genomen wordt.
+Dit wordt namelijk -oneindig!
+Dit gaf ook een probleem bij de kleurenschaal, aangezien je dat niet kan opnemen in de schaal.
+Ik heb ervoor gekozen om bij deze landen de allerlichtste kleur mee te geven, aangezien dit het dichts bij de werkelijkheid komt.
