@@ -141,19 +141,8 @@ for (i = 1990; i < 2016; i++) {
 };
 
 // make function to draw the line for graph
-/*var lineCountry = d3.svg.line()
-    .x(function(d) { return xG(d.year); })
-    .y(function(d) { console.log(+d.amount);
-        if (!isNaN(d.amount)) {
-            console.log(d.yearx)
-            console.log('hoi');
-            return yG(+d.amount); 
-        } else {
-            return yG(0);
-        }
-    });*/
 var lineCountry = d3.svg.line()
-    .x(function(d) { console.log(d); return xG(d.year); })
+    .x(function(d) { return xG(d.year); })
     .y(function(d) { return yG(d.amount); });
 
 // initialize x axis for graph
@@ -716,10 +705,8 @@ function correctDataFormatTimeline() {
     if (absPerc == "absolute values") {
         dataOriginAsylum.forEach(function(d) {
             if (d.Country == newCountry) {
-                console.log(d.Country)
                 for (i = 0; i < 26; i++) {
                     if (!isNaN(d[yearsString[i]])) {
-                        console.log(d[yearsString[i]])
                         object = {amount : d[yearsString[i]], year: yearsTime[i], yearx: yearsString[i]}
                         dataCountry[j] = object;
                         j++;
@@ -772,10 +759,6 @@ function changeGraphTimeline() {
 
     // select the section for applying changes
     svgChangeTimeline = d3.select("#container2").transition();
-
-    /*console.log(d3.select(".tooltipTimeline"))
-
-    d3.select(".tooltipTimeline").remove();*/
     
     if (dataCountry.length == 0) {
         // change the title
@@ -1467,7 +1450,7 @@ function makeBarchart() {
             d3.select(this)
                 .attr("fill", "#A15852");
             return tooltip.style("visibility", "hidden");})
-        .on("click", function(d) { console.log(d); countryTwoSided = d.country; changeTwoSided(2) });
+        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
 
     // add comment
     chart.append("g")
