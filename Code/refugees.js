@@ -79,6 +79,7 @@ var colorRight = "#660000"
 //colorRight = "#440000"
 var colorBorder = "#331900"
 colorBorder = "#330000"
+colorBorder = "black"
 var colorDefault = "#F5F5F5";
 
 var svgTwoSided;
@@ -175,9 +176,9 @@ var yAxisB = d3.svg.axis()
 // load data
 queue()
     .defer(d3.tsv, "Dataset Origin goed.tsv")
-    .defer(d3.tsv, "Dataset Origin goed 22 juni.tsv")   
+    .defer(d3.tsv, "Dataset Origin goed 23 juni.tsv")   
     .defer(d3.tsv, "Dataset Asylum goed.tsv")
-    .defer(d3.tsv, "Dataset Asylum goed 22 juni.tsv")
+    .defer(d3.tsv, "Dataset Asylum goed 23 juni.tsv")
     .defer(d3.tsv, "Data Population Worldbank.tsv")    
     .defer(d3.json, "dataBarchart.json")    
     .await(makeVisualisations)
@@ -823,6 +824,14 @@ function makeSlider() {
 
 function correctDataFormatMap() {
     // put data in dataset in correct format
+    dataColorsFrom = {};
+    dataColorsFromLog = {};
+    dataColorsFromPerc = {};
+    dataColorsFromLogPerc = {};
+    dataColorsTo = {};
+    dataColorsToLog = {};
+    dataColorsToPerc = {};
+    dataColorsToLogPerc = {};
     dataOriginAsylum.forEach(function(d){
         var country = d.Country,
             refugees = +d[currentYear];
@@ -830,48 +839,48 @@ function correctDataFormatMap() {
         if (toFrom == "from" && absPerc == "absolute values") {
             if (linLog == "lin") {
                 if (!isNaN(refugees)) {
-                    dataColorsFrom[country] = { amount: refugees, fillColor: color(refugees) };
+                    dataColorsFrom[country] = { amount: refugees, fillColor: color(refugees), country: country };
                 }
                 else {
-                    dataColorsFrom[country] = { amount: "not available", fillColor: colorDefault };    
+                    dataColorsFrom[country] = { amount: "not available", fillColor: colorDefault, country: country };    
                 }
                 dataset = dataColorsFrom;
             }
             else if (linLog == "log") {
                 if (!isNaN(refugees)) {
                     if (refugees != 0) {
-                        dataColorsFromLog[country] = { amount: refugeesLog, fillColor: colorLog(refugeesLog) };
+                        dataColorsFromLog[country] = { amount: refugeesLog, fillColor: colorLog(refugeesLog), country: country };
                     }
                     else {
-                        dataColorsFromLog[country] = { amount: refugeesLog, fillColor: colorLeft };   
+                        dataColorsFromLog[country] = { amount: refugeesLog, fillColor: colorLeft, country: country };   
                     }
                 }
                 else {
-                    dataColorsFromLog[country] = { amount: "not available", fillColor: colorDefault };   
+                    dataColorsFromLog[country] = { amount: "not available", fillColor: colorDefault, country: country };   
                 }
                 dataset = dataColorsFromLog;    
             }
         } else if (toFrom == "to" && absPerc == "absolute values") {
             if (linLog == "lin") {
                 if (!isNaN(refugees)) {
-                    dataColorsTo[country] = { amount: refugees, fillColor: color(refugees) };
+                    dataColorsTo[country] = { amount: refugees, fillColor: color(refugees), country: country };
                 }
                 else {
-                    dataColorsTo[country] = { amount: "not available", fillColor: colorDefault };    
+                    dataColorsTo[country] = { amount: "not available", fillColor: colorDefault, country: country };    
                 }
                 dataset = dataColorsTo;
             }
             else if (linLog == "log"){
                 if (!isNaN(refugees)) {
                     if (refugees != 0) {
-                        dataColorsToLog[country] = { amount: refugeesLog, fillColor: colorLog(refugeesLog) };
+                        dataColorsToLog[country] = { amount: refugeesLog, fillColor: colorLog(refugeesLog), country: country };
                     }
                     else {
-                        dataColorsToLog[country] = { amount: refugeesLog, fillColor: colorLeft };   
+                        dataColorsToLog[country] = { amount: refugeesLog, fillColor: colorLeft, country: country };   
                     }
                 }
                 else {
-                    dataColorsToLog[country] = { amount: "not available", fillColor: colorDefault };    
+                    dataColorsToLog[country] = { amount: "not available", fillColor: colorDefault, country: country };    
                 }
                 dataset = dataColorsToLog;   
             }
@@ -882,10 +891,10 @@ function correctDataFormatMap() {
                     if (linLog == "lin") {
                         value = refugees/population*100;
                         if (!isNaN(value)) {
-                            dataColorsFromPerc[country] = { amount: value, fillColor: colorPerc(value) };
+                            dataColorsFromPerc[country] = { amount: value, fillColor: colorPerc(value), country: country };
                         }
                         else {
-                            dataColorsFromPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                            dataColorsFromPerc[country] = { amount: "not available", fillColor: colorDefault, country: country };   
                         }
                         dataset = dataColorsFromPerc;
                     }
@@ -893,14 +902,14 @@ function correctDataFormatMap() {
                         value = Math.log(refugees/population*100);
                         if (!isNaN(value)) {
                             if (value != 0) {
-                                dataColorsFromLogPerc[country] = { amount: value, fillColor: colorLogPerc(value) };
+                                dataColorsFromLogPerc[country] = { amount: value, fillColor: colorLogPerc(value), country: country };
                             }
                             else {
-                                dataColorsFromLogPerc[country] = { amount: value, fillColor: colorLeft };   
+                                dataColorsFromLogPerc[country] = { amount: value, fillColor: colorLeft, country: country };   
                             }
                         }
                         else {
-                            dataColorsFromLogPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                            dataColorsFromLogPerc[country] = { amount: "not available", fillColor: colorDefault, country: country };   
                         }
                         dataset = dataColorsFromLogPerc;    
                     }
@@ -913,10 +922,10 @@ function correctDataFormatMap() {
                     if (linLog == "lin") {
                         value = refugees/population*100;
                         if (!isNaN(value)) {
-                            dataColorsToPerc[country] = { amount: value, fillColor: colorPerc(value) };
+                            dataColorsToPerc[country] = { amount: value, fillColor: colorPerc(value), country: country };
                         }
                         else {
-                            dataColorsToPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                            dataColorsToPerc[country] = { amount: "not available", fillColor: colorDefault, country: country, country: country };   
                         }
                         dataset = dataColorsToPerc;
                     }
@@ -924,14 +933,14 @@ function correctDataFormatMap() {
                         value = Math.log(refugees/population*100);
                         if (!isNaN(value)) {
                             if (value != 0) {
-                                dataColorsToLogPerc[country] = { amount: value, fillColor: colorLogPerc(value) };
+                                dataColorsToLogPerc[country] = { amount: value, fillColor: colorLogPerc(value), country: country };
                             }
                             else {
-                                dataColorsToLogPerc[country] = { amount: value, fillColor: colorLeft };   
+                                dataColorsToLogPerc[country] = { amount: value, fillColor: colorLeft, country: country };   
                             }
                         }
                         else {
-                            dataColorsToLogPerc[country] = { amount: "not available", fillColor: colorDefault };   
+                            dataColorsToLogPerc[country] = { amount: "not available", fillColor: colorDefault, country: country };   
                         }
                         dataset = dataColorsToLogPerc;
                     }
@@ -1180,6 +1189,13 @@ function updateDataToFrom(input) {
     }*/
 
     correctDataFormatMap();
+
+    console.log(dataset)
+    i = 0
+    for (each in dataset){
+        i++
+    }
+    console.log(i)
     
     // update colors in map
     map.updateChoropleth(dataset)
@@ -1220,15 +1236,45 @@ function makeMap() {
         fills: { defaultFill: colorDefault },
         data: dataset,    
         geographyConfig: {
-            borderColor: colorBorder,
-            
+            borderColor: function(d) {
+                if (d.id == "COD" || d.id == "CAF"|| d.id == "SOM" || d.id == "SSD" || d.id == "SYR") {
+                    return "gold";    
+                }
+                else {
+                    return colorBorder;
+                }
+            },
+            borderWidth: function(d) {
+                if (d.id == "COD" || d.id == "CAF"|| d.id == "SOM" || d.id == "SSD" || d.id == "SYR") {
+                    return 3;    
+                }
+                else {
+                    return 1;
+                }
+            },
+
             // settings for mouse hover
-            highlightBorderWidth: 2,
+            highlightBorderWidth: function(d) {
+                if (d.country == "COD" || d.country == "CAF"|| d.country == "SOM" || d.country == "SSD" || d.country == "SYR") {
+                    return 4;    
+                }
+                else {
+                    return 2;
+                }
+            },
+
             highlightFillColor: function(geo) {
                 return geo["fillColor"] || colorDefault;
 
             },
-            highlightBorderColor: "black",
+            highlightBorderColor: function(d) {
+                if (d.country == "COD" || d.country == "CAF"|| d.country == "SOM" || d.country == "SSD" || d.country == "SYR") {
+                    return "gold";    
+                }
+                else {
+                    return colorBorder;
+                }
+            },
             
             // make tooltip
             popupTemplate: function(geo, data) {
