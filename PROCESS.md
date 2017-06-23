@@ -279,3 +279,21 @@ Waar de data wel echt 0 is, doet een probleem zich voor wanneer het logaritme ge
 Dit wordt namelijk -oneindig!
 Dit gaf ook een probleem bij de kleurenschaal, aangezien je dat niet kan opnemen in de schaal.
 Ik heb ervoor gekozen om bij deze landen de allerlichtste kleur mee te geven, aangezien dit het dichts bij de werkelijkheid komt.
+
+# Dag 13 - 23 juni:
+Tijdens mijn presentatie kwam vooral naar voren dat het goed is als er een link is tussen de wereldkaart en de conflictlanden eronder.
+Verder was er naar mijn idee niet echt commentaar of verbeterpunten. :)
+Toen ik met het project begon had ik bedacht om sterren op m'n kaart te plakken, op de conflictlanden, waar je op kan klikken.
+Nu vind ik dit eigenlijk toch niet zo'n mooi en praktisch idee, aangezien je dan het land misschien niet meer goed ziet,
+en de kleur van het land ook niet, wat naar mijn idee heel erg onhandig is.
+Daarom heb ik nu bedacht om misschien de border van het land een opvallende kleur te geven,
+zodat wel duidelijk is voor de gebruiker welke landen de conflictlanden zijn,
+en hier dus ook de focus op ligt.
+Dit heb ik vandaag geïmplementeerd, maar het ziet er toch nog niet heel erg mooi uit.
+Het lastige is vooral dat de buurlanden natuurlijk ook een border hebben, waardoor er twee borders een beetje door elkaar heen gaan.
+Hier moet ik nog even over nadenken.
+Daarna heb ik nog gekenen naar mijn data, aangezien van sommige landen heel weinig datapunten beschikbaar zijn.
+Dit geeft misschien een vertekend beeld van de werkelijkheid, 
+en dus heb ik ervoor gekozen om landen te wissen die minder dan 5 datapunten hebben, 
+of datapunten hebben die heel erg verspreid zijn.
+Dit is namelijk data die ik niet helemaal betrouwbaar vind.
