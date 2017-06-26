@@ -297,3 +297,8 @@ Dit geeft misschien een vertekend beeld van de werkelijkheid,
 en dus heb ik ervoor gekozen om landen te wissen die minder dan 5 datapunten hebben, 
 of datapunten hebben die heel erg verspreid zijn.
 Dit is namelijk data die ik niet helemaal betrouwbaar vind.
+
+# Dag 14 - 26 juni:
+Vandaag ben ik alleen maar bezig geweest met het opschonen van mijn code.
+Ik ben alles in functies aan het zetten en duidelijke comments erbij aan het plaatsen.
+Dit gaat langzaam, maar wel goed.
