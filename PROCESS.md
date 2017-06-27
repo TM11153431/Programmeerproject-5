@@ -302,3 +302,10 @@ Dit is namelijk data die ik niet helemaal betrouwbaar vind.
 Vandaag ben ik alleen maar bezig geweest met het opschonen van mijn code.
 Ik ben alles in functies aan het zetten en duidelijke comments erbij aan het plaatsen.
 Dit gaat langzaam, maar wel goed.
+
+# Dag 15 - 27 juni:
+Wederom ben ik vandaag de hele dag bezig geweest met het opschonen van mijn code.
+Ik ben ben hier nu bijna klaar mee! Bijna alles staat duidelijk in functies, met comments,
+en er is nauwelijks dubbele code.
+Nu moet ik de functies nog in verschillende files zetten en die allemaal inladen,
+aangezien m'n code erg lang is.
