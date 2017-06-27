@@ -983,7 +983,7 @@ function makeAxisTimelineCountry() {
     };
 };
 
-// make the axis for the timeline
+/*// make the axis for the timeline
 function makeAxisTimeline(svg, addIDx, addIDy1, addIDy2) {
 
     console.log('hoi')
@@ -1024,7 +1024,7 @@ function makeAxisTimeline(svg, addIDx, addIDy1, addIDy2) {
     else if (svg == svgGraphTotal) {
         svg.text("Amount of refugees");
     };
-};
+};*/
 
 // set title y axis of timeline
 function setTitleYAxisTimeline(title) {
