@@ -138,14 +138,15 @@ var yT;
 var yD;
 var yPosition;
 
-//set outlines for two-sided barchart
+// set outlines for two-sided barchart
 var marginT = {top: 50, right: 40, bottom: 120, left: 40},
     widthT = 900 - marginT.left - marginT.right,
     heightT = 500 - marginT.top - marginT.bottom;
 var labelArea = 100;
 var widthTside = (widthT - labelArea) / 2;
 
-
+// set variables for total graph
+var svgGraphTotal;
 
 
 ////////
@@ -153,8 +154,6 @@ var widthTside = (widthT - labelArea) / 2;
 
 
 ///
-
-var svgTotal;
 
 var svgTooltipTimelineTotal;
 var absPercTotal = "absolute values"
@@ -202,13 +201,8 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
     // make two-sided barchart
     makeTwoSidedBarchart();
 
-    /////
-
     // make total graph
-    makeTotalGraph();
-
-    // add tooltip
-    addTooltipTimelineTotal();
+    makeGraphTotal();
 };
 
 // make everything for the map
@@ -739,14 +733,6 @@ function changeTitleAndAxisLegend(title, min, max) {
 // make everything for the graph with refugees over time per country
 function makeGraphCountry() {
     
-    // initialize svg
-    svgGraphCountry = d3.select("#container2").append("svg")
-        .attr("width", widthG + marginG.left + marginG.right)
-        .attr("height", heightG + marginG.top + marginG.bottom)
-        .attr("id", "graph")
-        .append("g")
-            .attr("transform", "translate(" + marginG.left + "," + marginG.top + ")");
-    
     // save data in correct format
     correctDataFormatTimeline();
 
@@ -756,29 +742,11 @@ function makeGraphCountry() {
     // set y axis for default settings
     setYAxisTimeline();
     
+    // initialize svg for graph and make the titles and line
+    initializeGraphMakeTitleLine();
+
     // make both axis
     makeAxisTimeline();
-
-    // make title
-    svgGraphCountry.append("g")
-        .attr("transform", "translate(0," + heightG + ")")
-        .append("text")
-            .attr("class", "graphTitle")
-            .attr("x", widthG / 2)
-            .attr("y", - heightG - marginG.top / 2)
-            .style("text-anchor", "middle")
-            .text("Amount of refugees " + toFrom + " " + currentCountryName + " per year in " + absPerc);
-
-    // add line
-    svgGraphCountry.append("path")
-        .attr("class", "line")
-        .datum(dataGraphCountry)
-        .attr("fill", "none")
-        .attr("stroke", colorRight)
-        .attr("stroke-linejoin", "round")
-        .attr("stroke-linecap", "round")
-        .attr("stroke-width", 1.5)
-        .attr("d", lineCountry);
 
     // add tooltip
     addTooltipTimelineCountry();
@@ -896,6 +864,39 @@ function setYAxisTimeline() {
     // set domain for timeline
     xG.domain(d3.extent(yearsTime));
     yG.domain([0, maxDataGraphCountryAmount]); 
+};
+
+// initialize svg for graph and make the titles and line
+function initializeGraphMakeTitleLine() {
+    
+    // initialize svg
+    svgGraphCountry = d3.select("#container2").append("svg")
+        .attr("width", widthG + marginG.left + marginG.right)
+        .attr("height", heightG + marginG.top + marginG.bottom)
+        .attr("id", "graph")
+        .append("g")
+            .attr("transform", "translate(" + marginG.left + "," + marginG.top + ")");
+
+    // make title
+    svgGraphCountry.append("g")
+        .attr("transform", "translate(0," + heightG + ")")
+        .append("text")
+            .attr("class", "graphTitle")
+            .attr("x", widthG / 2)
+            .attr("y", - heightG - marginG.top / 2)
+            .style("text-anchor", "middle")
+            .text("Amount of refugees " + toFrom + " " + currentCountryName + " per year in " + absPerc);
+
+    // add line
+    svgGraphCountry.append("path")
+        .attr("class", "line")
+        .datum(dataGraphCountry)
+        .attr("fill", "none")
+        .attr("stroke", colorRight)
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("stroke-width", 1.5)
+        .attr("d", lineCountry);
 };
 
 // make the axis for the timeline
@@ -2006,22 +2007,14 @@ function removeAllTextTwoSided() {
 
 /////
 
+// make the graph with total overview
+function makeGraphTotal() {
 
-
-
-
-
-
-
-
-
-
-
-
-function makeTotalGraph() {
+    // select correct dataset
     dataOriginAsylum = dataOrigin
 
-    svgTotal = d3.select("#container5").append("svg")
+    // initialize svg
+    svgGraphTotal = d3.select("#container5").append("svg")
         .attr("width", widthG + marginG.left + marginG.right)
         .attr("height", heightG + marginG.top + marginG.bottom)
         .attr("id", "graph")
@@ -2037,7 +2030,7 @@ function makeTotalGraph() {
     setYaxisTimelineTotal();
 
     // make title
-    svgTotal.append("g")
+    svgGraphTotal.append("g")
         .attr("transform", "translate(0," + heightG + ")")
         .append("text")
             .attr("class", "graphTitle")
@@ -2047,7 +2040,7 @@ function makeTotalGraph() {
             .text("Amount of refugees in the world over time in " + absPercTotal);
 
     // make x axis
-    svgTotal.append("g")
+    svgGraphTotal.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + heightG + ")")
         .call(xAxisG)
@@ -2059,7 +2052,7 @@ function makeTotalGraph() {
             .text("Time");
 
     // make y axis
-    svgTotal.append("g")
+    svgGraphTotal.append("g")
         .attr("class", "y axis")
         .call(yAxisG)
         .append("text")
@@ -2072,7 +2065,7 @@ function makeTotalGraph() {
             .text("Amount of refugees");
 
     // add line
-    svgTotal.append("path")
+    svgGraphTotal.append("path")
         .attr("class", "lineTotal")
         .datum(dataTotal)
         .attr("fill", "none")
@@ -2081,6 +2074,9 @@ function makeTotalGraph() {
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 1.5)
         .attr("d", lineCountry);
+
+    // add tooltip
+    addTooltipTimelineTotal();
 };
 
 // save data in correct format for timeline
@@ -2168,7 +2164,7 @@ function updateGraphTotal(value) {
 
 function addTooltipTimelineTotal() {
    
-    svgTooltipTimelineTotal = svgTotal.append("g")
+    svgTooltipTimelineTotal = svgGraphTotal.append("g")
         .style("display", "none");
 
     svgTooltipTimelineTotal.append("line")
@@ -2217,7 +2213,7 @@ function addTooltipTimelineTotal() {
         .attr("dx", 8)
         .attr("dy", "1em");
 
-    svgTotal.append("rect")
+    svgGraphTotal.append("rect")
         .attr("width", widthG)
         .attr("height", heightG)
         .style("fill", "none")
