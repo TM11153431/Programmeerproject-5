@@ -121,8 +121,32 @@ var marginB = {top: 100, right: 40, bottom: 120, left: 150},
     widthB = 800 - marginB.left - marginB.right,
     heightB = 600 - marginB.top - marginB.bottom;
 
-// set variables for two sided barchart
+// set variables for two-sided barchart
+var svgTwoSided;
+var svgChangeTwoSided;
+var dataFemale;
+var dataMale;
+var totalFemale;
+var totalMale;
+var ageGroups;
+var youngTotal;
 var countryTwoSided = "Syria";
+var maxTotal = 0;
+var maxYoung = 0;
+var xT;
+var yT;
+var yD;
+var yPosition;
+
+//set outlines for two-sided barchart
+var marginT = {top: 50, right: 40, bottom: 120, left: 40},
+    widthT = 900 - marginT.left - marginT.right,
+    heightT = 500 - marginT.top - marginT.bottom;
+var labelArea = 100;
+var widthTside = (widthT - labelArea) / 2;
+
+
+
 
 ////////
 
@@ -139,36 +163,6 @@ var dataTotalAmount;
 var maxDataTotalAmount;
 var minDataTotalAmount;
 
-
-
-
-var svgTwoSided;
-var female;
-var male;
-var ageGroups;
-var dataTwoSidedLeft;
-var dataTwoSidedRight;
-var xL;
-var xR;
-var yT;
-var yD;
-var yPosByIndex;
-var totalFemale;
-var totalMale;
-var svgChangeLeftTwoSided;
-var svgChangeRightTwoSided;
-var svgChangeTwoSided;
-var youngTotal;
-var totalMax;
-var totalMaxYoung;
-
-var marginT;
-var widthT;
-var heightT;
-
-var labelArea;
-var width2;
-var widthT2;
 
 // load data
 queue()
@@ -205,11 +199,10 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
     // make barchart
     makeBarchart();
 
-
-    /////
-
     // make two-sided barchart
     makeTwoSidedBarchart();
+
+    /////
 
     // make total graph
     makeTotalGraph();
@@ -1532,635 +1525,498 @@ function enableTooltipBarchart() {
         .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
 };
 
-
-///// 
-
-
-function addTooltipTimelineTotal() {
-   
-    svgTooltipTimelineTotal = svgTotal.append("g")
-        .style("display", "none");
-
-    svgTooltipTimelineTotal.append("line")
-        .attr("class", "xTooltip")
-        .style("stroke", "black")
-        .style("stroke-dasharray", "3,3")
-        .style("opacity", 0.5)
-        .attr("y1", 0)
-        .attr("y2", heightG);
-
-    svgTooltipTimelineTotal.append("line")
-        .attr("class", "yTooltip")
-        .style("stroke", "black")
-        .style("stroke-dasharray", "3,3")
-        .style("opacity", 0.5)
-        .attr("x1", widthG)
-        .attr("x2", widthG);
-
-    svgTooltipTimelineTotal.append("circle")
-        .attr("class", "yTooltip")
-        .style("fill", "none")
-        .style("stroke", "black")
-        .attr("r", 4);
-
-    svgTooltipTimelineTotal.append("text")
-        .attr("class", "y1Timeline")
-        .style("stroke", "white")
-        .style("stroke-width", "3.5px")
-        .style("opacity", 0.8)
-        .attr("dx", 8)
-        .attr("dy", "-.3em");
-    svgTooltipTimelineTotal.append("text")
-        .attr("class", "textAmount")
-        .attr("dx", 8)
-        .attr("dy", "-.3em");
-
-    svgTooltipTimelineTotal.append("text")
-        .attr("class", "y3")
-        .style("stroke", "white")
-        .style("stroke-width", "3.5px")
-        .style("opacity", 0.8)
-        .attr("dx", 8)
-        .attr("dy", "1em");
-    svgTooltipTimelineTotal.append("text")
-        .attr("class", "textYear")
-        .attr("dx", 8)
-        .attr("dy", "1em");
-
-    svgTotal.append("rect")
-        .attr("width", widthG)
-        .attr("height", heightG)
-        .style("fill", "none")
-        .style("pointer-events", "all")
-        .on("mouseover", function() { svgTooltipTimelineTotal.style("display", null); })
-        .on("mousemove", mousemoveTotal)
-        .on("mouseout", function() { svgTooltipTimelineTotal.style("display", "none"); });
-    
-    function mousemoveTotal() {
-
-        yG.domain([0, maxDataTotalAmount]); 
-
-        var x0 = xG.invert(d3.mouse(this)[0]),
-        i = bisectDate(dataTotal, x0, 1),
-        d0 = dataTotal[i - 1],
-        d1 = dataTotal[i],
-        d = x0 - d0.year > d1.year - x0 ? d1 : d0;  
-
-        var amount = +d.amount
-
-        svgTooltipTimelineTotal.select("circle.yTooltip")
-            .attr("transform", "translate(" + xG(d.year) + "," + yG(d.amount) + ")");
-
-        svgTooltipTimelineTotal.select("text.y1Timeline")
-            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
-            .text("Amount of refugees: " + amount.toLocaleString());
-
-        svgTooltipTimelineTotal.select("text.textAmount")
-            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
-            .text("Amount of refugees: " + amount.toLocaleString());
-
-        svgTooltipTimelineTotal.select("text.y3")
-            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
-            .text("Year: " + d.yearx);
-
-        svgTooltipTimelineTotal.select("text.textYear")
-            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
-            .text("Year: " + d.yearx);
-
-        svgTooltipTimelineTotal.select(".xTooltip")
-            .attr("transform", "translate(" + xG(d.year) + "," + yG(d.amount) + ")")
-            .attr("y2", heightG - yG(d.amount));
-
-        svgTooltipTimelineTotal.select(".yTooltip")
-            .attr("transform", "translate(" + widthG * -1 + "," + yG(d.amount) + ")")
-            .attr("x2", widthG + widthG);
-    }
-};
-
-
+// make the two sided barchart
 function makeTwoSidedBarchart() { 
 
-    marginT = {top: 50, right: 40, bottom: 120, left: 40},
-    widthT = 900 - marginT.left - marginT.right,
-    heightT = 500 - marginT.top - marginT.bottom;
+    // add the data of the young group in total to the data for two sided barchart
+    addDataYoungGroupTwoSided();
 
-    labelArea = 100;
-    widthT2 = widthT - labelArea;
-    width2 = widthT2 / 2;
+    // make the correct data array for the selected country and age groups
+    correctDataFormatTwoSided("total");
 
-    dataBarchart.forEach(function(d){
-        if (d.female) {
-            d.female["0-17"] = 0;
-            d.male["0-17"] = 0;
-            for (var each in d.female) {
-                if (each == "0-4" || each == "5-11" || each == "12-17") {
-                    d.female["0-17"] += d.female[each]
-                    d.male["0-17"] += d.male[each]
-                }
-            }
-        }
-    })
+    // find min and max for the two sided barchart, for all age groups and young group
+    findMinMaxTwoSided();
 
-    correctDataFormatTwoSided(1);
+    // set domains for two sided barchart
+    setDomainsTwoSided();
 
-    // set age groups
-    dataTwoSidedLeft = male
-    dataTwoSidedRight = female
+    // initialize svg and bars for two sided barchart
+    initializeTwoSidedBars();
 
-    // find min and max
-    rightMax = 0
-    leftMax = 0
-    rightMaxYoung = 0
-    leftMaxYoung = 0
-    dataBarchart.forEach(function(d){
-        for (var each in d.female) {
-            if (each != "total") {
-                if (leftMax < d.female[each]) {
-                    leftMax = d.female[each]
-                }
-                if (rightMax < d.male[each]) {
-                    rightMax = d.male[each]
-                }
-                if (each == "0-4" || each == "5-11" || each == "12-17") {
-                    if (leftMaxYoung < d.female[each]) {
-                        leftMaxYoung = d.female[each]
-                    }
-                    if (rightMaxYoung < d.male[each]) {
-                        rightMaxYoung = d.male[each]
-                    }
-                }
-            }
-        }
-    })
+    // add tooltip to the bars
+    addTooltipToBars("rect.left")
+    addTooltipToBars("rect.right")
 
-    totalMax = d3.max([leftMax, rightMax]);
-    totalMaxYoung = d3.max([leftMaxYoung, rightMaxYoung])
-
-    // set domain
-    xL = d3.scale.linear()
-        .domain([0, totalMax])
-        .range([0, width2]);
-
-    yT = d3.scale.ordinal()
-        .domain(ageGroups)
-        .rangeBands([50, heightT-200])
-
-    array = [0, 1, 2]
-    yD = d3.scale.ordinal()
-        .domain(array)
-        .rangeBands([50, heightT-200])
-
-    xR = d3.scale.linear()
-        .domain([0, totalMax])
-        .range([0, width2]);
-
-    // is xR en xL nodig??
-
-    yPosByIndex = function(d, index) { return yD(index); }
-
-        // initialize svg
-    svgTwoSided = d3.select("#container4").append("svg")
-        .attr("width", widthT + marginT.left + marginT.right + 100)
-        .attr("height", heightT + marginT.top + marginT.bottom)
-        .attr("id", "twoSided")
-        .append("g")
-            .attr("transform", "translate(" + marginT.left + "," + marginT.top + ")");
-
-    svgTwoSided.selectAll("rect.left")
-        .data(dataTwoSidedLeft)
-        .attr("class", "leftData")
-        .enter().append("rect")
-        .attr("x", function(d) { return marginT.left + width2 - xL(d); })
-        .attr("y", yPosByIndex)
-        .attr("class", "left")
-        .attr("width", xL)
-        .attr("height", yT.rangeBand())
-        .on("mouseover", function(d) { 
-            var abs = Math.round(d * amountOfRefugees / 100); 
-            if (currentConflictCountryName == countryTwoSided) { 
-                return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
-            } 
-            else { 
-                dataBarchartCountry.forEach(function(e) {
-                    if (e.country == countryTwoSided) {
-                        var abs = Math.round(d * e.amount / 100); 
-                        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
-                    }
-                });
-            };
-        })
-        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden");})
-        .on("click", function(d) { 
-            if (youngTotal == "total") {
-                changeTwoSided(0) 
-            }
-            else if (youngTotal == "young") {
-                changeTwoSided(1)
-            };
-        });
-
-    svgTwoSided.selectAll("rect.right")
-        .data(dataTwoSidedRight)
-        .enter().append("rect")
-        .attr("x", marginT.left + width2 + labelArea)
-        .attr("y", yPosByIndex)
-        .attr("class", "right")
-        .attr("width", xR)
-        .attr("height", yT.rangeBand())
-        .on("mouseover", function(d) { 
-            var abs = Math.round(d * amountOfRefugees / 100); 
-            if (currentConflictCountryName == countryTwoSided) { 
-                return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
-            } 
-            else { 
-                dataBarchartCountry.forEach(function(e) {
-                    if (e.country == countryTwoSided) {
-                        var abs = Math.round(d * e.amount / 100); 
-                        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
-                    }
-                });
-            };
-        })
-        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden");})
-        .on("click", function(d) { 
-            if (youngTotal == "total") {
-                changeTwoSided(0) 
-            }
-            else if (youngTotal == "young") {
-                changeTwoSided(1)
-            };
-        });
-
-    addPercentages();
+    // add percentages as axis titles
+    addPercentages("text.leftscore", dataMale, 0);
+    addPercentages("text.rightscore", dataFemale, marginT.left + widthT + marginT.right);
 
     // select the section for applying changes
     svgChangeTwoSided = d3.select("#container4").transition();
 
+    // add the tiltes for two sided barchart
     addTitlesTwoSided();
 };
 
-function changeTwoSided(value) {
+// add the data of the young group in total to the data for two sided barchart 
+function addDataYoungGroupTwoSided() {
     
-    svgChangeTwoSided = d3.select("#container4").transition();
-
-    if (value == 0 || value == 2 && youngTotal == "young") {
-        youngTotal = "young"
-
-        correctDataFormatTwoSided(0);   
+    // for every country
+    dataBarchart.forEach(function(d){
         
-        yT = d3.scale.ordinal()
-            .domain(ageGroups)
-            .rangeBands([50, heightT-200])
+        // if the data is available
+        if (d.female) {
 
-        xL = d3.scale.linear()
-            .domain([0, totalMaxYoung])
-            .range([0, width2]);
+            // add the new group
+            d.female["0-17"] = 0;
+            d.male["0-17"] = 0;
 
-        xR = d3.scale.linear()
-            .domain([0, totalMaxYoung])
-            .range([0, width2]); 
-    }
-    else if (value == 1 || value == 2 && youngTotal == "total") {
-        youngTotal = "total"
-        
-        correctDataFormatTwoSided(1);
-        
-        yT = d3.scale.ordinal()
-            .domain(ageGroups)
-            .rangeBands([50, heightT-200])
-
-        xL = d3.scale.linear()
-            .domain([0, totalMax])
-            .range([0, width2]);
-
-        xR = d3.scale.linear()
-            .domain([0, totalMax])
-            .range([0, width2]);
-    }
-
-    dataTwoSidedLeft = male
-    dataTwoSidedRight = female
-
-    // check if data is available
-    if (male.length < 1) {
-        
-        // change the title
-        svgChangeTwoSided.select(".graphTitle")
-            .text("Data is not available for refugees from " + currentConflictCountryName + " in " + countryTwoSided);
-
-        removeBars();
-
-        removeAllText();
-    }
-    else {
-        //changeTitles();
-
-        removeBars();
-
-        removeAllText();
-        svgTwoSided.selectAll(".graphTitle").remove();
-        
-        addBars();
-
-        addTitlesTwoSided();
-
-        addPercentages();
-    }
+            // search for right groups
+            for (var group in d.female) {
+                if (group == "0-4" || group == "5-11" || group == "12-17") {
+                    
+                    // calculate data for new group
+                    d.female["0-17"] += d.female[group];
+                    d.male["0-17"] += d.male[group];
+                }
+            }
+        }
+    });
 };
 
+// make the correct data array for the selected country and age groups
+function correctDataFormatTwoSided(input) {
+        
+    // start with empty arrays
+    dataFemale = []
+    dataMale = []
+
+    // select correct age groups
+    if (input == "young") {
+        ageGroups = ["0-4", "5-11", "12-17"];
+    }
+    else if (input == "total") {
+        ageGroups = ["0-17", "18-59", "60+"];
+    };
+
+    // search for correct country
+    dataBarchart.forEach(function(d) {
+        if (d.origin == currentConflictCountryName && d.country == countryTwoSided) {
+            
+            // search for correct groups
+            for (var group in d.female) {
+                
+                // save correct groups in array
+                if (group == ageGroups[0]) {
+                    fillDataArraysFemaleMale(0, group, d);
+                }
+                else if (group == ageGroups[1]) {
+                    fillDataArraysFemaleMale(1, group, d);
+                }
+                else if (group == ageGroups[2]) {
+                    fillDataArraysFemaleMale(2, group, d);
+                }
+
+                // save total amounts
+                else if (group == "total" && input == "total") {
+                    setFemaleMaleTotal(group, d);
+                }
+                else if (group == "0-17" && input == "young") {
+                    setFemaleMaleTotal(group, d);
+                };
+            }
+        };
+    });
+
+    // fill the data array for female and male
+    function fillDataArraysFemaleMale(input, group, d) {
+        dataFemale[input] = roundToTenth(d.female[group]);
+        dataMale[input] = roundToTenth(d.male[group]);
+    };
+
+    // set female and male total to correct value
+    function setFemaleMaleTotal(group, d) {
+        totalFemale = roundToTenth(d.female[group]);
+        totalMale = roundToTenth(d.male[group]);
+    };
+
+    // returns value rounded to tenth
+    function roundToTenth(value) {
+        return Math.round(value * 10) / 10;
+    };
+};
+
+// find min and max for the two sided barchart, for all age groups and young group
+function findMinMaxTwoSided() {
+
+    // check every relevant age group
+    dataBarchart.forEach(function(d) {
+        for (var group in d.female) {
+            if (group != "total") {
+                
+                // check if value is larger
+                if (groupIsLarger(maxTotal, group, d)) {
+                    
+                    // save the largest value
+                    maxTotal = largest(group, d);
+                };
+
+                // check only relevant age groups
+                if (group == "0-4" || group == "5-11" || group == "12-17") {
+                    
+                    // check if value is larger
+                    if (groupIsLarger(maxYoung, group, d)) {
+                        
+                        // save the largest value
+                        maxYoung = largest(group, d);
+                    };
+                };
+            }
+        }
+    });
+
+    // checks if new value is larger than current max
+    function groupIsLarger(variable, group, d) {
+        if (variable < d.female[group] || variable < d.male[group]) {
+            return true;
+        }
+        else {
+            return false;
+        };
+    };
+
+    // selects the largest of female and male
+    function largest(group, d) {
+        return d.female[group] > d.male[group] ? d.female[group] : d.male[group];
+    };
+};
+
+// set the domains for the two sided barchart
+function setDomainsTwoSided() {
+    
+    // set domains
+    xT = d3.scale.linear()
+        .domain([0, maxTotal])
+        .range([0, widthTside]);
+    
+    yT = d3.scale.ordinal()
+        .domain(ageGroups)
+        .rangeBands([50, heightT - 200]);
+
+    array = [0, 1, 2];
+    yD = d3.scale.ordinal()
+        .domain(array)
+        .rangeBands([50, heightT - 200]);
+
+    // make function to change index to position
+    yPosition = function(d, i) { return yD(i); }
+};
+
+// initialize svg and bars for two sided barchart
+function initializeTwoSidedBars() {
+    
+    // initialize svg
+    svgTwoSided = d3.select("#container4").append("svg")
+        .attr("width", widthT + marginT.left + marginT.right + 100)
+        .attr("height", heightT + marginT.top + marginT.bottom)
+        .append("g")
+            .attr("transform", "translate(" + marginT.left + "," + marginT.top + ")");
+
+    // initialize left rectangles
+    svgTwoSided.selectAll("rect.left")
+        .data(dataMale)
+        .enter().append("rect")
+        .attr("x", function(d) { return marginT.left + widthTside - xT(d); })
+        .attr("y", yPosition)
+        .attr("class", "left")
+        .attr("width", xT)
+        .attr("height", yT.rangeBand())
+
+    // initialize right rectangles
+    svgTwoSided.selectAll("rect.right")
+        .data(dataFemale)
+        .enter().append("rect")
+        .attr("x", marginT.left + widthTside + labelArea)
+        .attr("y", yPosition)
+        .attr("class", "right")
+        .attr("width", xT)
+        .attr("height", yT.rangeBand())
+};
+
+// add the tooltip to the bars of two sided barchart
+function addTooltipToBars(leftRight) {
+    
+    // select correct secction
+    d3.selectAll(leftRight)
+       
+        // add tooltip
+        .on("mouseover", function(d) { 
+            
+            // search for correct country and return tooltip
+            if (currentConflictCountryName == countryTwoSided) { 
+                
+                // calculate absolute value
+                var abs = Math.round(d * amountOfRefugees / 100); 
+                enableTooltipTwoSided(abs);
+            } 
+            else { 
+                dataBarchartCountry.forEach(function(e) {
+                    if (e.country == countryTwoSided) {
+                        
+                        // calculate absolute value
+                        var abs = Math.round(d * e.amount / 100); 
+                        enableTooltipTwoSided(abs);
+                    }
+                });
+            };
+        })
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY - 10)+"px").style("left",(event.pageX + 10)+"px"); })
+        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden"); })
+        
+        // change two sided barchart on click
+        .on("click", function(d) { 
+            if (youngTotal == "total") {
+                changeTwoSided(0); 
+            }
+            else if (youngTotal == "young") {
+                changeTwoSided(1);
+            };
+        });
+
+    // enables the tooltip for the two sided barchart
+    function enableTooltipTwoSided(abs) {
+        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString());
+    };
+};
+
+// add percentages as axis titles to two sided barchart
+function addPercentages(select, data, x) {
+ 
+    svgTwoSided.selectAll(select)
+        .data(data)
+        .enter().append("text")
+        .attr("x", x)
+        .attr("y", function(d, z) { return yD(z) + yD.rangeBand() / 2; })
+        .attr("dx", "0")
+        .attr("dy", ".36em")
+        .attr("text-anchor", "middle")
+        .attr("id", "score")
+        .text(String);
+};
+
+// add titles to the two sided barchart
 function addTitlesTwoSided() {
 
-    // make title
+    // add main title
     svgTwoSided.append("g")
         .attr("transform", "translate(0," + heightT + ")")
         .append("text")
             .attr("class", "graphTitle")
             .attr("x", marginT.left + widthT / 2)
             .attr("y", - heightT - marginT.top / 2)
-            .style("text-anchor", "middle")
-            //.text("Gender and age of refugees from " + currentConflictCountryName + " in " + countryTwoSided);
+            .style("text-anchor", "middle");
 
+    // check which title must be added
     if (currentConflictCountryName != countryTwoSided) {
-        svgChangeTwoSided.select(".graphTitle")
-            .text("Gender and age of refugees from " + currentConflictCountryName + " in " + countryTwoSided);
+        setTitleTwoSided("Gender and age of refugees from " + currentConflictCountryName + " in " + countryTwoSided);
     }
     else if (currentConflictCountryName == countryTwoSided) {
-        svgChangeTwoSided.select(".graphTitle")
-            .text("Gender and age of refugees from " + currentConflictCountryName);
+        setTitleTwoSided("Gender and age of refugees from " + currentConflictCountryName);
     }
-    /*var svgChangeLegend = d3.select(".datamap").transition();
 
-    if (absPerc == "absolute values") {
-        // change the title
-        svgChangeLegend.select("#legendTitle")
-            .text("Amount of refugees (in millions)");
-
-        // change axis
-        xScale = d3.scale.linear()
-            .range([0, legendWidth])
-            .domain([minLinAbs, maxLinAbs/1000000]);
-    }
-    else if (absPerc == "percentage of inhabitants") {
-        // change the title
-        svgChangeLegend.select("#legendTitle")
-            .text("Percentage refugees of inhabitants")*/
-
-    // add titles
+    // add title male
     svgTwoSided.append("g")
         .attr("transform", "translate(0," + heightT + ")")
         .append("text")
-            .attr("class", "axisTitleMale")
+            .attr("class", "axisTitle")
             .attr("x", 0)
             .attr("y", - heightT + 25)
             .style("text-anchor", "middle")
             .text("Male (" + totalMale + "%)");
 
+    // add title female
     svgTwoSided.append("g")
         .attr("transform", "translate(0," + heightT + ")")
         .append("text")
-            .attr("class", "axisTitleFemale")
+            .attr("class", "axisTitle")
             .attr("x", marginT.left + widthT + marginT.right)
             .attr("y", - heightT + 25)
             .style("text-anchor", "middle")
             .text("Female  (" + totalFemale + "%)");
 
+    // add title age
     svgTwoSided.append("g")
         .attr("transform", "translate(0," + heightT + ")")
         .append("text")
             .attr("class", "axisTitle")
-            .attr("x", marginT.left + width2 + labelArea / 2)
+            .attr("x", marginT.left + widthTside + labelArea / 2)
             .attr("y", - heightT + 25)
             .style("text-anchor", "middle")
             .text("Age");
 
+    // add titles age groups
     svgTwoSided.selectAll("text.name")
         .data(ageGroups)
         .enter().append("text")
-        .attr("x", marginT.left + width2 + labelArea / 2)
+        .attr("x", marginT.left + widthTside + labelArea / 2)
         .attr("y", function(d) { return yT(d) + yT.rangeBand()/2; })
         .attr("dy", ".20em")
         .attr("text-anchor", "middle")
-        .attr("class", "ageGroups")
+        .attr("id", "ageGroups")
         .text(String);
 };
 
-/*function changeTitles() {
-    // change the title
+// set the correct title for two sided barchart
+function setTitleTwoSided(title) {
     svgChangeTwoSided.select(".graphTitle")
-        .text("Gender and age of refugees from " + currentConflictCountryName + " in " + countryTwoSided);
-
-    // change the axis titles
-    svgChangeTwoSided.select(".axisTitleFemale")
-        .text("Female  (" + totalFemale + "%)");
-
-    svgChangeTwoSided.select(".axisTitleMale")
-        .text("Male  (" + totalMale + "%)");
-};*/
-
-function removeBars() {
-    svgChangeLeftTwoSided = svgTwoSided.selectAll("rect.left")
-        .data(dataTwoSidedLeft)   
-
-    // eventueel dingen aanpassen waar hij heengaat!!!
-    svgChangeLeftTwoSided.exit()
-        .transition()
-            .duration(0)
-        /*.attr("x", function(pos) { return width2 - labelArea})
-        .attr("width", 10)
-        .attr("y", 0)
-        .attr("height", function(d) { return 0})*/
-        .style('fill-opacity', 1e-6)
-        .remove();
-
-    svgChangeRightTwoSided = svgTwoSided.selectAll("rect.right")
-        .data(dataTwoSidedRight)
-
-    // eventueel dingen aanpassen waar hij heengaat!!!
-    svgChangeRightTwoSided.exit()
-        .transition().duration(0)
-        .style('fill-opacity', 1e-6)
-        .remove();
+        .text(title);
 };
 
-function addBars() {
-
-    // eventueel waar de bars vandaan komen
-    svgChangeLeftTwoSided.enter().append("rect")
-        //.attr("class", "bar")
-        /*.attr("x", function(pos) { return width2 - labelArea})
-        .attr("width", 10)
-        .attr("y", 0)
-        .attr("height", function(d) { return 0})*/
-
-    svgChangeLeftTwoSided.transition().duration(300)
-        .attr("x", function(d) { return marginT.left + width2 - xL(d); })
-        .attr("y", yPosByIndex)
-        .attr("width", xL)
-        .attr("height", yT.rangeBand())
-        .attr("class", "left")
+// change two sided barchart when other country is clicked
+function changeTwoSided(value) {
     
-    d3.selectAll(".left")
-        .on("mouseover", function(d) { 
-            var abs = Math.round(d * amountOfRefugees / 100); 
-            if (currentConflictCountryName == countryTwoSided) { 
-                return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
-            } 
-            else { 
-                dataBarchartCountry.forEach(function(e) {
-                    if (e.country == countryTwoSided) {
-                        var abs = Math.round(d * e.amount / 100); 
-                        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
-                    }
-                });
-            };
-        })
-        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden");})
-        .on("click", function(d) { 
-            if (youngTotal == "total") {
-                changeTwoSided(0) 
-            }
-            else if (youngTotal == "young") {
-                changeTwoSided(1)
-            };
-        });
+    // select correct section
+    svgChangeTwoSided = d3.select("#container4").transition();
 
-    // eventueel waar de bars vandaan komen
-    svgChangeRightTwoSided.enter().append("rect")
-
-    svgChangeRightTwoSided.transition().duration(300)
-        .attr("x", marginT.left + width2 + labelArea)
-        .attr("y", yPosByIndex)
-        .attr("width", xR)
-        .attr("height", yT.rangeBand())
-        .attr("class", "right")
-
-    d3.selectAll(".right")
-        .on("mouseover", function(d) { 
-            var abs = Math.round(d * amountOfRefugees / 100); 
-            if (currentConflictCountryName == countryTwoSided) { 
-                return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
-            } 
-            else { 
-                dataBarchartCountry.forEach(function(e) {
-                    if (e.country == countryTwoSided) {
-                        var abs = Math.round(d * e.amount / 100); 
-                        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
-                    }
-                });
-            };
-        })
-        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden");})
-        .on("click", function(d) { 
-            if (youngTotal == "total") {
-                changeTwoSided(0) 
-            }
-            else if (youngTotal == "young") {
-                changeTwoSided(1)
-            };
-        });
-
-};
-
-function addPercentages() {
-    
-    svgTwoSided.selectAll("text.leftscore")
-        .data(dataTwoSidedLeft)
-        .enter().append("text")
-        //.attr("x", function(d) { return width2 - labelArea - xL(d); })
-        .attr("x", 0)
-        .attr("y", function(d, z) { return yD(z) + yD.rangeBand()/2; })
-        .attr("dx", "0")
-        .attr("dy", ".36em")
-        .attr("text-anchor", "middle")
-        .attr("class", "score")
-        .text(String);
-
-    svgTwoSided.selectAll("text.rightscore")
-        .data(dataTwoSidedRight)
-        .enter().append("text")
-        //.attr("x", function(d) { return xR(d) + width2; })
-        .attr("x", marginT.left + widthT + marginT.right)
-        .attr("y", function(d, z) { return yD(z) + yD.rangeBand()/2; })
-        .attr("dx", "0")
-        .attr("dy", ".36em")
-        .attr("text-anchor", "middle")
-        .attr("class", "score")
-        .text(String);
-};
-
-function removeAllText() {
-    svgTwoSided.selectAll(".score").remove();
-    svgTwoSided.selectAll(".ageGroups").remove();
-    svgTwoSided.selectAll(".axisTitle").remove();
-    svgTwoSided.selectAll(".axisTitleFemale").remove();
-    svgTwoSided.selectAll(".axisTitleMale").remove();
-};
-
-function correctDataFormatTwoSided(origin) {
-    
-    female = []
-    male = []
-    j = 0
-
-    femaleOld = []
-    maleOld = []
-    ageGroupsOld = []
-
-    if (origin == 0) {
-        ageGroups = ["0-4", "5-11", "12-17"]
-        dataBarchart.forEach(function(d){
-            if (d.origin == currentConflictCountryName && d.country == countryTwoSided) {
-                for (var each in d.female) {
-                    if (each == "0-4") {
-                        female[0] = Math.round(d.female[each] * 10) / 10;
-                        male[0] = Math.round(d.male[each] * 10) / 10;
-                    }
-                    else if (each == "5-11") {
-                        female[1] = Math.round(d.female[each] * 10) / 10;
-                        male[1] = Math.round(d.male[each] * 10) / 10;
-                    }
-                    else if (each == "12-17") {
-                        female[2] = Math.round(d.female[each] * 10) / 10;
-                        male[2] = Math.round(d.male[each] * 10) / 10;
-                    }
-                    else if (each == "0-17") {
-                        totalFemale = Math.round(d.female[each] * 10) / 10;
-                        totalMale = Math.round(d.male[each] * 10) / 10;
-                    }
-                }
-            };
-        });
+    // update dataset and domains
+    if (value == 0 || value == 2 && youngTotal == "young") {
+        updateDataDomainTwoSided(maxYoung, "young");
     }
-    else if (origin == 1) {
-        ageGroups = ["0-17", "18-59", "60+"]
-        dataBarchart.forEach(function(d){
-            if (d.origin == currentConflictCountryName && d.country == countryTwoSided) {
-                for (var each in d.female) {
-                    if (each == "0-17") {
-                        female[0] = Math.round(d.female[each] * 10) / 10;
-                        male[0] = Math.round(d.male[each] * 10) / 10;
-                    }
-                    else if (each == "18-59") {
-                        female[1] = Math.round(d.female[each] * 10) / 10;
-                        male[1] = Math.round(d.male[each] * 10) / 10;
-                    }
-                    else if (each == "60+") {
-                        female[2] = Math.round(d.female[each] * 10) / 10;
-                        male[2] = Math.round(d.male[each] * 10) / 10;
-                    }
-                    else if (each == "total") {
-                        totalFemale = Math.round(d.female[each] * 10) / 10;
-                        totalMale = Math.round(d.male[each] * 10) / 10;
-                    }
-                }
-            };
-        })
+    else if (value == 1 || value == 2 && youngTotal == "total") {
+        updateDataDomainTwoSided(maxTotal, "total");
+    };
+
+    // check if data is available
+    if (dataFemale.length < 1) {
+        
+        // change two sided barchart when no data is available
+        changeTwoSidedNoData();
+    }
+    else {
+        
+        // change two sided barchart when data is available
+        changeTwoSidedDataAvailable();
     };
 };
+
+// update data and domain of two sided barchart
+function updateDataDomainTwoSided(max, variable) {
+
+    // update youngTotal
+    youngTotal = variable;
+
+    // update dataset
+    correctDataFormatTwoSided(youngTotal);
+    
+    // update domain
+    yT = d3.scale.ordinal()
+        .domain(ageGroups)
+        .rangeBands([50, heightT-200]);
+
+    xT = d3.scale.linear()
+        .domain([0, max])
+        .range([0, widthTside]);
+};
+
+// change two sided barchart when no data is available
+function changeTwoSidedNoData() {
+    
+    // change the title
+    setTitleTwoSided("Data is not available for refugees from " + currentConflictCountryName + " in " + countryTwoSided);
+
+    // remove the bars
+    removeBarsTwoSided("rect.left", dataMale);
+    removeBarsTwoSided("rect.right", dataFemale);
+
+    // remove all the text
+    removeAllTextTwoSided();
+};
+
+// change two sided barchart when data is available
+function changeTwoSidedDataAvailable() {
+  
+    // remove the bars
+    removeBarsTwoSided("rect.left", dataMale);
+    removeBarsTwoSided("rect.right", dataFemale);
+
+    // remove all text
+    removeAllTextTwoSided();
+    svgTwoSided.selectAll(".graphTitle").remove();
+    
+    // add the bars again
+    var xLeft = function(d) { return marginT.left + widthTside - xT(d); }
+    var xRight = marginT.left + widthTside + labelArea
+    addBarsTwoSided("rect.left", dataMale, xLeft, "left");
+    addBarsTwoSided("rect.right", dataFemale, xRight, "right");
+
+    // add the titles again
+    addTitlesTwoSided();
+
+    // add percentages as axis title
+    addPercentages("text.leftscore", dataMale, 0);
+    addPercentages("text.rightscore", dataFemale, marginT.left + widthT + marginT.right);
+};
+
+// remove the bars of two sided barchart
+function removeBarsTwoSided(select, data) {
+
+    // select correct section
+    var svgChangeTwoSidedData = svgTwoSided.selectAll(select)
+        .data(data)   
+
+    // remove bars
+    svgChangeTwoSidedData.exit()
+        .transition()
+            .duration(100)
+        .style('fill-opacity', 1e-6)
+        .remove();
+};
+
+// add the bars of two sided barchart
+function addBarsTwoSided(select, data, x, addClass) {
+
+    // select correct section
+    var svgChangeTwoSidedData = svgTwoSided.selectAll(select)
+        .data(data)
+    
+    // initialize rectangles
+    svgChangeTwoSidedData.enter().append("rect")
+
+    // add bars
+    svgChangeTwoSidedData.transition()
+        .attr("x", x)
+        .attr("y", yPosition)
+        .attr("width", xT)
+        .attr("height", yT.rangeBand())
+        .attr("class", addClass)
+    
+    // add tooltip to bars of two sided barchart
+    addTooltipToBars("rect.left")
+    addTooltipToBars("rect.right")
+};
+
+// remove all test from two sided barchart
+function removeAllTextTwoSided() {
+    svgTwoSided.selectAll("#score").remove();
+    svgTwoSided.selectAll("#ageGroups").remove();
+    svgTwoSided.selectAll(".axisTitle").remove();
+};
+
+
+
+/////
+
+
+
+
+
+
+
+
+
+
+
+
 
 function makeTotalGraph() {
     dataOriginAsylum = dataOrigin
@@ -2308,4 +2164,105 @@ function updateGraphTotal(value) {
     svgChangeTimelineTotal.select(".lineTotal")
         .duration(750)
         .attr("d", lineCountry(dataTotal));
+};
+
+function addTooltipTimelineTotal() {
+   
+    svgTooltipTimelineTotal = svgTotal.append("g")
+        .style("display", "none");
+
+    svgTooltipTimelineTotal.append("line")
+        .attr("class", "xTooltip")
+        .style("stroke", "black")
+        .style("stroke-dasharray", "3,3")
+        .style("opacity", 0.5)
+        .attr("y1", 0)
+        .attr("y2", heightG);
+
+    svgTooltipTimelineTotal.append("line")
+        .attr("class", "yTooltip")
+        .style("stroke", "black")
+        .style("stroke-dasharray", "3,3")
+        .style("opacity", 0.5)
+        .attr("x1", widthG)
+        .attr("x2", widthG);
+
+    svgTooltipTimelineTotal.append("circle")
+        .attr("class", "yTooltip")
+        .style("fill", "none")
+        .style("stroke", "black")
+        .attr("r", 4);
+
+    svgTooltipTimelineTotal.append("text")
+        .attr("class", "y1Timeline")
+        .style("stroke", "white")
+        .style("stroke-width", "3.5px")
+        .style("opacity", 0.8)
+        .attr("dx", 8)
+        .attr("dy", "-.3em");
+    svgTooltipTimelineTotal.append("text")
+        .attr("class", "textAmount")
+        .attr("dx", 8)
+        .attr("dy", "-.3em");
+
+    svgTooltipTimelineTotal.append("text")
+        .attr("class", "y3")
+        .style("stroke", "white")
+        .style("stroke-width", "3.5px")
+        .style("opacity", 0.8)
+        .attr("dx", 8)
+        .attr("dy", "1em");
+    svgTooltipTimelineTotal.append("text")
+        .attr("class", "textYear")
+        .attr("dx", 8)
+        .attr("dy", "1em");
+
+    svgTotal.append("rect")
+        .attr("width", widthG)
+        .attr("height", heightG)
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .on("mouseover", function() { svgTooltipTimelineTotal.style("display", null); })
+        .on("mousemove", mousemoveTotal)
+        .on("mouseout", function() { svgTooltipTimelineTotal.style("display", "none"); });
+    
+    function mousemoveTotal() {
+
+        yG.domain([0, maxDataTotalAmount]); 
+
+        var x0 = xG.invert(d3.mouse(this)[0]),
+        i = bisectDate(dataTotal, x0, 1),
+        d0 = dataTotal[i - 1],
+        d1 = dataTotal[i],
+        d = x0 - d0.year > d1.year - x0 ? d1 : d0;  
+
+        var amount = +d.amount
+
+        svgTooltipTimelineTotal.select("circle.yTooltip")
+            .attr("transform", "translate(" + xG(d.year) + "," + yG(d.amount) + ")");
+
+        svgTooltipTimelineTotal.select("text.y1Timeline")
+            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
+            .text("Amount of refugees: " + amount.toLocaleString());
+
+        svgTooltipTimelineTotal.select("text.textAmount")
+            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
+            .text("Amount of refugees: " + amount.toLocaleString());
+
+        svgTooltipTimelineTotal.select("text.y3")
+            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
+            .text("Year: " + d.yearx);
+
+        svgTooltipTimelineTotal.select("text.textYear")
+            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
+            .text("Year: " + d.yearx);
+
+        svgTooltipTimelineTotal.select(".xTooltip")
+            .attr("transform", "translate(" + xG(d.year) + "," + yG(d.amount) + ")")
+            .attr("y2", heightG - yG(d.amount));
+
+        svgTooltipTimelineTotal.select(".yTooltip")
+            .attr("transform", "translate(" + widthG * -1 + "," + yG(d.amount) + ")")
+            .attr("x2", widthG + widthG);
+    }
 };
