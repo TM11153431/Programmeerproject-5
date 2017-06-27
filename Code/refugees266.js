@@ -38,6 +38,8 @@ var colorLeft = "#FFF6EC";
 var colorRight = "#660000";
 var colorBorder = "black";
 var colorDefault = "#F5F5F5";
+var colorBarchartLeft = "#F2D286";
+var colorBarchartRight = "#A15852"; 
 
 // initialize dataset
 var dataset;
@@ -92,11 +94,35 @@ var parseTime;
 var yearsTime = [];
 var yearsString = [];
 var amountOfYears;
+var xB;
+var yB;
+var xAxisB;
+var yAxisB;
 
 // set x and y for tooltip timelines
-var xTooltipTimeline = 0
-var yTooltipTimeline = - 35
+var xTooltipTimeline = 0;
+var yTooltipTimeline = - 35;
 
+// set variables when changing timeline
+var svgChangeTimeline;
+var currentCountry = "SYR";
+var currentCountryName = "Syria";
+
+// set variables for barchart
+var svgBarchart;
+var dataBarchartCountry;
+var currentConflictCountry = "SYR";
+var currentConflictCountryName = "Syria";
+var amountOfRefugees;
+var tooltipBarchart;
+
+// set outlines for barchart
+var marginB = {top: 100, right: 40, bottom: 120, left: 150},
+    widthB = 800 - marginB.left - marginB.right,
+    heightB = 600 - marginB.top - marginB.bottom;
+
+// set variables for two sided barchart
+var countryTwoSided = "Syria";
 
 ////////
 
@@ -113,25 +139,10 @@ var dataTotalAmount;
 var maxDataTotalAmount;
 var minDataTotalAmount;
 
-var newCountry = "SYR";
-var nameCountry = "Syria";
-
-
-
-var svgChangeTimeline;
-var countryStar = "SYR";
-var countryStarName = "Syria";
-
-
-var newDataBarchart;
-var dataBarchartTotal;
-var chart;
 var svgChangeChart;
-var amountOfRefugees;
-var tooltip;
+
 
 var svgTwoSided;
-var countryTwoSided = "Syria";
 var female;
 var male;
 var ageGroups;
@@ -159,29 +170,6 @@ var labelArea;
 var width2;
 var widthT2;
 
-// set outlines for graphs
-var margin = {top: 100, right: 40, bottom: 120, left: 150},
-    width = 800 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
-
-
-// make scale for barchart
-var xB = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .4);
-
-var yB = d3.scale.linear()
-    .range([height, 0]);
-
-// initialize x axis for barchart
-var xAxisB = d3.svg.axis()
-    .scale(xB)
-    .orient("bottom");
-
-// initialize y axis for barchart
-var yAxisB = d3.svg.axis()
-    .scale(yB)
-    .orient("left");
-
 // load data
 queue()
     .defer(d3.tsv, "Dataset Origin goed 23 juni.tsv")   
@@ -205,6 +193,9 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
     // set default dataset
     dataOriginAsylum = dataOrigin
 
+    // make arrays for years
+    makeArraysYears();
+
     // make world map
     makeAllOfMap();
 
@@ -213,6 +204,7 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
 
     // make barchart
     makeBarchart();
+
 
     /////
 
@@ -297,7 +289,7 @@ function findMinMaxAbsolute(data) {
 
 // find min and max in datasets with percentages
 function findMinMaxPercentage(data) {
-    
+
     // check every data point
     data.forEach(function(d) {
         dataPopulation.forEach(function(e) {
@@ -581,7 +573,7 @@ function makeMap() {
         // when country clicked, graph changes
         done: function(datamap) {
             datamap.svg.selectAll(".datamaps-subunit").on("click", function(geo) {
-                newCountryClicked(geo);
+                newCountryClickedMap(geo);
             });
         }
     });
@@ -609,13 +601,10 @@ function makeSlider() {
 
     // update when slider is used
     function update() {
+    
+        // update data and colors of the map
+        updateColorsMap();
 
-        // select correct dataset for selected year
-        correctDataFormatMap();
-
-        // update colors of world map
-        map.updateChoropleth(dataset)
-        
         // adjust the text on the range slider
         d3.select("#YearSlider-value").text(currentYear);
         d3.select("#YearSlider").property("value", currentYear);
@@ -764,9 +753,6 @@ function makeGraphCountry() {
         .attr("id", "graph")
         .append("g")
             .attr("transform", "translate(" + marginG.left + "," + marginG.top + ")");
-
-    // make arrays for years
-    makeArraysYears();
     
     // save data in correct format
     correctDataFormatTimeline();
@@ -788,7 +774,7 @@ function makeGraphCountry() {
             .attr("x", widthG / 2)
             .attr("y", - heightG - marginG.top / 2)
             .style("text-anchor", "middle")
-            .text("Amount of refugees " + toFrom + " " + nameCountry + " per year in " + absPerc);
+            .text("Amount of refugees " + toFrom + " " + currentCountryName + " per year in " + absPerc);
 
     // add line
     svgGraphCountry.append("path")
@@ -813,7 +799,7 @@ function makeArraysYears() {
     bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
     // set counter
-    j = 0;
+    var j = 0;
 
     // for every year
     for (year = 1990; year < 2016; year++) {
@@ -837,17 +823,17 @@ function correctDataFormatTimeline() {
     dataGraphCountry = []
     
     // make counter for place in array
-    j = 0
+    var j = 0
 
     // search for correct country and check for absolute or percentage
     dataOriginAsylum.forEach(function(d) {
-        if (absPerc == "absolute values" && d.Country == newCountry) {
+        if (absPerc == "absolute values" && d.Country == currentCountry) {
             // fill data array with correct data
             fillDataArrayTimeline(d, 0, j);
         }
-        else if (absPerc == "percentage of inhabitants" && d.Country == newCountry) {
+        else if (absPerc == "percentage of inhabitants" && d.Country == currentCountry) {
             dataPopulation.forEach(function(e) {
-                if (e.countrycode == newCountry) {
+                if (e.countrycode == currentCountry) {
                     // fill data array with correct data
                     fillDataArrayTimeline(d, e, j);    
                 }
@@ -882,6 +868,7 @@ function fillDataArrayTimeline(d, e, j) {
     }
 };
 
+// initialize the axis and the line for the timeline
 function initializeAxisAndLineTimeline() {
     
     // set the ranges for graph
@@ -1066,6 +1053,377 @@ function setTextTooltipTimeline(title, amount) {
         .text(title + amount.toLocaleString());
 };
 
+// make changes when new country is clicked on map
+function newCountryClickedMap(geo) {
+
+    // save the selected country
+    currentCountry = geo.id;
+    currentCountryName = geo.properties.name;
+
+    // update data, axis and graph of timeline
+    updateTimeline();
+
+    // change barcharts if one of 5 conflict countries is clicked
+    if (conflictCountries.includes(currentCountry)) {
+        
+        // update conflict country
+        currentConflictCountry = geo.id;
+        currentConflictCountryName = geo.properties.name;
+        
+        // update barcharts with new conflict country    
+        updateBarcharts();
+    };
+};
+
+// change the graph of the timeline
+function changeGraphTimeline() {
+
+    // select correct section for applying changes
+    svgChangeTimeline = d3.select("#container2").transition();
+    
+    // if country is clicked without data
+    if (dataGraphCountry.length == 0) {
+        
+        // change the title
+        changeTitleTimeline("Data is not available for refugees ");
+
+        // remove the graph
+        removeGraph();
+
+        // disable tooltip
+        svgGraphCountry.select("#tooltipTimeline")
+            .on("mouseover", function() { svgTooltipTimelineCountry.style("display", "none"); })
+            .on("mousemove", null);
+    }
+    
+    // if country is clicked with data
+    else {
+        
+        // change title
+        changeTitleTimeline("Amount of refugees ");
+
+        // remove the graph
+        removeGraph();
+
+        // add axis of timeline
+        makeAxisTimeline();
+
+        // enable tooltip again
+        svgGraphCountry.select("#tooltipTimeline")
+            .on("mouseover", function() { svgTooltipTimelineCountry.style("display", null); })
+            .on("mousemove", mousemoveCountry)
+    }
+
+    // change the line
+    svgChangeTimeline.select(".line")
+        .duration(750)
+        .attr("d", lineCountry(dataGraphCountry));    
+};
+
+// change the title of timeline to correct title
+function changeTitleTimeline(title) {
+    svgChangeTimeline.select(".graphTitle")
+        .text(title + toFrom + " " + currentCountryName + " per year in " + absPerc);
+};
+
+// remove axis from graph
+function removeGraph() {
+    svgGraphCountry.selectAll("#axisYTimeline").remove();
+    svgGraphCountry.selectAll("#axisXTimeline").remove();
+};
+
+// update the data when a button is clicked
+function updateButton(input) {
+
+    // change relevant variables
+    changeVariablesButton(input);
+
+    // update the data and colors of the map
+    updateColorsMap();
+
+    // update legend
+    changeLegendMap();
+
+    // update data, axis and graph of timeline
+    updateTimeline();
+};
+
+// change relevant variables when button is clicked
+function changeVariablesButton(input) {
+    if (input == 0) {
+        toFrom = "from";
+        dataOriginAsylum = dataOrigin;
+    }
+    else if (input == 1) {
+        toFrom = "to";
+        dataOriginAsylum = dataAsylum;
+    }
+    else if (input == 2) {
+        absPerc = "absolute values";
+    }
+    else if (input == 3) {
+        absPerc = "percentage of inhabitants";
+    }
+    else if (input == 4) {
+        linLog = "lin";
+    }
+    else if (input == 5) {
+        linLog = "log";
+    }; 
+}
+
+// update the data and colors of the map
+function updateColorsMap() {
+    
+    // update data for the map
+    correctDataFormatMap();
+    
+    // update colors in map
+    map.updateChoropleth(dataset);
+};
+
+// update data, axis and graph of timeline
+function updateTimeline() {
+
+    // save new data for timeline
+    correctDataFormatTimeline();
+
+    // set y axis again for timeline
+    setYAxisTimeline();
+
+    // change the graph of the timeline
+    changeGraphTimeline();
+};
+
+// make changes when new country is clicked by button
+function newCountryClickedButton(input) {
+
+    // save selected country
+   changeConflictCountryButton(input);
+    
+    // update barcharts with new conflict country
+    updateBarcharts();
+};
+
+// save the correct conflict country
+function changeConflictCountryButton(input) {
+    if (input == 0) {
+        currentConflictCountry = "SYR";
+        currentConflictCountryName = "Syria";
+    } 
+    else if (input == 1) {
+        currentConflictCountry = "SSD";
+        currentConflictCountryName = "South Sudan";
+    } 
+    else if (input == 2) {
+        currentConflictCountry = "COD";
+        currentConflictCountryName = "Democratic Republic of the Congo";
+    } 
+    else if (input == 3) {
+        currentConflictCountry = "CAF";
+        currentConflictCountryName = "Central African Republic";
+    } 
+    else if (input == 4) {
+        currentConflictCountry = "SOM";
+        currentConflictCountryName = "Somalia";
+    }
+};
+
+// update barcharts when new conflict country is clicked
+function updateBarcharts() { 
+    
+    // set the data, amount of refugees and domain of barchart correct
+    setDataAmountDomainBarchart();
+
+    // change barchart
+    changeBarchart();
+
+    // set new country for two sided barchart
+    countryTwoSided = currentConflictCountryName;
+
+    // change two-sided barchart
+    changeTwoSided(2);
+};
+
+// set the data, amount of refugees and domain of barchart correct
+function setDataAmountDomainBarchart() {
+    
+    // put data in correct format
+    correctDataFormatBarchart();
+
+    // set the amount of refugees correct
+    setAmountOfRefugeesCorrect();
+    
+    // set new domain of barchart
+    setDomainBarchart();
+};
+
+// make the barchart
+function makeBarchart() {
+
+    // initialize svg for barchart
+    svgBarchart = d3.select("#container3").append("svg")
+        .attr("width", widthB + marginB.left + marginB.right)
+        .attr("height", heightB + marginB.top + marginB.bottom)
+        .append("g")
+            .attr("transform", "translate(" + marginB.left + "," + marginB.top + ")");
+
+    // make title
+    svgBarchart.append("g")
+        .attr("transform", "translate(0," + heightB + ")")
+        .append("text")
+            .attr("class", "graphTitle")
+            .attr("x", widthB / 2)
+            .attr("y", - heightB - marginB.top / 2)
+            .style("text-anchor", "middle")
+            .text("Refugees from " + currentConflictCountryName);
+
+    // initialize the axis for the barchart            
+    initializeAxisBarchart();
+
+    // set the data, amount of refugees and domain of barchart correct
+    setDataAmountDomainBarchart();
+    
+    // append tooltip
+    tooltipBarchart = d3.select("body")
+        .append("div")
+        .attr("class", "tipBarchart")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .style("visibility", "hidden")
+
+    // make x axis
+    svgBarchart.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + heightB + ")")
+        .call(xAxisB)
+        .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-25)");
+    svgBarchart.append("text")
+        .attr("class", "axisTitle")
+        .attr("x", widthB / 2)
+        .attr("y", heightB + 60)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Country");
+
+    // make y axis
+    svgBarchart.append("g")
+        .attr("class", "y axis")
+        .call(yAxisB);
+    svgBarchart.append("text")
+        .attr("class", "axisTitle")
+        .attr("transform", "rotate(-90)")
+        .attr("y", - 90)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Amount of refugees");
+
+    // make bars
+    svgBarchart.selectAll(".bar")
+        .data(dataBarchartCountry)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return xB(d.country); })
+        .attr("y", function(d) { return yB(d.amount); })
+        .attr("height", function(d) { return heightB - yB(d.amount); })
+        .attr("width", xB.rangeBand())
+        .attr("fill", colorBarchartRight)
+        .on("mouseover", function(d) { 
+            if (d.data == "yes") {
+                d3.select(this)
+                    .attr("fill", colorBarchartLeft);
+            } else if (d.data == "no") {
+                d3.select(this)
+                    .attr("fill", "grey");
+            }
+            return tooltipBarchart.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function() { 
+            d3.select(this)
+                .attr("fill", colorBarchartRight);
+            return tooltipBarchart.style("visibility", "hidden");})
+        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
+
+    // add comment
+    svgBarchart.append("g")
+        .attr("transform", "translate(0," + heightB + ")")
+        .append("text")
+            .attr("class", "comment")
+            .attr("x", 0)
+            .attr("y", - heightB - marginB.top / 4)
+            .style("text-anchor", "begin")
+            .text("Amount of refugees: " + amountOfRefugees.toLocaleString());
+};
+
+// initialize the axis for the barchart
+function initializeAxisBarchart() {
+    
+    // make scale for barchart
+    xB = d3.scale.ordinal()
+        .rangeRoundBands([0, widthB], .4);
+    yB = d3.scale.linear()
+        .range([heightB, 0]);
+
+    // initialize x axis for barchart
+    xAxisB = d3.svg.axis()
+        .scale(xB)
+        .orient("bottom");
+
+    // initialize y axis for barchart
+    yAxisB = d3.svg.axis()
+        .scale(yB)
+        .orient("left");
+};
+
+// make correct data format for barchart
+function correctDataFormatBarchart() {
+    
+    // start with empty data array
+    dataBarchartCountry = [];
+
+    // initialize counter
+    var j = 0;
+
+    // search for correct country
+    dataBarchart.forEach(function(d){
+        if (d.origin == currentConflictCountryName && d.origin != d.country) {
+            
+            // save country and amount in array
+            dataBarchartCountry[j] = {"country": d.country, "amount": d.amount};
+            
+            // check if data about gender and age is available, and store as well
+            if (d.female) {
+                dataBarchartCountry[j].data = "yes";
+            }
+            else {
+                dataBarchartCountry[j].data = "no";
+            }
+
+            // update counter
+            j++;
+        };
+    });
+};
+
+// set the amount of refugees correct for barchart
+function setAmountOfRefugeesCorrect() {
+    dataBarchart.forEach(function(d){
+        if (d.origin == currentConflictCountryName && d.origin == d.country) {
+            amountOfRefugees = d.amount;
+        };
+    }); 
+};
+
+// set the domain of the barchart correct
+function setDomainBarchart() {    
+    xB.domain(dataBarchartCountry.map(function(d) { return d.country; }));
+    yB.domain([0, Math.ceil(d3.max(dataBarchartCountry, function(d) { return d.amount; }) / 10000) * 10000]);
+};
+
 
 ///// 
 
@@ -1171,344 +1529,7 @@ function addTooltipTimelineTotal() {
     }
 };
 
-function removeGraph() {
-    svgGraphCountry.selectAll("#axisYTimeline").remove();
-    svgGraphCountry.selectAll("#axisXTimeline").remove();
-    svgGraphCountry.selectAll("#comment1").remove();
-}
 
-// change the graph of the timeline
-function changeGraphTimeline() {
-
-    // select the section for applying changes
-    svgChangeTimeline = d3.select("#container2").transition();
-    
-    if (dataGraphCountry.length == 0) {
-        // change the title
-        svgChangeTimeline.select(".graphTitle")
-            .text("Data is not available for refugees " + toFrom + " " + nameCountry + " per year in " + absPerc);
-
-        // remove graph
-        removeGraph();
-
-        // disable tooltip
-        svgGraphCountry.select("#tooltipTimeline")
-            .on("mouseover", function() { svgTooltipTimelineCountry.style("display", "none"); })
-            .on("mousemove", null)
-    }
-    else {
-        // change title
-        svgChangeTimeline.select(".graphTitle")
-            .text("Amount of refugees " + toFrom + " " + nameCountry + " per year in " + absPerc);
-
-        removeGraph();
-
-        // add axis of timeline
-        makeAxisTimeline();
-
-        // enable tooltip again
-        svgGraphCountry.select("#tooltipTimeline")
-            .on("mouseover", function() { svgTooltipTimelineCountry.style("display", null); })
-            .on("mousemove", mousemoveCountry)
-    }
-
-    // change the line
-    svgChangeTimeline.select(".line")
-        .duration(750)
-        .attr("d", lineCountry(dataGraphCountry));    
-};
-
-// update the data when origin or asylumm is clicked
-function updateDataToFrom(input) {
-
-    // use correct data
-    if (linLog == "lin" && input != 5 || input == 4) {
-        if (input == 0 && absPerc == "absolute values" || input == 2 && toFrom == "from" || absPerc == "absolute values" && toFrom == "from" && input == 4) {
-            dataOriginAsylum = dataOrigin;
-            toFrom = "from";
-            absPerc = "absolute values";
-            linLog = "lin";
-        }
-        else if (input == 0 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "from" || absPerc == "percentage of inhabitants" && toFrom == "from" && input == 4) {
-            dataOriginAsylum = dataOrigin;
-            toFrom = "from";
-            absPerc = "percentage of inhabitants";
-            linLog = "lin";
-        }
-        else if (input == 1 && absPerc == "absolute values" || input == 2 && toFrom == "to" || absPerc == "absolute values" && toFrom == "to" && input == 4) {
-            dataOriginAsylum = dataAsylum;
-            toFrom = "to";
-            absPerc = "absolute values";   
-            linLog = "lin";
-        }
-        else if (input == 1 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "to" || absPerc == "percentage of inhabitants" && toFrom == "to" && input == 4) {
-            dataOriginAsylum = dataAsylum;
-            toFrom = "to";
-            absPerc = "percentage of inhabitants"; 
-            linLog = "lin";
-        }
-    }
-    else if (linLog == "log" && input != 4 || input == 5) {
-        if (input == 0 && absPerc == "absolute values" || input == 2 && toFrom == "from" || absPerc == "absolute values" && toFrom == "from" && input == 5) {
-            dataOriginAsylum = dataOrigin;
-            toFrom = "from";
-            absPerc = "absolute values";
-            linLog = "log";
-        }
-        else if (input == 0 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "from" || absPerc == "percentage of inhabitants" && toFrom == "from" && input == 5) {
-            dataOriginAsylum = dataOrigin;
-            toFrom = "from";
-            absPerc = "percentage of inhabitants";
-            linLog = "log";
-        }
-        else if (input == 1 && absPerc == "absolute values" || input == 2 && toFrom == "to" || absPerc == "absolute values" && toFrom == "to" && input == 5) {
-            dataOriginAsylum = dataAsylum;
-            toFrom = "to";
-            absPerc = "absolute values";   
-            linLog = "log";
-        }
-        else if (input == 1 && absPerc == "percentage of inhabitants" || input == 3 && toFrom == "to" || absPerc == "percentage of inhabitants" && toFrom == "to" && input == 5) {
-            dataOriginAsylum = dataAsylum;
-            toFrom = "to";
-            absPerc = "percentage of inhabitants"; 
-            linLog = "log";
-        }
-    };
-
-    correctDataFormatMap();
-    
-    // update colors in map
-    map.updateChoropleth(dataset)
-
-    // update legend
-    changeLegendMap();
-
-    // save new data
-    correctDataFormatTimeline();
-
-    // set y-axis again
-    setYAxisTimeline();
-
-    // change the graph of the timeline
-    changeGraphTimeline();
-};
-
-function newCountryClicked(geo) {
-
-    // save the selected country
-    newCountry = geo.id;
-    nameCountry = geo.properties.name
-
-    // define new dataset for new country
-    correctDataFormatTimeline();
-
-    // set y-axis again
-    setYAxisTimeline();
-
-    // change the graph of the timeline
-    changeGraphTimeline();
-
-    // change barchart if one of 5 countries is clicked
-    if (conflictCountries.includes(newCountry)) {
-        countryStar = geo.id;
-        countryStarName = geo.properties.name
-        
-        // put data in correct format
-        correctDataFormatBarchart();
-
-        setAmountOfRefugeesCorrect();
-        
-        // set domain
-        setDomainBarchart();
-
-        // change barchart
-        changeBarchart();
-
-        countryTwoSided = countryStarName;
-
-        // change two-sided barchart
-        changeTwoSided(2);
-
-    };
-};
-
-function newCountryClickedText(country) {
-
-    // save the selected country
-    /*newCountry = "SSD";
-    nameCountry = "South Sudan"*/
-
-    // change barchart if one of 5 countries is clicked
-    if (country == 0) {
-        countryStar = "SYR"
-        countryStarName = "Syria"
-    } 
-    else if (country == 1) {
-        countryStar = "SSD"
-        countryStarName = "South Sudan"
-    } 
-    else if (country == 2) {
-        countryStar = "COD"
-        countryStarName = "Democratic Republic of the Congo"
-    } 
-    else if (country == 3) {
-        countryStar = "CAF"
-        countryStarName = "Central African Republic"
-    } 
-    else if (country == 4) {
-        countryStar = "SOM"
-        countryStarName = "Somalia"
-    }    
-        
-    // put data in correct format
-    correctDataFormatBarchart();
-
-    setAmountOfRefugeesCorrect();
-    
-    // set domain
-    setDomainBarchart();
-
-    // change barchart
-    changeBarchart();
-
-    countryTwoSided = countryStarName;
-
-    // change two-sided barchart
-    changeTwoSided(2);
-};
-
-// make the barchart
-function makeBarchart() {
-
-    // initialize svg
-    chart = d3.select("#container3").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    // make title
-    chart.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .append("text")
-            .attr("class", "graphTitle")
-            .attr("x", width / 2)
-            .attr("y", - height - margin.top / 2)
-            .style("text-anchor", "middle")
-            .text("Refugees from " + countryStarName);
-
-    // put data in correct format
-    correctDataFormatBarchart();
-
-    setAmountOfRefugeesCorrect();
-    
-    // set domain
-    setDomainBarchart();
-    
-    tooltip = d3.select("body")
-        .append("div")
-        .attr("class", "tipBarchart")
-        .style("position", "absolute")
-        .style("z-index", "10")
-        .style("visibility", "hidden")
-
-    // make x axis
-    chart.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxisB)
-        .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", "rotate(-25)");
-    chart.append("text")
-        .attr("class", "axisTitle")
-        .attr("x", width/2)
-        .attr("y", height + 60)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Country");
-
-    // make y axis
-    chart.append("g")
-        .attr("class", "y axis")
-        .call(yAxisB);
-    chart.append("text")
-        .attr("class", "axisTitle")
-        .attr("transform", "rotate(-90)")
-        .attr("y", - 90)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Amount of refugees");
-
-    // make bars
-    chart.selectAll(".bar")
-        .data(newDataBarchart)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("x", function(d) { return xB(d.country); })
-        .attr("y", function(d) { return yB(d.amount); })
-        .attr("height", function(d) { return height - yB(d.amount); })
-        .attr("width", xB.rangeBand())
-        .attr("fill", "#A15852")
-        .on("mouseover", function(d) { 
-            if (d.data == "yes") {
-                d3.select(this)
-                    .attr("fill", "#F2D286");
-            } else if (d.data == "no") {
-                d3.select(this)
-                    .attr("fill", "grey");
-            }
-            return tooltip.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
-        .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { 
-            d3.select(this)
-                .attr("fill", "#A15852");
-            return tooltip.style("visibility", "hidden");})
-        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
-
-    // add comment
-    chart.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .append("text")
-            .attr("class", "comment")
-            .attr("x", 0)
-            .attr("y", - height - margin.top / 4)
-            .style("text-anchor", "begin")
-            .text("Amount of refugees: " + amountOfRefugees.toLocaleString());
-};
-
-// make correct data format for barchart
-function correctDataFormatBarchart() {
-    newDataBarchart = []
-    j = 0
-    dataBarchart.forEach(function(d){
-        if (d.origin == countryStarName && d.origin != d.country) {
-            newDataBarchart[j] = {"country": d.country, "amount": d.amount};
-            if (d.female) {
-                newDataBarchart[j].data = "yes"
-            }
-            else {
-                newDataBarchart[j].data = "no"
-            }
-            j++;
-        };
-    });
-};
-
-function setAmountOfRefugeesCorrect() {
-    dataBarchart.forEach(function(d){
-        if (d.origin == countryStarName && d.origin == d.country) {
-            amountOfRefugees = d.amount;
-        };
-    }); 
-};
-
-function setDomainBarchart() {    
-    xB.domain(newDataBarchart.map(function(d) { return d.country; }));
-    yB.domain([0, Math.ceil(d3.max(newDataBarchart, function(d) { return d.amount; })/100000)*100000]);
-};
 
 function changeBarchart() {
     // select the section for applying changes
@@ -1516,18 +1537,18 @@ function changeBarchart() {
     
     // change the title
     svgChangeChart.select(".graphTitle")
-        .text("Refugees from " + countryStarName);
+        .text("Refugees from " + currentConflictCountryName);
 
     svgChangeChart.select(".comment")
         .text("Amount of refugees: " + amountOfRefugees.toLocaleString());
 
-    var bars = chart.selectAll(".bar").data(newDataBarchart, function(d) { return d.country; }) // (data) is an array/iterable thing, second argument is an ID generator function
+    var bars = svgBarchart.selectAll(".bar").data(dataBarchartCountry, function(d) { return d.country; }) // (data) is an array/iterable thing, second argument is an ID generator function
 
     bars.exit()
     .transition()
         .duration(300)
     .attr("y", yB(0))
-    .attr("height", height - yB(0))
+    .attr("height", heightB - yB(0))
     .style('fill-opacity', 1e-6)
     .remove();
 
@@ -1535,14 +1556,14 @@ function changeBarchart() {
     bars.enter().append("rect")
         .attr("class", "bar")
         .attr("y", yB(0))
-        .attr("height", height - yB(0))
-        .attr("fill", "#A15852");
+        .attr("height", heightB - yB(0))
+        .attr("fill", colorBarchartRight);
 
     // the "UPDATE" set:
     bars.transition().duration(300).attr("x", function(d) { return xB(d.country); }) // (d) is one item from the data array, x is the scale object from above
         .attr("width", xB.rangeBand()) // constant, so no callback function(d) here
         .attr("y", function(d) { return yB(d.amount); })
-        .attr("height", function(d) { return height - yB(d.amount); }); // flip the height, because y's domain is bottom up, but SVG renders top down
+        .attr("height", function(d) { return heightB - yB(d.amount); }); // flip the height, because y's domain is bottom up, but SVG renders top down
 
     // change the x axis
     svgChangeChart.select(".x.axis")
@@ -1564,17 +1585,17 @@ function changeBarchart() {
         .on("mouseover", function(d) { 
             if (d.data == "yes") {
                 d3.select(this)
-                    .attr("fill", "#F2D286");
+                    .attr("fill", colorBarchartLeft);
             } else if (d.data == "no") {
                 d3.select(this)
                     .attr("fill", "grey");
             }
-            return tooltip.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
-        .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+            return tooltipBarchart.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
         .on("mouseout", function() { 
             d3.select(this)
-                .attr("fill", "#A15852");
-            return tooltip.style("visibility", "hidden");})
+                .attr("fill", colorBarchartRight);
+            return tooltipBarchart.style("visibility", "hidden");})
         .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
 };
 
@@ -1677,20 +1698,20 @@ function makeTwoSidedBarchart() {
         .attr("height", yT.rangeBand())
         .on("mouseover", function(d) { 
             var abs = Math.round(d * amountOfRefugees / 100); 
-            if (countryStarName == countryTwoSided) { 
-                return tooltip.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
+            if (currentConflictCountryName == countryTwoSided) { 
+                return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
             } 
             else { 
-                newDataBarchart.forEach(function(e) {
+                dataBarchartCountry.forEach(function(e) {
                     if (e.country == countryTwoSided) {
                         var abs = Math.round(d * e.amount / 100); 
-                        return tooltip.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
+                        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
                     }
                 });
             };
         })
-        .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden");})
         .on("click", function(d) { 
             if (youngTotal == "total") {
                 changeTwoSided(0) 
@@ -1710,20 +1731,20 @@ function makeTwoSidedBarchart() {
         .attr("height", yT.rangeBand())
         .on("mouseover", function(d) { 
             var abs = Math.round(d * amountOfRefugees / 100); 
-            if (countryStarName == countryTwoSided) { 
-                return tooltip.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
+            if (currentConflictCountryName == countryTwoSided) { 
+                return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
             } 
             else { 
-                newDataBarchart.forEach(function(e) {
+                dataBarchartCountry.forEach(function(e) {
                     if (e.country == countryTwoSided) {
                         var abs = Math.round(d * e.amount / 100); 
-                        return tooltip.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
+                        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
                     }
                 });
             };
         })
-        .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden");})
         .on("click", function(d) { 
             if (youngTotal == "total") {
                 changeTwoSided(0) 
@@ -1788,7 +1809,7 @@ function changeTwoSided(value) {
         
         // change the title
         svgChangeTwoSided.select(".graphTitle")
-            .text("Data is not available for refugees from " + countryStarName + " in " + countryTwoSided);
+            .text("Data is not available for refugees from " + currentConflictCountryName + " in " + countryTwoSided);
 
         removeBars();
 
@@ -1820,15 +1841,15 @@ function addTitlesTwoSided() {
             .attr("x", marginT.left + widthT / 2)
             .attr("y", - heightT - marginT.top / 2)
             .style("text-anchor", "middle")
-            //.text("Gender and age of refugees from " + countryStarName + " in " + countryTwoSided);
+            //.text("Gender and age of refugees from " + currentConflictCountryName + " in " + countryTwoSided);
 
-    if (countryStarName != countryTwoSided) {
+    if (currentConflictCountryName != countryTwoSided) {
         svgChangeTwoSided.select(".graphTitle")
-            .text("Gender and age of refugees from " + countryStarName + " in " + countryTwoSided);
+            .text("Gender and age of refugees from " + currentConflictCountryName + " in " + countryTwoSided);
     }
-    else if (countryStarName == countryTwoSided) {
+    else if (currentConflictCountryName == countryTwoSided) {
         svgChangeTwoSided.select(".graphTitle")
-            .text("Gender and age of refugees from " + countryStarName);
+            .text("Gender and age of refugees from " + currentConflictCountryName);
     }
     /*var svgChangeLegend = d3.select(".datamap").transition();
 
@@ -1889,7 +1910,7 @@ function addTitlesTwoSided() {
 /*function changeTitles() {
     // change the title
     svgChangeTwoSided.select(".graphTitle")
-        .text("Gender and age of refugees from " + countryStarName + " in " + countryTwoSided);
+        .text("Gender and age of refugees from " + currentConflictCountryName + " in " + countryTwoSided);
 
     // change the axis titles
     svgChangeTwoSided.select(".axisTitleFemale")
@@ -1944,20 +1965,20 @@ function addBars() {
     d3.selectAll(".left")
         .on("mouseover", function(d) { 
             var abs = Math.round(d * amountOfRefugees / 100); 
-            if (countryStarName == countryTwoSided) { 
-                return tooltip.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
+            if (currentConflictCountryName == countryTwoSided) { 
+                return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
             } 
             else { 
-                newDataBarchart.forEach(function(e) {
+                dataBarchartCountry.forEach(function(e) {
                     if (e.country == countryTwoSided) {
                         var abs = Math.round(d * e.amount / 100); 
-                        return tooltip.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
+                        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
                     }
                 });
             };
         })
-        .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden");})
         .on("click", function(d) { 
             if (youngTotal == "total") {
                 changeTwoSided(0) 
@@ -1980,20 +2001,20 @@ function addBars() {
     d3.selectAll(".right")
         .on("mouseover", function(d) { 
             var abs = Math.round(d * amountOfRefugees / 100); 
-            if (countryStarName == countryTwoSided) { 
-                return tooltip.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
+            if (currentConflictCountryName == countryTwoSided) { 
+                return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())
             } 
             else { 
-                newDataBarchart.forEach(function(e) {
+                dataBarchartCountry.forEach(function(e) {
                     if (e.country == countryTwoSided) {
                         var abs = Math.round(d * e.amount / 100); 
-                        return tooltip.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
+                        return tooltipBarchart.style("visibility", "visible").text("Absolute value: " + abs.toLocaleString())   
                     }
                 });
             };
         })
-        .on("mousemove", function() { return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { return tooltip.style("visibility", "hidden");})
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function() { return tooltipBarchart.style("visibility", "hidden");})
         .on("click", function(d) { 
             if (youngTotal == "total") {
                 changeTwoSided(0) 
@@ -2053,7 +2074,7 @@ function correctDataFormatTwoSided(origin) {
     if (origin == 0) {
         ageGroups = ["0-4", "5-11", "12-17"]
         dataBarchart.forEach(function(d){
-            if (d.origin == countryStarName && d.country == countryTwoSided) {
+            if (d.origin == currentConflictCountryName && d.country == countryTwoSided) {
                 for (var each in d.female) {
                     if (each == "0-4") {
                         female[0] = Math.round(d.female[each] * 10) / 10;
@@ -2078,7 +2099,7 @@ function correctDataFormatTwoSided(origin) {
     else if (origin == 1) {
         ageGroups = ["0-17", "18-59", "60+"]
         dataBarchart.forEach(function(d){
-            if (d.origin == countryStarName && d.country == countryTwoSided) {
+            if (d.origin == currentConflictCountryName && d.country == countryTwoSided) {
                 for (var each in d.female) {
                     if (each == "0-17") {
                         female[0] = Math.round(d.female[each] * 10) / 10;
