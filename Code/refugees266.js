@@ -4,12 +4,6 @@ Minor Programmeren, Programmeerproject*/
 
 // make global variables
 
-// initialize variables for datasets for total graph
-var dataTotal = [];
-var dataTotalAbs = [];
-var dataTotalPop = [];
-var dataTotalPerc = [];
-
 // intialize variables for saving data
 var dataOriginAsylum;
 var dataOrigin;
@@ -58,6 +52,7 @@ var dataColorsAsylumLogPerc = {};
 var toFrom = "from";
 var linLog = "lin";
 var absPerc = "absolute values";
+var absPercTotal = "absolute values"
 var youngTotal = "total";
 var currentYear = 2015;
 
@@ -145,8 +140,15 @@ var marginT = {top: 50, right: 40, bottom: 120, left: 40},
 var labelArea = 100;
 var widthTside = (widthT - labelArea) / 2;
 
+// initialize variables for datasets for total graph
+var dataTotal = [];
+var dataTotalAbs = [];
+var dataTotalPop = [];
+var dataTotalPerc = [];
+
 // set variables for total graph
 var svgGraphTotal;
+var maxDataGraphTotalAmount;
 
 
 ////////
@@ -156,11 +158,6 @@ var svgGraphTotal;
 ///
 
 var svgTooltipTimelineTotal;
-var absPercTotal = "absolute values"
-
-var dataTotalAmount;
-var maxDataTotalAmount;
-var minDataTotalAmount;
 
 
 // load data
@@ -203,6 +200,31 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
 
     // make total graph
     makeGraphTotal();
+};
+
+// make arrays for the years as a string and in time, and note amount of years
+function makeArraysYears() {
+    
+    // make functions to parse date (also for tooltip)
+    parseTime = d3.time.format("%Y").parse;
+    bisectDate = d3.bisector(function(d) { return d.year; }).left;
+
+    // set counter
+    var j = 0;
+
+    // for every year
+    for (year = 1990; year < 2016; year++) {
+        
+        // update array
+        yearsTime[j] = parseTime(year.toString());
+        yearsString[j] = year.toString();
+        
+        // update counter
+        j++;
+    };
+
+    // note amount of years
+    amountOfYears = yearsString.length;
 };
 
 // make everything for the map
@@ -734,51 +756,27 @@ function changeTitleAndAxisLegend(title, min, max) {
 function makeGraphCountry() {
     
     // save data in correct format
-    correctDataFormatTimeline();
+    correctDataFormatTimelineCountry();
 
     // initialize variables for axis
-    initializeAxisAndLineTimeline();
+    initializeAxisAndLineTimelineCountry();
 
     // set y axis for default settings
-    setYAxisTimeline();
+    setYAxisTimelineCountry();
     
     // initialize svg for graph and make the titles and line
-    initializeGraphMakeTitleLine();
+    var titleGraphCountry = "Amount of refugees " + toFrom + " " + currentCountryName + " per year in " + absPerc;
+    initializeGraphMakeTitleLine("country", titleGraphCountry, dataGraphCountry);
 
     // make both axis
-    makeAxisTimeline();
+    makeAxisTimelineCountry();
 
     // add tooltip
     addTooltipTimelineCountry();
 };
 
-// make arrays for the years as a string and in time, and note amount of years
-function makeArraysYears() {
-    
-    // make functions to parse date (also for tooltip)
-    parseTime = d3.time.format("%Y").parse;
-    bisectDate = d3.bisector(function(d) { return d.year; }).left;
-
-    // set counter
-    var j = 0;
-
-    // for every year
-    for (year = 1990; year < 2016; year++) {
-        
-        // update array
-        yearsTime[j] = parseTime(year.toString());
-        yearsString[j] = year.toString();
-        
-        // update counter
-        j++;
-    };
-
-    // note amount of years
-    amountOfYears = yearsString.length;
-};
-
 // save data in correct format for timeline
-function correctDataFormatTimeline() {
+function correctDataFormatTimelineCountry() {
     
     // start with empty array
     dataGraphCountry = []
@@ -830,7 +828,7 @@ function fillDataArrayTimeline(d, e, j) {
 };
 
 // initialize the axis and the line for the timeline
-function initializeAxisAndLineTimeline() {
+function initializeAxisAndLineTimelineCountry() {
     
     // set the ranges for graph
     xG = d3.time.scale()
@@ -854,8 +852,8 @@ function initializeAxisAndLineTimeline() {
         .y(function(d) { return yG(d.amount); });
 };
 
-// set y axis of timeline
-function setYAxisTimeline() {
+// set y axis of timeline country
+function setYAxisTimelineCountry() {
     
     // define max for y axis
     var dataGraphCountryAmount = dataGraphCountry.map(function(d){ return d.amount; });
@@ -867,7 +865,7 @@ function setYAxisTimeline() {
 };
 
 // initialize svg for graph and make the titles and line
-function initializeGraphMakeTitleLine() {
+function initializeGraphMakeTitleLineCountry() {
     
     // initialize svg
     svgGraphCountry = d3.select("#container2").append("svg")
@@ -899,8 +897,56 @@ function initializeGraphMakeTitleLine() {
         .attr("d", lineCountry);
 };
 
+// initialize svg for graph and make the titles and line
+function initializeGraphMakeTitleLine(countryTotal, title, data) {
+
+    // initialize and save correct svg
+    if (countryTotal == "country") {
+
+        svgGraphCountry = d3.select("#container2").append("svg")
+            .attr("width", widthG + marginG.left + marginG.right)
+            .attr("height", heightG + marginG.top + marginG.bottom)
+            .attr("id", "graph")
+            .append("g")
+                .attr("transform", "translate(" + marginG.left + "," + marginG.top + ")");
+
+        svg = svgGraphCountry;
+    }
+    else if (countryTotal == "total") {
+
+        svgGraphTotal = d3.select("#container5").append("svg")
+            .attr("width", widthG + marginG.left + marginG.right)
+            .attr("height", heightG + marginG.top + marginG.bottom)
+            .append("g")
+                .attr("transform", "translate(" + marginG.left + "," + marginG.top + ")");
+
+        svg = svgGraphTotal;
+    };
+
+    // make title
+    svg.append("g")
+        .attr("transform", "translate(0," + heightG + ")")
+        .append("text")
+            .attr("class", "graphTitle")
+            .attr("x", widthG / 2)
+            .attr("y", - heightG - marginG.top / 2)
+            .style("text-anchor", "middle")
+            .text(title);
+
+    // add line
+    svg.append("path")
+        .attr("class", "line")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", colorRight)
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("stroke-width", 1.5)
+        .attr("d", lineCountry);
+};
+
 // make the axis for the timeline
-function makeAxisTimeline() {
+function makeAxisTimelineCountry() {
 
     // make x axis
     svgGraphCountry.append("g")
@@ -934,6 +980,49 @@ function makeAxisTimeline() {
     } 
     else if (absPerc == "absolute values") {
         setTitleYAxisTimeline("Amount of refugees");
+    };
+};
+
+// make the axis for the timeline
+function makeAxisTimeline(svg, addIDx, addIDy1, addIDy2) {
+
+    console.log('hoi')
+    console.log(svg)
+    // make x axis
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("id", addIDx)
+        .attr("transform", "translate(0," + heightG + ")")
+        .call(xAxisG)
+        .append("text")
+            .attr("class", "axisTitle")
+            .attr("x", widthG)
+            .attr("y", 50)
+            .style("text-anchor", "end")
+            .text("Time");
+
+    // make y axis
+    svg.append("g")
+        .attr("class", "y axis")
+        .attr("id", addIDy1)
+        .call(yAxisG)
+        .append("text")
+            .attr("class", "axisTitle")
+            .attr("id", addIDy2)
+            .attr("transform", "rotate(-90)")
+            .attr("y", - 90)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end");
+
+    // decide on title y axis
+    if (absPerc == "percentage of inhabitants" && svg == svgGraphCountry) {
+        setTitleYAxisTimeline("Percentage of inhabitants");
+    } 
+    else if (absPerc == "absolute values" && svg == svgGraphCountry) {
+        setTitleYAxisTimeline("Amount of refugees");
+    }
+    else if (svg == svgGraphTotal) {
+        svg.text("Amount of refugees");
     };
 };
 
@@ -1001,6 +1090,9 @@ function addTooltipTimelineCountry() {
 
 // change tooltip when mouse is moved
 function mousemoveCountry() {
+
+    // set correct domain
+    yG.domain([0, maxDataGraphCountryAmount]);
 
     // select correct year and data
     var timeMouse = xG.invert(d3.mouse(this)[0]),
@@ -1100,7 +1192,7 @@ function changeGraphTimeline() {
         removeGraph();
 
         // add axis of timeline
-        makeAxisTimeline();
+        makeAxisTimelineCountry();
 
         // enable tooltip again
         svgGraphCountry.select("#tooltipTimeline")
@@ -1180,10 +1272,10 @@ function updateColorsMap() {
 function updateTimeline() {
 
     // save new data for timeline
-    correctDataFormatTimeline();
+    correctDataFormatTimelineCountry();
 
     // set y axis again for timeline
-    setYAxisTimeline();
+    setYAxisTimelineCountry();
 
     // change the graph of the timeline
     changeGraphTimeline();
@@ -2003,42 +2095,25 @@ function removeAllTextTwoSided() {
     svgTwoSided.selectAll(".axisTitle").remove();
 };
 
-
-
-/////
-
 // make the graph with total overview
 function makeGraphTotal() {
-
-    // select correct dataset
-    dataOriginAsylum = dataOrigin
-
-    // initialize svg
-    svgGraphTotal = d3.select("#container5").append("svg")
-        .attr("width", widthG + marginG.left + marginG.right)
-        .attr("height", heightG + marginG.top + marginG.bottom)
-        .attr("id", "graph")
-        .append("g")
-            .attr("transform", "translate(" + marginG.left + "," + marginG.top + ")");
 
     // save data in correct format
     correctDataFormatTimelineTotal();
 
+    // set default dataset
     dataTotal = dataTotalAbs;
-    
-    // set y-axis for default settings
-    setYaxisTimelineTotal();
 
-    // make title
-    svgGraphTotal.append("g")
-        .attr("transform", "translate(0," + heightG + ")")
-        .append("text")
-            .attr("class", "graphTitle")
-            .attr("x", widthG / 2)
-            .attr("y", - heightG - marginG.top / 2)
-            .style("text-anchor", "middle")
-            .text("Amount of refugees in the world over time in " + absPercTotal);
+    // set y axis for default settings
+    setYAxisTimelineTotal();
 
+    // initialize svg for graph and make the titles and line
+    var titleGraphTotal = "Amount of refugees in the world over time in " + absPercTotal;
+    initializeGraphMakeTitleLine("total", titleGraphTotal, dataTotal);
+
+    //makeAxisTimeline(svgGraphTotal, "hoi", "hoi", "axisTitleYTotal");
+
+    // HIER GEBLEVEN
     // make x axis
     svgGraphTotal.append("g")
         .attr("class", "x axis")
@@ -2064,17 +2139,6 @@ function makeGraphTotal() {
             .style("text-anchor", "end")
             .text("Amount of refugees");
 
-    // add line
-    svgGraphTotal.append("path")
-        .attr("class", "lineTotal")
-        .datum(dataTotal)
-        .attr("fill", "none")
-        .attr("stroke", colorRight)
-        .attr("stroke-linejoin", "round")
-        .attr("stroke-linecap", "round")
-        .attr("stroke-width", 1.5)
-        .attr("d", lineCountry);
-
     // add tooltip
     addTooltipTimelineTotal();
 };
@@ -2082,85 +2146,109 @@ function makeGraphTotal() {
 // save data in correct format for timeline
 function correctDataFormatTimelineTotal() {
 
-    dataOriginAsylum.forEach(function(d) {
-        for (i = 0; i < 26; i++) {
-            if (!dataTotalAbs[i]) {
-                dataTotalAbs[i] = {amount: 0, year: yearsTime[i], yearx: yearsString[i]}
-            }
-            if (!isNaN(d[yearsString[i]])) {
-                dataTotalAbs[i].amount += +d[yearsString[i]]  
-            }
-        }
-    });
+    // make an array for total refugees and one for total population over time
+    dataTotalAbs = makeArraysWorldRefugeesPopulation(dataOrigin);
+    dataTotalPop = makeArraysWorldRefugeesPopulation(dataPopulation);
 
-    dataPopulation.forEach(function(d) {
-        for (i = 0; i < 26; i++) {
-            if (!dataTotalPop[i]) {
-                dataTotalPop[i] = {amount: 0.0, year: yearsTime[i], yearx: yearsString[i]}
-            }
-            if (!isNaN(d[yearsString[i]])) {
-                dataTotalPop[i].amount += +d[yearsString[i]]
-            }
-        }
-    });
-
-    for (i = 0; i < 26; i++) {
-        perc = dataTotalAbs[i].amount / dataTotalPop[i].amount * 100
-        dataTotalPerc[i] = {amount: perc, year: yearsTime[i], yearx: yearsString[i]}
+    // for every year, calculate percentage and save in array
+    for (i = 0; i < amountOfYears; i++) {
+        var perc = dataTotalAbs[i].amount / dataTotalPop[i].amount * 100;
+        dataTotalPerc[i] = {amount: perc, year: yearsTime[i], yearx: yearsString[i]};
     }
 };
 
-// set y-axis of timeline
-function setYaxisTimelineTotal() {
+// make array with all countries summed up
+function makeArraysWorldRefugeesPopulation(data) {
     
-    // define min and max for y-axis
-    dataTotalAmount = dataTotal.map(function(obj){ return obj.amount; });
-    maxDataTotalAmount = Math.max.apply(null, dataTotalAmount);
-    minDataTotalAmount = Math.min.apply(null, dataTotalAmount);
-    minY = Math.floor(minDataTotalAmount / 10) * 10;
-    maxY = Math.ceil(maxDataTotalAmount / 10) * 10;
+    // start with empty array
+    dataArray = [];
 
-    // set domain for timeline
-    //xG.domain(d3.extent(yearsTime));
-    yG.domain([0, maxDataTotalAmount]); 
+    // for every country and year
+    data.forEach(function(d) {
+        for (i = 0; i < amountOfYears; i++) {
+            
+            // if the year doesn't exist yet, make new object
+            if (!dataArray[i]) {
+                dataArray[i] = {amount: 0, year: yearsTime[i], yearx: yearsString[i]};
+            };
+            
+            // check if value is a number
+            if (!isNaN(d[yearsString[i]])) {
+                dataArray[i].amount += +d[yearsString[i]];
+            };
+        };
+    });
+
+    // return the data array
+    return dataArray;
 };
 
-function updateGraphTotal(value) {
+// set y axis of timeline total
+function setYAxisTimelineTotal() {
+    
+    // define max for y axis
+    var dataGraphTotalAmount = dataTotal.map(function(obj){ return obj.amount; });
+    maxDataGraphTotalAmount = Math.max.apply(null, dataGraphTotalAmount);
+
+    // set domain for timeline
+    yG.domain([0, maxDataGraphTotalAmount]); 
+};
+
+// update the total graph when button is clicked
+function updateGraphTotal(input) {
     
     // select the section for applying changes
     svgChangeTimelineTotal = d3.select("#container5").transition();
     
-    if (value == 0) {
+    // check which change must be made
+    if (input == 0) {
+
+        // update variable and dataset
         absPercTotal = "absolute values";
         dataTotal = dataTotalAbs;
 
-        svgChangeTimelineTotal.select("#axisTitleYTotal")
-            .text("Amount of refugees")
+        // update title
+        setTitleYAxisGraphTotal("Amount of refugees");
     }
-    else if (value == 1) {
+    else if (input == 1) {
+        
+        // update variable and dataset
         absPercTotal = "percentage of population";
         dataTotal = dataTotalPerc;
 
-        svgChangeTimelineTotal.select("#axisTitleYTotal")
-            .text("Percentage of population")
-    }
+        // update title
+        setTitleYAxisGraphTotal("Percentage of population");
+    };
 
     // change the title
     svgChangeTimelineTotal.select(".graphTitle")
         .text("Amount of refugees in the world over time in " + absPercTotal)
 
     // change y axis
-    setYaxisTimelineTotal();
+    setYAxisTimelineTotal();
 
     svgChangeTimelineTotal.select(".y.axis")
         .duration(750)
         .call(yAxisG)
 
     // change the line
-    svgChangeTimelineTotal.select(".lineTotal")
+    svgChangeTimelineTotal.select(".line")
         .duration(750)
         .attr("d", lineCountry(dataTotal));
 };
+
+// set the correct title for graph total
+function setTitleYAxisGraphTotal(title) {
+    svgChangeTimelineTotal.select("#axisTitleYTotal")
+        .text(title);
+};
+
+
+/////
+
+
+
+
 
 function addTooltipTimelineTotal() {
    
@@ -2224,7 +2312,7 @@ function addTooltipTimelineTotal() {
     
     function mousemoveTotal() {
 
-        yG.domain([0, maxDataTotalAmount]); 
+        yG.domain([0, maxDataGraphTotalAmount]); 
 
         var x0 = xG.invert(d3.mouse(this)[0]),
         i = bisectDate(dataTotal, x0, 1),
