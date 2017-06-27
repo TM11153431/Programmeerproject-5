@@ -139,7 +139,7 @@ var dataTotalAmount;
 var maxDataTotalAmount;
 var minDataTotalAmount;
 
-var svgChangeChart;
+
 
 
 var svgTwoSided;
@@ -1261,102 +1261,20 @@ function setDataAmountDomainBarchart() {
 // make the barchart
 function makeBarchart() {
 
-    // initialize svg for barchart
-    svgBarchart = d3.select("#container3").append("svg")
-        .attr("width", widthB + marginB.left + marginB.right)
-        .attr("height", heightB + marginB.top + marginB.bottom)
-        .append("g")
-            .attr("transform", "translate(" + marginB.left + "," + marginB.top + ")");
-
-    // make title
-    svgBarchart.append("g")
-        .attr("transform", "translate(0," + heightB + ")")
-        .append("text")
-            .attr("class", "graphTitle")
-            .attr("x", widthB / 2)
-            .attr("y", - heightB - marginB.top / 2)
-            .style("text-anchor", "middle")
-            .text("Refugees from " + currentConflictCountryName);
-
     // initialize the axis for the barchart            
     initializeAxisBarchart();
 
     // set the data, amount of refugees and domain of barchart correct
     setDataAmountDomainBarchart();
-    
-    // append tooltip
-    tooltipBarchart = d3.select("body")
-        .append("div")
-        .attr("class", "tipBarchart")
-        .style("position", "absolute")
-        .style("z-index", "10")
-        .style("visibility", "hidden")
 
-    // make x axis
-    svgBarchart.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + heightB + ")")
-        .call(xAxisB)
-        .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", "rotate(-25)");
-    svgBarchart.append("text")
-        .attr("class", "axisTitle")
-        .attr("x", widthB / 2)
-        .attr("y", heightB + 60)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Country");
+    // initialize svg for barchart, add title, amount of refugees and tooltip
+    initializeBarchartTitleAmountTooltip();
 
-    // make y axis
-    svgBarchart.append("g")
-        .attr("class", "y axis")
-        .call(yAxisB);
-    svgBarchart.append("text")
-        .attr("class", "axisTitle")
-        .attr("transform", "rotate(-90)")
-        .attr("y", - 90)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Amount of refugees");
+    // make both axis for barchart
+    makeAxisBarchart();
 
-    // make bars
-    svgBarchart.selectAll(".bar")
-        .data(dataBarchartCountry)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("x", function(d) { return xB(d.country); })
-        .attr("y", function(d) { return yB(d.amount); })
-        .attr("height", function(d) { return heightB - yB(d.amount); })
-        .attr("width", xB.rangeBand())
-        .attr("fill", colorBarchartRight)
-        .on("mouseover", function(d) { 
-            if (d.data == "yes") {
-                d3.select(this)
-                    .attr("fill", colorBarchartLeft);
-            } else if (d.data == "no") {
-                d3.select(this)
-                    .attr("fill", "grey");
-            }
-            return tooltipBarchart.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
-        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { 
-            d3.select(this)
-                .attr("fill", colorBarchartRight);
-            return tooltipBarchart.style("visibility", "hidden");})
-        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
-
-    // add comment
-    svgBarchart.append("g")
-        .attr("transform", "translate(0," + heightB + ")")
-        .append("text")
-            .attr("class", "comment")
-            .attr("x", 0)
-            .attr("y", - heightB - marginB.top / 4)
-            .style("text-anchor", "begin")
-            .text("Amount of refugees: " + amountOfRefugees.toLocaleString());
+    // make bars for barchart
+    makeBarsBarchart();
 };
 
 // initialize the axis for the barchart
@@ -1422,6 +1340,196 @@ function setAmountOfRefugeesCorrect() {
 function setDomainBarchart() {    
     xB.domain(dataBarchartCountry.map(function(d) { return d.country; }));
     yB.domain([0, Math.ceil(d3.max(dataBarchartCountry, function(d) { return d.amount; }) / 10000) * 10000]);
+};
+
+// initialize svg for barchart, add title, amount of refugees and tooltip
+function initializeBarchartTitleAmountTooltip() {
+    
+    // initialize svg for barchart
+    svgBarchart = d3.select("#container3").append("svg")
+        .attr("width", widthB + marginB.left + marginB.right)
+        .attr("height", heightB + marginB.top + marginB.bottom)
+        .append("g")
+            .attr("transform", "translate(" + marginB.left + "," + marginB.top + ")");
+
+    // make title
+    svgBarchart.append("g")
+        .attr("transform", "translate(0," + heightB + ")")
+        .append("text")
+            .attr("class", "graphTitle")
+            .attr("x", widthB / 2)
+            .attr("y", - heightB - marginB.top / 2)
+            .style("text-anchor", "middle")
+            .text("Refugees from " + currentConflictCountryName);
+
+    // add amount of refugees to graph
+    svgBarchart.append("g")
+        .attr("transform", "translate(0," + heightB + ")")
+        .append("text")
+            .attr("id", "infoRefugees")
+            .attr("x", 0)
+            .attr("y", - heightB - marginB.top / 4)
+            .style("text-anchor", "begin")
+            .text("Amount of refugees: " + amountOfRefugees.toLocaleString());
+    
+    // append tooltip
+    tooltipBarchart = d3.select("body")
+        .append("div")
+        .attr("id", "tooltipBarchart")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .style("visibility", "hidden");
+};
+
+// make both axis for barchart
+function makeAxisBarchart() {
+    
+    // make x axis
+    svgBarchart.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + heightB + ")")
+        .call(xAxisB)
+        .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-25)");
+    svgBarchart.append("text")
+        .attr("class", "axisTitle")
+        .attr("x", widthB / 2)
+        .attr("y", heightB + 60)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Country");
+
+    // make y axis
+    svgBarchart.append("g")
+        .attr("class", "y axis")
+        .call(yAxisB);
+    svgBarchart.append("text")
+        .attr("class", "axisTitle")
+        .attr("transform", "rotate(-90)")
+        .attr("y", - 90)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Amount of refugees");
+};
+
+// make the bars for the barchart
+function makeBarsBarchart() {
+
+    svgBarchart.selectAll(".bar")
+        .data(dataBarchartCountry)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return xB(d.country); })
+        .attr("y", function(d) { return yB(d.amount); })
+        .attr("height", function(d) { return heightB - yB(d.amount); })
+        .attr("width", xB.rangeBand())
+        .attr("fill", colorBarchartRight);
+
+    enableTooltipBarchart();
+};
+
+// change the barchart
+function changeBarchart() {
+    
+    // change the title, the amount of refugees and the axis of the barchart
+    changeTitleAmountAxisBarchart();
+
+    // change the bars of the barchart
+    changeBarsBarchart();
+
+    // make sure that you can still click on the bars and tooltip stays
+    enableTooltipBarchart();
+};
+
+// change the title, the amount of refugees and the axis of the barchart
+function changeTitleAmountAxisBarchart() {
+    
+    // select the section for applying changes
+    var svgChangeBarchart = d3.select("#container3").transition();
+    
+    // change the title
+    svgChangeBarchart.select(".graphTitle")
+        .text("Refugees from " + currentConflictCountryName);
+
+    // change the amount of refugees
+    svgChangeBarchart.select("#infoRefugees")
+        .text("Amount of refugees: " + amountOfRefugees.toLocaleString());
+
+    // change the x axis
+    svgChangeBarchart.select(".x.axis")
+        .duration(750)
+        .call(xAxisB)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-25)");
+
+    // change the y axis
+    svgChangeBarchart.select(".y.axis")
+        .duration(750)
+        .call(yAxisB);
+};
+
+// change the bars of the barchart
+function changeBarsBarchart() {
+    
+    // select the bars
+    var bars = svgBarchart.selectAll(".bar")
+        .data(dataBarchartCountry, function(d) { return d.country; })
+
+    // remove all the bars
+    bars.exit()
+        .transition()
+            .duration(300)
+        .attr("y", yB(0))
+        .attr("height", heightB - yB(0))
+        .style('fill-opacity', 1e-6)
+        .remove();
+
+    // append new bars
+    bars.enter().append("rect")
+        .attr("class", "bar")
+        .attr("y", yB(0))
+        .attr("height", heightB - yB(0))
+        .attr("fill", colorBarchartRight);
+
+    // set correct height of bars
+    bars.transition()
+            .duration(300)
+        .attr("x", function(d) { return xB(d.country); })
+        .attr("width", xB.rangeBand())
+        .attr("y", function(d) { return yB(d.amount); })
+        .attr("height", function(d) { return heightB - yB(d.amount); });
+};
+
+// enable the tooltip works at the barchart
+function enableTooltipBarchart() {
+   
+    // select all bars
+    d3.selectAll(".bar")
+        .on("mouseover", function(d) { 
+            // if data is available, show bright color
+            if (d.data == "yes") {
+                d3.select(this)
+                    .attr("fill", colorBarchartLeft);
+            // if data is not available, show grey color
+            } else if (d.data == "no") {
+                d3.select(this)
+                    .attr("fill", "grey");
+            }
+            // show information
+            return tooltipBarchart.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function() { 
+            // make sure barchart changes to original color
+            d3.select(this)
+                .attr("fill", colorBarchartRight);
+            return tooltipBarchart.style("visibility", "hidden");})
+        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
 };
 
 
@@ -1529,75 +1637,6 @@ function addTooltipTimelineTotal() {
     }
 };
 
-
-
-function changeBarchart() {
-    // select the section for applying changes
-    svgChangeChart = d3.select("#container3").transition();
-    
-    // change the title
-    svgChangeChart.select(".graphTitle")
-        .text("Refugees from " + currentConflictCountryName);
-
-    svgChangeChart.select(".comment")
-        .text("Amount of refugees: " + amountOfRefugees.toLocaleString());
-
-    var bars = svgBarchart.selectAll(".bar").data(dataBarchartCountry, function(d) { return d.country; }) // (data) is an array/iterable thing, second argument is an ID generator function
-
-    bars.exit()
-    .transition()
-        .duration(300)
-    .attr("y", yB(0))
-    .attr("height", heightB - yB(0))
-    .style('fill-opacity', 1e-6)
-    .remove();
-
-    // data that needs DOM = enter() (a set/selection, not an event!)
-    bars.enter().append("rect")
-        .attr("class", "bar")
-        .attr("y", yB(0))
-        .attr("height", heightB - yB(0))
-        .attr("fill", colorBarchartRight);
-
-    // the "UPDATE" set:
-    bars.transition().duration(300).attr("x", function(d) { return xB(d.country); }) // (d) is one item from the data array, x is the scale object from above
-        .attr("width", xB.rangeBand()) // constant, so no callback function(d) here
-        .attr("y", function(d) { return yB(d.amount); })
-        .attr("height", function(d) { return heightB - yB(d.amount); }); // flip the height, because y's domain is bottom up, but SVG renders top down
-
-    // change the x axis
-    svgChangeChart.select(".x.axis")
-        .duration(750)
-        .call(xAxisB)
-            .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", "rotate(-25)");
-
-    // change the y axis
-    svgChangeChart.select(".y.axis")
-        .duration(750)
-        .call(yAxisB);
-
-    // make sure that you can still click on the bars and tooltip stays
-    d3.selectAll(".bar")
-        .on("mouseover", function(d) { 
-            if (d.data == "yes") {
-                d3.select(this)
-                    .attr("fill", colorBarchartLeft);
-            } else if (d.data == "no") {
-                d3.select(this)
-                    .attr("fill", "grey");
-            }
-            return tooltipBarchart.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
-        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function() { 
-            d3.select(this)
-                .attr("fill", colorBarchartRight);
-            return tooltipBarchart.style("visibility", "hidden");})
-        .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
-};
 
 function makeTwoSidedBarchart() { 
 
