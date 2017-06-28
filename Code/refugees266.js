@@ -37,6 +37,7 @@ var colorBarchartRight = "#A15852";
 
 // initialize dataset
 var dataset;
+var datasetDefault = {};
 
 // set default settings
 var toFrom = "from";
@@ -217,7 +218,10 @@ function makeAllOfMap() {
     // make function to scale values to a color for map
     makeFunctionsValueToColor();
 
-    // set correct dataset and format for map DEZE MOET NOG!!
+    // set default dataset
+    makeDefaultDataset();
+
+    // set correct dataset and format for map
     correctDataFormatMap();
 
     // make the map
@@ -244,7 +248,6 @@ function findMinMaxOfDatasets() {
 
     // find min and max percentage in data of origin
     findMinMaxPercentage(dataAsylum);
-
 };
 
 // check if value is bigger or smaller, then save it
@@ -347,6 +350,19 @@ function color(min, max) {
         .range([colorLeft,colorRight]);
 
     return colorFunction;
+};
+
+// make a default dataset for resetting
+function makeDefaultDataset() {
+    fillDefaultDataset(dataOrigin);
+    fillDefaultDataset(dataAsylum);
+};
+
+// fill the default dataset
+function fillDefaultDataset(data) {
+    data.forEach(function(d) {
+        datasetDefault[d.Country] = { fillColor: colorDefault };
+    });
 };
 
 // calculate and select the correct dataset for the map
@@ -1145,6 +1161,9 @@ function updateColorsMap() {
     
     // update data for the map
     correctDataFormatMap();
+    
+    // reset map
+    map.updateChoropleth(datasetDefault);
     
     // update colors in map
     map.updateChoropleth(dataset);
