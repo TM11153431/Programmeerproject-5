@@ -93,8 +93,8 @@ body, html {
 }
 
 #hand {
-    cursor:pointer;
-    cursor:hand;
+    cursor: pointer;
+    cursor: hand;
 }
 
 #container1 {
@@ -132,6 +132,15 @@ body, html {
 
 #buttonWomen {
     float: left;
+}
+
+.buttonOn {
+    border: 2px solid lightgrey;
+    border-radius: 8px;
+}
+
+.buttonOff {
+    border: 0px
 }
 
 .domain {

@@ -212,6 +212,11 @@ function makeArraysYears() {
 // make everything for the map
 function makeAllOfMap() {
     
+    // set default border buttons
+    changeBorderButton("org", "asy");
+    changeBorderButton("abs", "perc");
+    changeBorderButton("lin", "log");
+
     // find min and max for every dataset
     findMinMaxOfDatasets();
 
@@ -1137,23 +1142,35 @@ function changeVariablesButton(input) {
     if (input == 0) {
         toFrom = "from";
         dataOriginAsylum = dataOrigin;
+        changeBorderButton("org", "asy");
     }
     else if (input == 1) {
         toFrom = "to";
         dataOriginAsylum = dataAsylum;
+        changeBorderButton("asy", "org");
     }
     else if (input == 2) {
         absPerc = "absolute values";
+        changeBorderButton("abs", "perc");
     }
     else if (input == 3) {
         absPerc = "percentage of inhabitants";
+        changeBorderButton("perc", "abs");
     }
     else if (input == 4) {
         linLog = "lin";
+        changeBorderButton("lin", "log");
     }
     else if (input == 5) {
         linLog = "log";
+        changeBorderButton("log", "lin");
     }; 
+};
+
+// change the border of the button
+function changeBorderButton(idOn, idOff) {
+    document.getElementById(idOn).setAttribute("class", "buttonOn");
+    document.getElementById(idOff).setAttribute("class", "buttonOff");
 };
 
 // update the data and colors of the map
