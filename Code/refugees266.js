@@ -153,10 +153,6 @@ var maxDataGraphTotalAmount;
 
 ////////
 
-
-
-///
-
 var svgTooltipTimelineTotal;
 
 
@@ -649,28 +645,10 @@ function changeLegendMap() {
 
     // check which legend and change title and scale legend
     if (absPerc == "absolute values") {
-        if (linLog == "lin") {
-            
-            // change title and axis
-            changeTitleAndAxisLegend("Amount of refugees (in millions)", minLinAbs / 1000000, maxLinAbs / 1000000);
-        }
-        else if (linLog == "log") {
-
-            // change title and axis
-            changeTitleAndAxisLegend("Amount of refugees (in logarithm)", minLogAbs, maxLogAbs);
-        }
+        checkLinLogAndChange("Amount of refugees (in millions)", minLinAbs / 1000000, maxLinAbs / 1000000, "Amount of refugees (in logarithm)", minLogAbs, maxLogAbs);
     }
     else if (absPerc == "percentage of inhabitants") {
-        if (linLog == "lin") {
-            
-            // change title and axis
-            changeTitleAndAxisLegend("Percentage refugees of inhabitants", minLinPerc, maxLinPerc);
-        }
-        else if (linLog == "log") {
-            
-            // change title and axis
-            changeTitleAndAxisLegend("Percentage refugees of inhabitants (in logarithm)", minLogPerc, maxLogPerc);
-        }
+        checkLinLogAndChange("Percentage refugees of inhabitants", minLinPerc, maxLinPerc, "Percentage refugees of inhabitants (in logarithm)", minLogPerc, maxLogPerc);
     };
 
     // define new x axis legend
@@ -685,6 +663,16 @@ function changeLegendMap() {
                 .attr("dx", "-.8em")
                 .attr("dy", ".15em")
                 .attr("transform", "rotate(-90)");
+};
+
+// check for lin or log and change the title and axis of the legend
+function checkLinLogAndChange(titleLin, minLin, maxLin, titleLog, minLog, maxLog) {
+    if (linLog == "lin") {
+        changeTitleAndAxisLegend(titleLin, minLin, maxLin);
+    }
+    else if (linLog == "log") {
+        changeTitleAndAxisLegend(titleLog, minLog, maxLog);
+    }
 };
 
 // change title and scale of axis of legend
