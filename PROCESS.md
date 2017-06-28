@@ -309,3 +309,12 @@ Ik ben ben hier nu bijna klaar mee! Bijna alles staat duidelijk in functies, met
 en er is nauwelijks dubbele code.
 Nu moet ik de functies nog in verschillende files zetten en die allemaal inladen,
 aangezien m'n code erg lang is.
+
+# Dag 16 - 28 juni:
+Vandaag stond in het teken van de styling van m'n website.
+Dit was een stuk ingewikkelder dan ik dacht!
+Ik wist toch nog niet zo goed hoe ik met CSS moest werken, en het was erg lastig om tekst of knoppen op de juiste plek te krijgen.
+Het is nu redelijk gelukt, maar met veel random padding, dus het is qua code niet zo mooi.
+Gelukkig ziet het er op de site wel mooi uit. :)
+Nu is het nog van belang dat ik echt de laatste hand leg aan m'n code, die opdelen in verschillende javascripts,
+m'n report ga afschrijven, readme aanpassen etc.
