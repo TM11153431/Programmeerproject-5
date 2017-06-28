@@ -9,7 +9,7 @@ var dataOriginAsylum;
 var dataOrigin;
 var dataAsylum;
 var dataBarchart;
-var dataPopulation
+var dataPopulation;
 
 // initialize variables for min and max of all data sets
 var maxLinAbs = 0;
@@ -38,16 +38,6 @@ var colorBarchartRight = "#A15852";
 // initialize dataset
 var dataset;
 
-// initialize variables for datasets for colorcodes for map
-var dataColorsOriginLinAbs  = {};
-var dataColorsAsylumLinAbs = {};
-var dataColorsOriginLinPerc = {};
-var dataColorsAsylumLinPerc = {};
-var dataColorsOriginLogAbs = {};
-var dataColorsAsylumLogAbs = {};
-var dataColorsOriginLogPerc = {};
-var dataColorsAsylumLogPerc = {};
-
 // set default settings
 var toFrom = "from";
 var linLog = "lin";
@@ -57,7 +47,7 @@ var youngTotal = "total";
 var currentYear = 2015;
 
 // array with conflict countries
-var conflictCountries = ["COD", "CAF", "SOM", "SSD", "SYR"]
+var conflictCountries = ["COD", "CAF", "SOM", "SSD", "SYR"];
 
 // initialize variables for map
 var map;
@@ -172,7 +162,7 @@ function makeVisualisations(error, datasetOrigin, datasetAsylum, datasetPopulati
     dataBarchart = datasetBarchart;
 
     // set default dataset
-    dataOriginAsylum = dataOrigin
+    dataOriginAsylum = dataOrigin;
 
     // make arrays for years
     makeArraysYears();
@@ -265,24 +255,24 @@ function checkMinMaxSave(value, minLin, maxLin, minLog, maxLog) {
         // save data point as new min and max if it is smaller/bigger than current
         if (value < minLin) {
             minLin = value;
-        }
+        };
         if (value > maxLin) {
             maxLin = value;
-        }
+        };
         // check if data point is not 0, for min of log
         if (value != 0) {
             // save data point as new min and max if it is smaller/bigger than current
             if (Math.log(value) < minLog) {
                 minLog = Math.log(value);
-            }
+            };
             if (Math.log(value) > maxLog) {
                 maxLog = Math.log(value);
-            }
-        }
-    }
+            };
+        };
+    };
 
     // return new values
-    return [minLin, maxLin, minLog, maxLog]
+    return [minLin, maxLin, minLog, maxLog];
 };
 
 // find min and max in datasets with absolute values
@@ -291,17 +281,18 @@ function findMinMaxAbsolute(data) {
     // check every data point
     data.forEach(function(d) {
         for (each in d) {
+            
             // save variable
-            var refugees = +d[each]
+            var refugees = +d[each];
 
             // check if value is bigger or smaller, then save it
             var output = checkMinMaxSave(refugees, minLinAbs, maxLinAbs, minLogAbs, maxLogAbs);
-            minLinAbs = output[0]
-            maxLinAbs = output[1]
-            minLogAbs = output[2]
-            maxLogAbs = output[3]
-        }
-    })
+            minLinAbs = output[0];
+            maxLinAbs = output[1];
+            minLogAbs = output[2];
+            maxLogAbs = output[3];
+        };
+    });
 };
 
 // find min and max in datasets with percentages
@@ -310,30 +301,33 @@ function findMinMaxPercentage(data) {
     // check every data point
     data.forEach(function(d) {
         dataPopulation.forEach(function(e) {
+            
             // check if country in both datasets matches
             if (d.Country == e.countrycode) {
+                
                 // for every year
                 for (i = 0; i < amountOfYears; i++) {
+                    
                     // calculate percentage
-                    var perc = d[yearsString[i]] / e[yearsString[i]] * 100
+                    var perc = d[yearsString[i]] / e[yearsString[i]] * 100;
 
                     // check if value is bigger or smaller, then save it
                     var output = checkMinMaxSave(perc, minLinPerc, maxLinPerc, minLogPerc, maxLogPerc);
-                    minLinPerc = output[0]
-                    maxLinPerc = output[1]
-                    minLogPerc = output[2]
-                    maxLogPerc = output[3]
-                }
-            }
-        })
-    })
+                    minLinPerc = output[0];
+                    maxLinPerc = output[1];
+                    minLogPerc = output[2];
+                    maxLogPerc = output[3];
+                };
+            };
+        });
+    });
 };
 
 // make functions to change value to color
 function makeFunctionsValueToColor() {
     
     // make function for changing linear/absolute value to color
-    colorLinAbs = color(minLinAbs, maxLinAbs)
+    colorLinAbs = color(minLinAbs, maxLinAbs);
 
     // make function for changing linear/percentage value to color
     colorLinPerc = color(minLinPerc, maxLinPerc);
@@ -386,7 +380,7 @@ function correctDataFormatMap() {
 
                     // check for lin and log and fill data array with correct values
                     checkLinLogFillDataset(refugeesPerc, Math.log(refugeesPerc), colorLinPerc, colorLogPerc, country);
-                }
+                };
             });
         };
     });
@@ -456,6 +450,7 @@ function returnCorrectBorderWidth(country, widthNormal, widthConflict) {
 // make the map
 function makeMap() {
     map = new Datamap({
+        
         // select correct container
         element: document.getElementById("container1"),
 
@@ -463,6 +458,7 @@ function makeMap() {
         fills: { defaultFill: colorDefault },
         data: dataset,    
         geographyConfig: {
+            
             // set border colors
             borderColor: function(d) {
                 return returnCorrectBorderColor(d.id);
@@ -470,7 +466,7 @@ function makeMap() {
 
             // set border width
             borderWidth: function(d) {
-                return returnCorrectBorderWidth(d.id, 1, 3)
+                return returnCorrectBorderWidth(d.id, 1, 3);
             },
 
             // set border color for mouse over
@@ -480,7 +476,7 @@ function makeMap() {
             
             // set border width for mouse over
             highlightBorderWidth: function(d) {
-                return returnCorrectBorderWidth(d.country, 2, 4)
+                return returnCorrectBorderWidth(d.country, 2, 4);
             },
 
             // set fill color for mouse over
@@ -535,7 +531,7 @@ function makeSlider() {
 
     // update map and variable when slider is used
     d3.select("#YearSlider").on("input", function() {
-        currentYear = +this.value
+        currentYear = +this.value;
         update(currentYear);
     });
 
@@ -558,7 +554,7 @@ function makeSlider() {
 function makeLegendMap() {
     
     // select the correct section
-    var svgMap = d3.select(".datamap")
+    var svgMap = d3.select(".datamap");
     
     // make horizontal gradient
     var linearGradient = svgMap.append("defs").append("linearGradient")
@@ -667,7 +663,7 @@ function checkLinLogAndChange(titleLin, minLin, maxLin, titleLog, minLog, maxLog
     }
     else if (linLog == "log") {
         changeTitleAndAxisLegend(titleLog, minLog, maxLog);
-    }
+    };
 };
 
 // change title and scale of axis of legend
@@ -675,7 +671,7 @@ function changeTitleAndAxisLegend(title, min, max) {
     svgChangeLegend.select("#legendTitle")
         .text(title);
 
-    setScaleLegend(min, max)
+    setScaleLegend(min, max);
 };
 
 // make everything for the graph with refugees over time per country
@@ -705,25 +701,27 @@ function makeGraphCountry() {
 function correctDataFormatTimelineCountry() {
     
     // start with empty array
-    dataGraphCountry = []
+    dataGraphCountry = [];
     
     // make counter for place in array
-    var j = 0
+    var j = 0;
 
     // search for correct country and check for absolute or percentage
     dataOriginAsylum.forEach(function(d) {
         if (absPerc == "absolute values" && d.Country == currentCountry) {
+            
             // fill data array with correct data
             fillDataArrayTimeline(d, 0, j);
         }
         else if (absPerc == "percentage of inhabitants" && d.Country == currentCountry) {
             dataPopulation.forEach(function(e) {
                 if (e.countrycode == currentCountry) {
+            
                     // fill data array with correct data
                     fillDataArrayTimeline(d, e, j);    
-                }
-            })
-        }
+                };
+            });
+        };
     });
 };
 
@@ -739,7 +737,7 @@ function fillDataArrayTimeline(d, e, j) {
         }
         else if (absPerc == "percentage of inhabitants") {
             var value = d[yearsString[i]] / e[yearsString[i]] * 100;
-        }
+        };
         
         // check if value is a number 
         if (!isNaN(value)) {
@@ -749,8 +747,8 @@ function fillDataArrayTimeline(d, e, j) {
             
             // update counter
             j++;
-        }
-    }
+        };
+    };
 };
 
 // initialize the axis and the line for the timeline
@@ -986,7 +984,7 @@ function mousemoveCountry() {
         d = timeMouse - dataLeft.year > dataRight.year - timeMouse ? dataRight : dataLeft;
 
     // set amount of refugees
-    var amount = +d.amount
+    var amount = +d.amount;
 
     // place circle on correct place
     svgTooltipTimelineCountry.select("circle.yTooltip")
@@ -998,7 +996,7 @@ function mousemoveCountry() {
     } 
     else if (absPerc == "percentage of inhabitants") {
         setTextTooltipTimeline("Percentage of inhabitants: ", amount);
-    }
+    };
 
     // place correct year in tooltip
     svgTooltipTimelineCountry.select("text.textYear")
@@ -1082,7 +1080,7 @@ function changeGraphTimeline() {
         svgGraphCountry.select("#tooltipTimeline")
             .on("mouseover", function() { svgTooltipTimelineCountry.style("display", null); })
             .on("mousemove", mousemoveCountry)
-    }
+    };
 
     // change the line
     svgChangeTimeline.select(".line")
@@ -1140,7 +1138,7 @@ function changeVariablesButton(input) {
     else if (input == 5) {
         linLog = "log";
     }; 
-}
+};
 
 // update the data and colors of the map
 function updateColorsMap() {
@@ -1175,28 +1173,29 @@ function newCountryClickedButton(input) {
     updateBarcharts();
 };
 
-// save the correct conflict country
+// save the correct conflict country according to input
 function changeConflictCountryButton(input) {
     if (input == 0) {
-        currentConflictCountry = "SYR";
-        currentConflictCountryName = "Syria";
+        saveConflictCountry("SYR", "Syria");
     } 
     else if (input == 1) {
-        currentConflictCountry = "SSD";
-        currentConflictCountryName = "South Sudan";
+        saveConflictCountry("SSD", "South Sudan");
     } 
     else if (input == 2) {
-        currentConflictCountry = "COD";
-        currentConflictCountryName = "Democratic Republic of the Congo";
+        saveConflictCountry("COD", "Democratic Republic of the Congo");
     } 
     else if (input == 3) {
-        currentConflictCountry = "CAF";
-        currentConflictCountryName = "Central African Republic";
+        saveConflictCountry("CAF", "Central African Republic");
     } 
     else if (input == 4) {
-        currentConflictCountry = "SOM";
-        currentConflictCountryName = "Somalia";
-    }
+        saveConflictCountry("SOM", "Somalia");
+    };
+};
+
+// save the current conflict country
+function saveConflictCountry(id, name) {
+    currentConflictCountry = id;
+    currentConflictCountryName = name;
 };
 
 // update barcharts when new conflict country is clicked
@@ -1289,7 +1288,7 @@ function correctDataFormatBarchart() {
             }
             else {
                 dataBarchartCountry[j].data = "no";
-            }
+            };
 
             // update counter
             j++;
@@ -1449,7 +1448,7 @@ function changeBarsBarchart() {
     
     // select the bars
     var bars = svgBarchart.selectAll(".bar")
-        .data(dataBarchartCountry, function(d) { return d.country; })
+        .data(dataBarchartCountry, function(d) { return d.country; });
 
     // remove all the bars
     bars.exit()
@@ -1490,15 +1489,15 @@ function enableTooltipBarchart() {
             } else if (d.data == "no") {
                 d3.select(this)
                     .attr("fill", "grey");
-            }
+            };
             // show information
-            return tooltipBarchart.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString());})
-        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+            return tooltipBarchart.style("visibility", "visible").text("Amount " + d.country + ": " + d.amount.toLocaleString()); })
+        .on("mousemove", function() { return tooltipBarchart.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px"); })
         .on("mouseout", function() { 
             // make sure barchart changes to original color
             d3.select(this)
                 .attr("fill", colorBarchartRight);
-            return tooltipBarchart.style("visibility", "hidden");})
+            return tooltipBarchart.style("visibility", "hidden"); })
         .on("click", function(d) { countryTwoSided = d.country; changeTwoSided(2) });
 };
 
@@ -1521,8 +1520,8 @@ function makeTwoSidedBarchart() {
     initializeTwoSidedBars();
 
     // add tooltip to the bars
-    addTooltipToBars("rect.left")
-    addTooltipToBars("rect.right")
+    addTooltipToBars("rect.left");
+    addTooltipToBars("rect.right");
 
     // add percentages as axis titles
     addPercentages("text.leftscore", dataMale, 0);
@@ -1555,9 +1554,9 @@ function addDataYoungGroupTwoSided() {
                     // calculate data for new group
                     d.female["0-17"] += d.female[group];
                     d.male["0-17"] += d.male[group];
-                }
-            }
-        }
+                };
+            };
+        };
     });
 };
 
@@ -1565,8 +1564,8 @@ function addDataYoungGroupTwoSided() {
 function correctDataFormatTwoSided(input) {
         
     // start with empty arrays
-    dataFemale = []
-    dataMale = []
+    dataFemale = [];
+    dataMale = [];
 
     // select correct age groups
     if (input == "young") {
@@ -1601,7 +1600,7 @@ function correctDataFormatTwoSided(input) {
                 else if (group == "0-17" && input == "young") {
                     setFemaleMaleTotal(group, d);
                 };
-            }
+            };
         };
     });
 
@@ -1648,8 +1647,8 @@ function findMinMaxTwoSided() {
                         maxYoung = largest(group, d);
                     };
                 };
-            }
-        }
+            };
+        };
     });
 
     // checks if new value is larger than current max
@@ -1686,7 +1685,7 @@ function setDomainsTwoSided() {
         .rangeBands([50, heightT - 200]);
 
     // make function to change index to position
-    yPosition = function(d, i) { return yD(i); }
+    yPosition = function(d, i) { return yD(i); };
 };
 
 // initialize svg and bars for two sided barchart
@@ -1707,7 +1706,7 @@ function initializeTwoSidedBars() {
         .attr("y", yPosition)
         .attr("class", "left")
         .attr("width", xT)
-        .attr("height", yT.rangeBand())
+        .attr("height", yT.rangeBand());
 
     // initialize right rectangles
     svgTwoSided.selectAll("rect.right")
@@ -1717,7 +1716,7 @@ function initializeTwoSidedBars() {
         .attr("y", yPosition)
         .attr("class", "right")
         .attr("width", xT)
-        .attr("height", yT.rangeBand())
+        .attr("height", yT.rangeBand());
 };
 
 // add the tooltip to the bars of two sided barchart
@@ -1743,7 +1742,7 @@ function addTooltipToBars(leftRight) {
                         // calculate absolute value
                         var abs = Math.round(d * e.amount / 100); 
                         enableTooltipTwoSided(abs);
-                    }
+                    };
                 });
             };
         })
@@ -1768,7 +1767,7 @@ function addTooltipToBars(leftRight) {
 
 // add percentages as axis titles to two sided barchart
 function addPercentages(select, data, x) {
- 
+
     svgTwoSided.selectAll(select)
         .data(data)
         .enter().append("text")
@@ -1799,7 +1798,7 @@ function addTitlesTwoSided() {
     }
     else if (currentConflictCountryName == countryTwoSided) {
         setTitleTwoSided("Gender and age of refugees from " + currentConflictCountryName);
-    }
+    };
 
     // add title male
     svgTwoSided.append("g")
@@ -1922,7 +1921,8 @@ function changeTwoSidedDataAvailable() {
     
     // add the bars again
     var xLeft = function(d) { return marginT.left + widthTside - xT(d); }
-    var xRight = marginT.left + widthTside + labelArea
+    var xRight = marginT.left + widthTside + labelArea;
+
     addBarsTwoSided("rect.left", dataMale, xLeft, "left");
     addBarsTwoSided("rect.right", dataFemale, xRight, "right");
 
@@ -1939,7 +1939,7 @@ function removeBarsTwoSided(select, data) {
 
     // select correct section
     var svgChangeTwoSidedData = svgTwoSided.selectAll(select)
-        .data(data)   
+        .data(data);
 
     // remove bars
     svgChangeTwoSidedData.exit()
@@ -1954,10 +1954,10 @@ function addBarsTwoSided(select, data, x, addClass) {
 
     // select correct section
     var svgChangeTwoSidedData = svgTwoSided.selectAll(select)
-        .data(data)
+        .data(data);
     
     // initialize rectangles
-    svgChangeTwoSidedData.enter().append("rect")
+    svgChangeTwoSidedData.enter().append("rect");
 
     // add bars
     svgChangeTwoSidedData.transition()
@@ -1965,11 +1965,11 @@ function addBarsTwoSided(select, data, x, addClass) {
         .attr("y", yPosition)
         .attr("width", xT)
         .attr("height", yT.rangeBand())
-        .attr("class", addClass)
+        .attr("class", addClass);
     
     // add tooltip to bars of two sided barchart
-    addTooltipToBars("rect.left")
-    addTooltipToBars("rect.right")
+    addTooltipToBars("rect.left");
+    addTooltipToBars("rect.right");
 };
 
 // remove all test from two sided barchart
@@ -2013,7 +2013,7 @@ function correctDataFormatTimelineTotal() {
     for (i = 0; i < amountOfYears; i++) {
         var perc = dataTotalAbs[i].amount / dataTotalPop[i].amount * 100;
         dataTotalPerc[i] = {amount: perc, year: yearsTime[i], yearx: yearsString[i]};
-    }
+    };
 };
 
 // make array with all countries summed up
@@ -2110,14 +2110,14 @@ function updateGraphTotal(input) {
 
     // change the title
     svgChangeTimelineTotal.select(".graphTitle")
-        .text("Amount of refugees in the world over time in " + absPercTotal)
+        .text("Amount of refugees in the world over time in " + absPercTotal);
 
     // change y axis
     setYAxisTimelineTotal();
 
     svgChangeTimelineTotal.select(".y.axis")
         .duration(750)
-        .call(yAxisG)
+        .call(yAxisG);
 
     // change the line
     svgChangeTimelineTotal.select(".line")
@@ -2194,13 +2194,13 @@ function mousemoveTotal() {
 
     // select correct year and data
     var timeMouse = xG.invert(d3.mouse(this)[0]),
-    i = bisectDate(dataTotal, timeMouse, 1),
-    dataLeft = dataTotal[i - 1],
-    dataRight = dataTotal[i],
-    d = timeMouse - dataLeft.year > dataRight.year - timeMouse ? dataRight : dataLeft;  
+        i = bisectDate(dataTotal, timeMouse, 1),
+        dataLeft = dataTotal[i - 1],
+        dataRight = dataTotal[i],
+        d = timeMouse - dataLeft.year > dataRight.year - timeMouse ? dataRight : dataLeft;  
 
     // set amount of refugees
-    var amount = +d.amount
+    var amount = +d.amount;
 
     // place circle on correct place
     svgTooltipTimelineTotal.select("circle.yTooltip")
@@ -2208,14 +2208,10 @@ function mousemoveTotal() {
 
     // place correct text in tooltip
     if (absPercTotal == "absolute values") {
-        svgTooltipTimelineTotal.select("text.textAmount")
-            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
-            .text("Amount of refugees: " + amount.toLocaleString());
+        setTextTooltipTimelineTotal("Amount of refugees: ", amount);
     }
     else if (absPercTotal == "percentage of population") {
-        svgTooltipTimelineTotal.select("text.textAmount")
-            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
-            .text("Percentage of population: " + amount.toLocaleString());    
+        setTextTooltipTimelineTotal("Percentage of pupulation: ", amount);
     }
 
     // place correct year in tooltip
@@ -2230,6 +2226,13 @@ function mousemoveTotal() {
 
     // place horizontal line on correct place
     svgTooltipTimelineTotal.select(".yTooltip")
-        .attr("transform", "translate(" + widthG * -1 + "," + yG(d.amount) + ")")
+        .attr("transform", "translate(" + widthG * - 1 + "," + yG(d.amount) + ")")
         .attr("x2", widthG + widthG);
+};
+
+// set the text for tooltip timeline correct
+function setTextTooltipTimelineTotal(title, amount) {
+    svgTooltipTimelineTotal.select("text.textAmount")
+            .attr("transform", "translate(" + xTooltipTimeline + "," + yTooltipTimeline + ")")
+            .text(title + amount.toLocaleString());
 };
