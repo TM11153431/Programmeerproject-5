@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+
 <html>
-<link rel="shortcut icon" type="image/png" href="favicon.ico"/>
-<title>Refugees</title>
-<meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+    <title>Refugees</title>
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
     <script src="https://d3js.org/queue.v1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
@@ -23,420 +24,420 @@
 
     <script src="refugees266.js"></script>
 
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
-body, html {
-    height: 100%;
-    color: #777;
-    line-height: 1.8;
-}
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+        body, html {
+            height: 100%;
+            color: #777;
+            line-height: 1.8;
+        }
 
-.w3-fifth {
-    float: left;
-    width: 100%;
-}
+        .w3-fifth {
+            float: left;
+            width: 100%;
+        }
 
-@media (min-width:601px) {
-    .w3-fifth {
-        width: 20%;
-    }
-}
+        @media (min-width:601px) {
+            .w3-fifth {
+                width: 20%;
+            }
+        }
 
-/* Create a Parallax Effect */
-.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+        /* Create a Parallax Effect */
+        .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-/* First image (Logo. Full height) */
-.bgimg-1 {
-    background-image: url("headpicture.jpg");
-    min-height: 100%;
-}
+        /* First image (Logo. Full height) */
+        .bgimg-1 {
+            background-image: url("headpicture.jpg");
+            min-height: 100%;
+        }
 
-/* Second image (Portfolio) */
-.bgimg-2 {
-    background-image: url("picture3.jpg");
-    min-height: 400px;
-}
+        /* Second image (Portfolio) */
+        .bgimg-2 {
+            background-image: url("picture3.jpg");
+            min-height: 400px;
+        }
 
-/* Third image (Contact) */
-.bgimg-3 {
-    background-image: url("picture6.JPG");
-    min-height: 400px;
-}
+        /* Third image (Contact) */
+        .bgimg-3 {
+            background-image: url("picture6.JPG");
+            min-height: 400px;
+        }
 
-/* Third image (Contact) */
-.bgimg-4 {
-    background-image: url("picture2.jpg");
-    min-height: 400px;
-}
+        /* Third image (Contact) */
+        .bgimg-4 {
+            background-image: url("picture2.jpg");
+            min-height: 400px;
+        }
 
-.w3-wide {letter-spacing: 10px;}
-.w3-hover-opacity {cursor: pointer;}
+        .w3-wide {letter-spacing: 10px;}
+        .w3-hover-opacity {cursor: pointer;}
 
-/* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
-        background-attachment: scroll;
-    }
-}
-</style>
-<body>
+        /* Turn off parallax scrolling for tablets and phones */
+        @media only screen and (max-device-width: 1024px) {
+            .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+                background-attachment: scroll;
+            }
+        }
+        </style>
+    <body>
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-    <div class="w3-bar" id="myNavbar">
-        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-        <i class="fa fa-bars"></i></a>
-        <a href="#home" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
-        <a href="#story" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-book"></i> STORY</a>
-        <a href="#world" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-globe"></i> WORLD OVERVIEW</a>
-        <a href="#conflict" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-star"></i> CONFLICT AREAS</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
-        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
-        <i class="fa fa-search"></i>
-        </a>
-    </div>
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="#story" class="w3-bar-item w3-button" onclick="toggleFunction()">STORY</a>
-        <a href="#world" class="w3-bar-item w3-button" onclick="toggleFunction()">WORLD OVERVIEW</a>
-        <a href="#conflict" class="w3-bar-item w3-button" onclick="toggleFunction()">CONFLICT AREAS</a>
-        <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
-        <a href="#" class="w3-bar-item w3-button">SEARCH</a>
-    </div>
-</div>
-
-<!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-    <div class="w3-display-middle" style="white-space:nowrap;">
-        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">REFUGEES <!-- <span class="w3-hide-small">x</span> --></span>
-    </div>
-</div>
-
-<!-- Container (About Section) -->
-<div class="w3-content w3-container w3-padding-64" id="story">
-    <h3 class="w3-center">STORY</h3>
-    <p class="w3-center"><em>Refugees around the world and in conflict areas</em></p>
-    <p>KLEINE UITLEG VAN HET PROJECT? My project visualises refugees over the whole world: Where do they come from? and: Where are they going? Besides that, 5 conflict areas are being visualised. Hereby it becomes clear from which country they flee and to which near countries. Also, the gender and age of the refugees are given.</p>
-
-    <div class="w3-center" id ="wrapper">
-        <div class="btn btn-default">
-            <input name="updateButtonAbs" 
-                type="button" 
-                value="Absolute values" 
-                onclick="updateGraphTotal(0)"/>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i></a>
+            <a href="#home" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+            <a href="#story" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-book"></i> STORY</a>
+            <a href="#world" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-globe"></i> WORLD OVERVIEW</a>
+            <a href="#conflict" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-star"></i> CONFLICT AREAS</a>
+            <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+            <i class="fa fa-search"></i>
+            </a>
         </div>
-        <div class="btn btn-default">
-            <input name="updateButtonPerc" 
-                type="button" 
-                value="Percentage of population" 
-                onclick="updateGraphTotal(1)"/>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a href="#story" class="w3-bar-item w3-button" onclick="toggleFunction()">STORY</a>
+            <a href="#world" class="w3-bar-item w3-button" onclick="toggleFunction()">WORLD OVERVIEW</a>
+            <a href="#conflict" class="w3-bar-item w3-button" onclick="toggleFunction()">CONFLICT AREAS</a>
+            <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+            <a href="#" class="w3-bar-item w3-button">SEARCH</a>
         </div>
     </div>
 
-    <div class="w3-row">
-    <div class="w3-col m6 w3-center w3-padding-large" id="container5" style="position: relative; width: 500px; height: 600px;"></div>
+    <!-- First Parallax Image with Logo Text -->
+    <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+        <div class="w3-display-middle" style="white-space:nowrap;">
+            <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">REFUGEES <!-- <span class="w3-hide-small">x</span> --></span>
+        </div>
     </div>
-    
-    <!-- Hide this text on small devices -->
-    <!-- <div class="w3-col m6 w3-hide-small w3-padding-large"> -->
-    <p class="w3-center">STORYTELLING: Stukje tekst over hoe het de afgelopen tijd zich heeft ontwikkeld. Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <!-- </div> -->
-  <!-- <p class="w3-large w3-center w3-padding-16">Im really good at:</p>
-  <p class="w3-wide"><i class="fa fa-camera"></i>Photography</p>
-  <div class="w3-light-grey">
-    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:90%">90%</div>
-  </div>
-  <p class="w3-wide"><i class="fa fa-laptop"></i>Web Design</p>
-  <div class="w3-light-grey">
-    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:85%">85%</div>
-  </div>
-  <p class="w3-wide"><i class="fa fa-photo"></i>Photoshop</p>
-  <div class="w3-light-grey">
-    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:75%">75%</div>
-  </div> -->
-</div>
 
-<!-- Second Parallax Image with Portfolio Text -->
-<div class="bgimg-2 w3-display-container w3-opacity-min">
-    <div class="w3-display-middle">
-        <span class="w3-xxlarge w3-text-white w3-wide">WORLD OVERVIEW</span>
-    </div>
-</div>
+    <!-- Container (About Section) -->
+    <div class="w3-content w3-container w3-padding-64" id="story">
+        <h3 class="w3-center">REFUGEES AROUND THE WORLD AND IN CONFLICT AREAS</h3>
+        <p class="w3-center"><em>Data visualisations to get understanding of current developments</em></p>
+        <p class="w3-center"><br>On 19 June 2017, the BBC has an alarming statement: <a href="http://www.bbc.com/news/world-40321287" target="_blank">"According to UN Refugee Agency, a record of people are displaced worldwide"</a>.<br>
+        This news item is one of many disturbing messages appearing these days.<br>
+        On this website, a variety of data visualisations is used to give insight in the available data about refugees.</p>
 
-<div class="w3-row w3-center w3-dark-grey w3-padding-16" id="world">
-    <div class="w3-fifth">
-        <div class="w3-half w3-section">
-            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(2)">Absolute values</span>
-        </div>
-        <div class="w3-half w3-section">
-            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(3)">Percentage of inhabitants</span>
-        </div>
-    </div>
-    <div class="w3-fifth">
-        <div class="w3-section">
-        </div>
-    </div>
-    <div class="w3-fifth">
-        <div class="w3-half w3-section">
-            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(0)">Origin</span>
-        </div>
-        <div class="w3-half w3-section">
-            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(1)">Asylum</span>
-        </div>
-    </div>
-    <div class="w3-fifth">
-        <div class="w3-section">
-        </div>
-    </div>
-    <div class="w3-fifth">
-        <div class="w3-half w3-section">
-            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(4)">Linear</span>
-        </div>
-        <div class="w3-half w3-section"> 
-            <span id="hand" class="w3-xlarge" onclick="updateDataToFrom(5)">Logarithmic</span>
-        </div>
-    </div>
-</div>
-
-<!-- Container (Portfolio Section) -->
-<div class="w3-content w3-container w3-padding-64" id="world">
-    <h3 class="w3-center">CLICK A COUNTRY TO SEE DATA</h3>
-    <p class="w3-center"><em>Kleine uitleg over dit deel<br></em></p><br>
-    <p class="w3-center">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-    <div class="w3-row-padding w3-center">
-        <h2 class="graphTitle">Overview World</h2>
-          
-        <!-- <div id ="wrapper">
-            <div class="btn btn-default">
-                <input name="updateButtonFrom" 
-                    type="button" 
-                    value="Origin" 
-                    onclick="updateDataToFrom(0)"/>
-            </div>
-            <div class="btn btn-default">
-                <input name="updateButtonTo" 
-                    type="button" 
-                    value="Asylum" 
-                    onclick="updateDataToFrom(1)"/>
-            </div>
-        </div>
-
-        <div id ="wrapper">
-            <div class="btn btn-default">
-                <input name="updateButtonAbsolute" 
+        <div class="w3-center" id ="wrapper">
+<!--             <div class="btn btn-default">
+                <input name="updateButtonAbs" 
                     type="button" 
                     value="Absolute values" 
-                    onclick="updateDataToFrom(2)"/>
+                    onclick="updateGraphTotal(0)"/>
             </div>
             <div class="btn btn-default">
-                <input name="updateButtonPercentage" 
+                <input name="updateButtonPerc" 
                     type="button" 
-                    value="Percentage of inhabitants" 
-                    onclick="updateDataToFrom(3)"/>
+                    value="Percentage of population" 
+                    onclick="updateGraphTotal(1)"/>
+            </div> -->
+        </div>
+
+        <br>
+        <div class="w3-row">
+        <div class="w3-col m6 w3-center w3-padding-large" id="container5" style="position: relative; width: 500px; height: 600px;"></div>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Select absolute values or percentage of population
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a onclick="updateGraphTotal(0)">Absolute values</a></li>
+                    <li><a onclick="updateGraphTotal(1)">Percentage of population</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Hide this text on small devices -->
+        <!-- <div class="w3-col m6 w3-hide-small w3-padding-large"> -->
+        <p class="w3-center">"Refugees are people who are recognized as refugees under the 1951 Convention Relating to the Status of Refugees or its 1967 Protocol, the 1969 Organization of African Unity Convention Governing the Specific Aspects of Refugee Problems in Africa, people recognized as refugees in accordance with the UNHCR statute, people granted refugee-like humanitarian status, and people provided temporary protection. Asylum seekers--people who have applied for asylum or refugee status and who have not yet received a decision or who are registered as asylum seekers--are excluded. Palestinian refugees are people (and their descendants) whose residence was Palestine between June 1946 and May 1948 and who lost their homes and means of livelihood as a result of the 1948 Arab-Israeli conflict. Country of asylum is the country where an asylum claim was filed and granted."
+        - <em>The World Bank</em></p>
+      <!-- </div> -->
+      <!-- <p class="w3-large w3-center w3-padding-16">Im really good at:</p>
+      <p class="w3-wide"><i class="fa fa-camera"></i>Photography</p>
+      <div class="w3-light-grey">
+        <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:90%">90%</div>
+      </div>
+      <p class="w3-wide"><i class="fa fa-laptop"></i>Web Design</p>
+      <div class="w3-light-grey">
+        <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:85%">85%</div>
+      </div>
+      <p class="w3-wide"><i class="fa fa-photo"></i>Photoshop</p>
+      <div class="w3-light-grey">
+        <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:75%">75%</div>
+      </div> -->
+    </div>
+
+    <!-- Second Parallax Image with Portfolio Text -->
+    <div class="bgimg-2 w3-display-container w3-opacity-min">
+        <div class="w3-display-middle">
+            <span class="w3-xxlarge w3-text-white w3-wide">WORLD OVERVIEW</span>
+        </div>
+    </div>
+
+    <div class="w3-row w3-center w3-dark-grey w3-padding-16" id="world">
+        <div class="w3-fifth">
+            <div class="w3-half w3-section">
+                <span id="hand" class="w3-xlarge" onclick="updateButton(2)">Absolute values</span>
+            </div>
+            <div class="w3-half w3-section">
+                <span id="hand" class="w3-xlarge" onclick="updateButton(3)">Percentages</span>
+            </div>
+        </div>
+        <div class="w3-fifth">
+            <div class="w3-section">
+            </div>
+        </div>
+        <div class="w3-fifth">
+            <div class="w3-half w3-section">
+                <span id="hand" class="w3-xlarge" onclick="updateButton(0)">Origin</span>
+            </div>
+            <div class="w3-half w3-section">
+                <span id="hand" class="w3-xlarge" onclick="updateButton(1)">Asylum</span>
+            </div>
+        </div>
+        <div class="w3-fifth">
+            <div class="w3-section">
+            </div>
+        </div>
+        <div class="w3-fifth">
+            <div class="w3-half w3-section">
+                <span id="hand" class="w3-xlarge" onclick="updateButton(4)">Linear</span>
+            </div>
+            <div class="w3-half w3-section"> 
+                <span id="hand" class="w3-xlarge" onclick="updateButton(5)">Logarithmic</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container (Portfolio Section) -->
+
+    <div id="container1" style="position: relative; width: 1500px; height: 700px;">
+        <br><br>
+        <div class="w3-row-padding w3-center">
+            <h2 class="graphTitle">Overview World</h2>
+        </div>  
+        <p style="width: 500px; margin-left: 100px">
+            <label for="YearSlider" style="display: inline-block; width: 500px; text-align: center">
+                Year: <span id="YearSlider-value">…</span>
+            </label>
+            <input type="range" min="1990" max="2015" id="YearSlider">
+        </p>
+    </div>
+
+    <div id="container2" style="position: relative; width: 500px; height: 400px;"></div>
+
+    <div class="w3-content w3-container w3-padding-64" id="world">
+        <h3 class="w3-center">CLICK A COUNTRY TO SEE DATA</h3>
+        <p class="w3-center"><em>Kleine uitleg over dit deel<br></em></p><br>
+        <p class="w3-center">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+    </div>
+
+    <!-- Second Parallax Image with Portfolio Text -->
+    <div class="bgimg-4 w3-display-container w3-opacity-min">
+        <div class="w3-display-middle">
+            <span class="w3-xxlarge w3-text-white w3-wide">CONFLICT AREAS</span>
+        </div>
+    </div>
+
+    <div class="w3-row w3-center w3-dark-grey w3-padding-16" id="conflict">
+        <div class="w3-fifth w3-section">
+            <span id="hand" class="w3-xlarge" onclick="newCountryClickedButton(2)">Democratic Republic of the Congo</span>
+        </div>
+        <div class="w3-fifth w3-section">
+            <span id="hand" class="w3-xlarge" onclick="newCountryClickedButton(3)">Central African Republic</span>
+        </div>
+        <div class="w3-fifth w3-section">
+            <span id="hand" class="w3-xlarge" onclick="newCountryClickedButton(4)">Somalia</span>
+        </div>
+        <div class="w3-fifth w3-section">
+            <span id="hand" class="w3-xlarge" onclick="newCountryClickedButton(1)">South Sudan</span>
+        </div>
+        <div class="w3-fifth w3-section">
+            <span id="hand" class="w3-xlarge" onclick="newCountryClickedButton(0)">Syria</span><!-- <br>
+            Tekst-->
+        </div>
+    </div>
+
+    <!-- Container (Portfolio Section) -->
+    <div class="w3-content w3-container w3-padding-64">
+        <h3 class="w3-center">MORE INFORMATION ABOUT CONFLICT AREAS</h3>
+        <p class="w3-center"><em>Click a country above to see data</em></p><br>
+
+        <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+        <div class="w3-row-padding w3-center">
+        In a few countries there are conflicts. In Syria, Somalia, Central African Republic, Democratic Republic of the Congo and in South Sudan. In Syria there are blablablabla. In Central African Republic there are blablablabla. In Somalia there are blablablabla. In Congo there are blablablabla. In South Sudan there are blablablabla. Of these countries you can find more information over here. You can click on the left graph to see the gender and age of refugees in this country of refugees of the country you clicked.
+        </div>
+    </div>
+
+    <div class="w3-row-padding w3-center">
+        <div id="container3" style="position: relative; width: 800px; height: 500px;">
+        </div>        
+
+
+        <div id="container4" style="position: relative; width: 1000px; height: 500px;">
+            
+            <div class="dropdown" id="agegroups">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Select all age groups or only youth
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a onclick="changeTwoSided(0)">Show only youth</a></li>
+                    <li><a onclick="changeTwoSided(1)">Show all age groups</a></li>
+                </ul>
+            </div>
+            <br><br><br><br>
+        </div>
+
+        <!-- <div class="w3-twothird">
+            <div id ="wrapper">
+                <div class="btn btn-default">
+                    <input name="updateButtonYoung" 
+                        type="button" 
+                        value="Show only younth" 
+                        onclick="changeTwoSided(0)"/>
+                </div>
+                <div class="btn btn-default">
+                    <input name="updateButtonTotal" 
+                        type="button" 
+                        value="Show all age groups" 
+                        onclick="changeTwoSided(1)"/>
+                </div>
             </div>
         </div> -->
+
+
+
     </div>
-</div>
 
-<div id="container1" style="position: relative; width: 1500px; height: 700px;"></div>
 
-<div id="container2" style="position: relative; width: 500px; height: 400px;"></div>
-
-<p style="width: 500px; margin-left: 100px">
-    <label for="YearSlider" style="display: inline-block; width: 500px; text-align: center">
-        Year: <span id="YearSlider-value">…</span>
-    </label>
-    <input type="range" min="1990" max="2015" id="YearSlider">
-</p>
-
-<!-- Second Parallax Image with Portfolio Text -->
-<div class="bgimg-4 w3-display-container w3-opacity-min">
-    <div class="w3-display-middle">
-        <span class="w3-xxlarge w3-text-white w3-wide">CONFLICT AREAS</span>
-    </div>
-</div>
-
-<div class="w3-row w3-center w3-dark-grey w3-padding-16" id="conflict">
-    <div class="w3-fifth w3-section">
-        <span id="hand" class="w3-xlarge" onclick="newCountryClickedText(2)">Democratic Republic of the Congo</span>
-    </div>
-    <div class="w3-fifth w3-section">
-        <span id="hand" class="w3-xlarge" onclick="newCountryClickedText(3)">Central African Republic</span>
-    </div>
-    <div class="w3-fifth w3-section">
-        <span id="hand" class="w3-xlarge" onclick="newCountryClickedText(4)">Somalia</span>
-    </div>
-    <div class="w3-fifth w3-section">
-        <span id="hand" class="w3-xlarge" onclick="newCountryClickedText(1)">South Sudan</span>
-    </div>
-    <div class="w3-fifth w3-section">
-        <span id="hand" class="w3-xlarge" onclick="newCountryClickedText(0)">Syria</span><!-- <br>
-        Tekst-->
-    </div>
-</div>
-
-<!-- Container (Portfolio Section) -->
-<div class="w3-content w3-container w3-padding-64">
-    <h3 class="w3-center">MORE INFORMATION ABOUT CONFLICT AREAS</h3>
-    <p class="w3-center"><em>Click a country above to see data</em></p><br>
-
-    <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-    <div class="w3-row-padding w3-center">
-    In a few countries there are conflicts. In Syria, Somalia, Central African Republic, Democratic Republic of the Congo and in South Sudan. In Syria there are blablablabla. In Central African Republic there are blablablabla. In Somalia there are blablablabla. In Congo there are blablablabla. In South Sudan there are blablablabla. Of these countries you can find more information over here. You can click on the left graph to see the gender and age of refugees in this country of refugees of the country you clicked.
-    </div>
-</div>
-
-<div class="w3-row-padding w3-center">
-    <div id="container3" style="position: relative; width: 800px; height: 500px;"></div>
-
-    <div id="container4" style="position: relative; width: 900px; height: 200px;"></div>
-
-    <div class="w3-twothird">
-        <div id ="wrapper">
-            <div class="btn btn-default">
-                <input name="updateButtonYoung" 
-                    type="button" 
-                    value="Show only younth" 
-                    onclick="changeTwoSided(0)"/>
-            </div>
-            <div class="btn btn-default">
-                <input name="updateButtonTotal" 
-                    type="button" 
-                    value="Show all age groups" 
-                    onclick="changeTwoSided(1)"/>
-            </div>
+    <!-- Modal for full size images on click-->
+    <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+        <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+            <img id="img01" class="w3-image">
+            <p id="caption" class="w3-opacity w3-large"></p>
         </div>
     </div>
 
-</div>
-
-
-<!-- Modal for full size images on click-->
-<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-    <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-        <img id="img01" class="w3-image">
-        <p id="caption" class="w3-opacity w3-large"></p>
-    </div>
-</div>
-
-<!-- Third Parallax Image with Portfolio Text -->
-<div class="bgimg-3 w3-display-container w3-opacity-min">
-    <div class="w3-display-middle">
-        <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
-    </div>
-</div>
-
-<!-- Container (Contact Section) -->
-<div class="w3-content w3-container w3-padding-64" id="contact">
-    <h3 class="w3-center">ABOUT ME</h3>
-    <p class="w3-center"><em>Sanne Berendschot</em></p>
-    <br>
-    <div class="w3-center">
-        <div class="w3-large w3-margin-bottom">
-            <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Amsterdam, Netherlands<br>
-            <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +31 6 40220747<br>
-            <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: sanne@berendschot.nl<br>
+    <!-- Third Parallax Image with Portfolio Text -->
+    <div class="bgimg-3 w3-display-container w3-opacity-min">
+        <div class="w3-display-middle">
+            <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
         </div>
     </div>
-  
-    <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
-    
-    <div class="w3-center">
-        <form action="/action_page.php" target="_blank">
-            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                <div class="w3-half">
-                    <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-                </div>
-                <div class="w3-half">
-                    <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-                </div>
+
+    <!-- Container (Contact Section) -->
+    <div class="w3-content w3-container w3-padding-64" id="contact">
+        <h3 class="w3-center">SANNE BERENDSCHOT</h3>
+        <br>
+        <div class="w3-center">
+            <div class="w3-large w3-margin-bottom">
+                <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Amsterdam, Netherlands<br>
+                <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +31 6 40220747<br>
+                <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: sanne@berendschot.nl<br>
             </div>
-            <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-            <button class="w3-button w3-black w3-right w3-section" type="submit">
-                <i class="fa fa-paper-plane"></i> SEND MESSAGE
-            </button>
-        </form>
+        </div>
+      <!-- 
+        <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
+        
+        <div class="w3-center">
+            <form action="/action_page.php" target="_blank">
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-half">
+                        <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+                    </div>
+                    <div class="w3-half">
+                        <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+                    </div>
+                </div>
+                <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+                <button class="w3-button w3-black w3-right w3-section" type="submit">
+                    <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                </button>
+            </form>
+        </div> -->
     </div>
-</div>
 
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
-    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-    <!-- <div class="w3-xlarge w3-section">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-    </div> -->
-    <p><br>Source: <a href="http://www.worldbank.org/">The World Bank</a> and <a href="http://data2.unhcr.org/en/situations">UNHCR</a></p>
-                
-    <p>Made by Sanne Berendschot, 10269290 <br>
-    Minor Programmeren, Programmeerproject</p>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
- 
-<!-- Add Google Maps -->
-<script>
-/*function myMap()
-{
-  myCenter=new google.maps.LatLng(41.878114, -87.629798);
-  var mapOptions= {
-    center:myCenter,
-    zoom:12, scrollwheel: false, draggable: false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+        <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+        <!-- <div class="w3-xlarge w3-section">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div> -->
+        <p><br>Source: <a href="http://www.worldbank.org/">The World Bank</a> and <a href="http://data2.unhcr.org/en/situations">UNHCR</a></p>
+                    
+        <p>Made by Sanne Berendschot, 10269290 <br>
+        Minor Programmeren, Programmeerproject <br>
+        Universiteit van Amsterdam</p>
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+    </footer>
+     
+    <!-- Add Google Maps -->
+    <script>
+    /*function myMap()
+    {
+      myCenter=new google.maps.LatLng(41.878114, -87.629798);
+      var mapOptions= {
+        center:myCenter,
+        zoom:12, scrollwheel: false, draggable: false,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+      };
+      var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
 
-  var marker = new google.maps.Marker({
-    position: myCenter,
-  });
-  marker.setMap(map);
-}*/
+      var marker = new google.maps.Marker({
+        position: myCenter,
+      });
+      marker.setMap(map);
+    }*/
 
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
-// Change style of navbar on scroll
-window.onscroll = function() {myFunction()};
-function myFunction() {
-    var navbar = document.getElementById("myNavbar");
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
-    } else {
-        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
     }
-}
 
-// Used to toggle the menu on small screens when clicking on the menu button
-function toggleFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
+    // Change style of navbar on scroll
+    window.onscroll = function() {myFunction()};
+    function myFunction() {
+        var navbar = document.getElementById("myNavbar");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+        } else {
+            navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+        }
     }
-}
-</script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script> -->
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
 
-</body>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function toggleFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+    </script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script> -->
+    <!--
+    To use this code on your website, get a free API key from Google.
+    Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+    -->
+
+    </body>
 </html>

@@ -8,8 +8,7 @@ body {
 
 div.tooltip {	
     position: absolute;			
-    text-align: center;			
-    /*width: 160px;*/					
+    text-align: center;								
     height: 35px;					
     padding: 4px;				
     font: 12px sans-serif;		
@@ -50,14 +49,6 @@ div.tooltip {
 }
 
 .axisTitle {
-    /*font: 16px;*/
-}
-
-.axisTitleMale {
-    font: 16px;
-}
-
-.axisTitleFemale {
     font: 16px;
 }
 
@@ -111,7 +102,7 @@ div.tooltip {
     fill: #A15852; 
 }
 
-.tipBarchart {
+#tooltipBarchart {
     position: absolute;         
     text-align: center;         
     /*width: 190px;*/                   
@@ -124,3 +115,43 @@ div.tooltip {
     pointer-events: none;   
     display: inline-block;
 }
+
+/*#agegroups {
+    position: relative;
+    y: -200;
+    x: -100;
+    display: inline-block;
+}*/
+/*
+.dropdown {
+    margin:auto;
+}
+
+.dropdown-menu {
+    margin:auto;
+}*/
+
+/*.dropdown > ul {
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+}*/
+
+.drowdown ul {
+    display: table;
+    margin: 0 auto;
+}
+
+.drowdown li {
+    display: table-cell;
+    position: relative;
+    width: 11em;
+}
+
+.drowdown li li {
+    display: block;
+}
+/*
+.drowdown ul li {
+    display: inline;
+}*/
