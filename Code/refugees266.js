@@ -148,13 +148,8 @@ var dataTotalPerc = [];
 
 // set variables for total graph
 var svgGraphTotal;
-var maxDataGraphTotalAmount;
-
-
-////////
-
 var svgTooltipTimelineTotal;
-
+var maxDataGraphTotalAmount;
 
 // load data
 queue()
@@ -912,51 +907,6 @@ function makeAxisTimelineCountry() {
     } 
     else if (absPerc == "absolute values") {
         setTitleYAxisTimeline("Amount of refugees");
-    };
-};
-
-// make the axis for the timeline
-function makeAxisTimeline(svg_name, addIDx, addIDy1, addIDy2) {
-
-    console.log('hoi')
-    console.log(svg_name);
-    var svg = d3.select(svg_name);
-    console.log(svg);
-    // make x axis
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("id", addIDx)
-        .attr("transform", "translate(0," + heightG + ")")
-        .call(xAxisG)
-        .append("text")
-            .attr("class", "axisTitle")
-            .attr("x", widthG)
-            .attr("y", 50)
-            .style("text-anchor", "end")
-            .text("Time");
-
-    // make y axis
-    svg.append("g")
-        .attr("class", "y axis")
-        .attr("id", addIDy1)
-        .call(yAxisG)
-        .append("text")
-            .attr("class", "axisTitle")
-            .attr("id", addIDy2)
-            .attr("transform", "rotate(-90)")
-            .attr("y", - 90)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end");
-
-    // decide on title y axis
-    if (absPerc == "percentage of inhabitants" && svg == svgGraphCountry) {
-        setTitleYAxisTimeline("Percentage of inhabitants");
-    } 
-    else if (absPerc == "absolute values" && svg == svgGraphCountry) {
-        setTitleYAxisTimeline("Amount of refugees");
-    }
-    else if (svg == svgGraphTotal) {
-        svg.text("Amount of refugees");
     };
 };
 
@@ -2045,33 +1995,8 @@ function makeGraphTotal() {
     var titleGraphTotal = "Amount of refugees in the world over time in " + absPercTotal;
     initializeGraphMakeTitleLine("total", titleGraphTotal, dataTotal);
 
-    //makeAxisTimeline("#graphTotal", "hoi", "hoi", "axisTitleYTotal");
-
-    // HIER GEBLEVEN
-    // make x axis
-    svgGraphTotal.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + heightG + ")")
-        .call(xAxisG)
-        .append("text")
-            .attr("class", "axisTitle")
-            .attr("x", widthG)
-            .attr("y", 50)
-            .style("text-anchor", "end")
-            .text("Time");
-
-    // make y axis
-    svgGraphTotal.append("g")
-        .attr("class", "y axis")
-        .call(yAxisG)
-        .append("text")
-            .attr("class", "axisTitle")
-            .attr("id", "axisTitleYTotal")
-            .attr("transform", "rotate(-90)")
-            .attr("y", - 90)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Amount of refugees");
+    // make both axis for graph total
+    makeAxisTimelineTotal();
 
     // add tooltip
     addTooltipTimelineTotal();
@@ -2126,6 +2051,35 @@ function setYAxisTimelineTotal() {
 
     // set domain for timeline
     yG.domain([0, maxDataGraphTotalAmount]); 
+};
+
+// make both axis for the total graph
+function makeAxisTimelineTotal() {
+
+    // make x axis
+    svgGraphTotal.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + heightG + ")")
+        .call(xAxisG)
+        .append("text")
+            .attr("class", "axisTitle")
+            .attr("x", widthG)
+            .attr("y", 50)
+            .style("text-anchor", "end")
+            .text("Time");
+
+    // make y axis
+    svgGraphTotal.append("g")
+        .attr("class", "y axis")
+        .call(yAxisG)
+        .append("text")
+            .attr("class", "axisTitle")
+            .attr("id", "axisTitleYTotal")
+            .attr("transform", "rotate(-90)")
+            .attr("y", - 100)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Amount of refugees");
 };
 
 // update the total graph when button is clicked
