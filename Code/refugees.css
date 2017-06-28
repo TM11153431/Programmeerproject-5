@@ -2,160 +2,17 @@
 Studentnummer: 10269290
 Minor Programmeren, Programmeerprojects*/
 
-body {
-	font: 13px;
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
 }
 
-div.tooltip {	
-    position: absolute;			
-    text-align: center;								
-    height: 35px;					
-    padding: 4px;				
-    font: 12px sans-serif;		
-    background: lightgrey;	
-    border: 0px;		
-    border-radius: 8px;			
-    pointer-events: none;	
-    display: inline-block;		
-}
-
-#hand {
-    cursor:pointer;
-    cursor:hand;
-}
-
-.axis text {
-    font: 13px;
-}
-
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
-
-.domain {
-    fill: none;
-}
-
-.x text {
-    font: 13px;
-}
-
-.graphTitle {
-    font: 20px;
-    font-weight: bold;
-}
-
-.axisTitle {
-    font: 16px;
-}
-
-#legendTitle {
-    font: 12px;
-}
-
-#legendX {
-    font: 10px;
-}
-
-#wrapper {
-    overflow: hidden;
-}
-
-#buttonWomen {
+.w3-fifth {
     float: left;
+    width: 100%;
 }
-
-#container1 {
-    display: inline-block;
-}
-
-#container2 {
-    display: inline-block;
-}
-
-#container3 {
-    display: inline-block;
-}
-
-#container4 {
-    display: inline-block;
-    padding-top: 50px;
-}
-
-.left {
-    stroke: white;
-    fill: #F2D286; 
-}
-
-.left:hover {
-    fill: #ECBA44;
-}
-
-.right:hover {
-    fill: #92382E;
-}
-
-.right {
-    stroke: white;
-    fill: #A15852; 
-}
-
-#tooltipBarchart {
-    position: absolute;         
-    text-align: center;         
-    /*width: 190px;*/                   
-    height: 40px;                   
-    padding: 5px;               
-    /*font: 12px sans-serif;      */
-    background: white;  
-    border: 1px solid lightgrey;     
-    border-radius: 8px;         
-    pointer-events: none;   
-    display: inline-block;
-}
-
-/*#agegroups {
-    position: relative;
-    y: -200;
-    x: -100;
-    display: inline-block;
-}*/
-/*
-.dropdown {
-    margin:auto;
-}
-
-.dropdown-menu {
-    margin:auto;
-}*/
-
-/*.dropdown > ul {
-    display: inline-block;
-    text-align: center;
-    margin: auto;
-}*/
-
-.dropdown {
-    display: inline-block;
-    /*margin: 0 auto;*/
-}
-
-/*.dropdown li {
-    display: table-cell;
-    position: relative;
-    width: 11em;
-}*/
-/*
-.dropdown li li {
-    display: block;
-}*/
-/*
-.drowdown ul li {
-    display: inline;
-}*/
 
 #third1 {
     padding-left: 120px!important;
@@ -193,37 +50,12 @@ div.tooltip {
     padding-bottom: 30px!important;  
 }
 
-#worldoverview {
-    padding-top: 0px!important;
-}
-
-#dropdownTotal {
-    display: inline-block;
-}
-
-#container5 {
-    display: inline-block;
-}
-
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
-body, html {
-    height: 100%;
-    color: #777;
-    line-height: 1.8;
-}
-
-.w3-fifth {
-    float: left;
-    width: 100%;
-}
-
 @media (min-width:601px) {
     .w3-fifth {
         width: 20%;
     }
 }
 
-/* Create a Parallax Effect */
 .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
     background-attachment: fixed;
     background-position: center;
@@ -231,25 +63,21 @@ body, html {
     background-size: cover;
 }
 
-/* First image (Logo. Full height) */
 .bgimg-1 {
     background-image: url("headpicture.jpg");
     min-height: 100%;
 }
 
-/* Second image (Portfolio) */
 .bgimg-2 {
     background-image: url("picture3.jpg");
     min-height: 400px;
 }
 
-/* Third image (Contact) */
 .bgimg-3 {
     background-image: url("picture6.JPG");
     min-height: 400px;
 }
 
-/* Third image (Contact) */
 .bgimg-4 {
     background-image: url("picture2.jpg");
     min-height: 400px;
@@ -258,9 +86,116 @@ body, html {
 .w3-wide {letter-spacing: 10px;}
 .w3-hover-opacity {cursor: pointer;}
 
-/* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
     .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
         background-attachment: scroll;
     }
+}
+
+#hand {
+    cursor:pointer;
+    cursor:hand;
+}
+
+#container1 {
+    display: inline-block;
+}
+
+#container2 {
+    display: inline-block;
+}
+
+#container3 {
+    display: inline-block;
+}
+
+#container4 {
+    display: inline-block;
+    padding-top: 50px;
+}
+
+#container5 {
+    display: inline-block;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+#worldoverview {
+    padding-top: 0px!important;
+}
+
+#wrapper {
+    overflow: hidden;
+}
+
+#buttonWomen {
+    float: left;
+}
+
+.domain {
+    fill: none;
+}
+
+.axis text {
+    font: 13px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.x text {
+    font: 13px;
+}
+
+.graphTitle {
+    font: 20px;
+    font-weight: bold;
+}
+
+.axisTitle {
+    font: 16px;
+}
+
+#legendTitle {
+    font: 12px;
+}
+
+#legendX {
+    font: 10px;
+}
+
+.left {
+    stroke: white;
+    fill: #F2D286; 
+}
+
+.right {
+    stroke: white;
+    fill: #A15852; 
+}
+
+.left:hover {
+    fill: #ECBA44;
+}
+
+.right:hover {
+    fill: #92382E;
+}
+
+#tooltipBarchart {
+    position: absolute;         
+    text-align: center;                 
+    height: 40px;                   
+    padding: 5px;               
+    background: white;  
+    border: 1px solid lightgrey;     
+    border-radius: 8px;         
+    pointer-events: none;   
+    display: inline-block;
 }
