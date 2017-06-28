@@ -362,137 +362,80 @@ function color(min, max) {
 
 // calculate and select the correct dataset for the map
 function correctDataFormatMap() {
-    
-    // empty all arrays for data
-    dataColorsOriginLinAbs = {};
-    dataColorsAsylumLinAbs = {};
-    dataColorsOriginLinPerc = {};
-    dataColorsAsylumLinPerc = {};
-    dataColorsOriginLogAbs = {};
-    dataColorsAsylumLogAbs = {};
-    dataColorsOriginLogPerc = {};
-    dataColorsAsylumLogPerc = {};
 
-    // 
-    dataOriginAsylum.forEach(function(d){
-        var country = d.Country,
-            refugees = +d[currentYear],
-            refugeesLog = Math.log(refugees);
+    // empty data array
+    dataset = {};
 
-        if (toFrom == "from" && absPerc == "absolute values") {
-            if (linLog == "lin") {
-                if (!isNaN(refugees)) {
-                    dataColorsOriginLinAbs[country] = { amount: refugees, fillColor: colorLinAbs(refugees), country: country };
-                }
-                else {
-                    dataColorsOriginLinAbs[country] = { amount: "not available", fillColor: colorDefault, country: country };    
-                }
-                dataset = dataColorsOriginLinAbs;
-            }
-            else if (linLog == "log") {
-                if (!isNaN(refugees)) {
-                    if (refugees != 0) {
-                        dataColorsOriginLogAbs[country] = { amount: refugeesLog, fillColor: colorLogAbs(refugeesLog), country: country };
-                    }
-                    else {
-                        dataColorsOriginLogAbs[country] = { amount: refugeesLog, fillColor: colorLeft, country: country };   
-                    }
-                }
-                else {
-                    dataColorsOriginLogAbs[country] = { amount: "not available", fillColor: colorDefault, country: country };   
-                }
-                dataset = dataColorsOriginLogAbs;    
-            }
-        } else if (toFrom == "to" && absPerc == "absolute values") {
-            if (linLog == "lin") {
-                if (!isNaN(refugees)) {
-                    dataColorsAsylumLinAbs[country] = { amount: refugees, fillColor: colorLinAbs(refugees), country: country };
-                }
-                else {
-                    dataColorsAsylumLinAbs[country] = { amount: "not available", fillColor: colorDefault, country: country };    
-                }
-                dataset = dataColorsAsylumLinAbs;
-            }
-            else if (linLog == "log"){
-                if (!isNaN(refugees)) {
-                    if (refugees != 0) {
-                        dataColorsAsylumLogAbs[country] = { amount: refugeesLog, fillColor: colorLogAbs(refugeesLog), country: country };
-                    }
-                    else {
-                        dataColorsAsylumLogAbs[country] = { amount: refugeesLog, fillColor: colorLeft, country: country };   
-                    }
-                }
-                else {
-                    dataColorsAsylumLogAbs[country] = { amount: "not available", fillColor: colorDefault, country: country };    
-                }
-                dataset = dataColorsAsylumLogAbs;   
-            }
-        } else if (toFrom == "from" && absPerc == "percentage of inhabitants") {
-            dataPopulation.forEach(function(e) {
-                if (d.Country == e.countrycode) {
-                    population = +e[currentYear];
-                    if (linLog == "lin") {
-                        value = refugees/population*100;
-                        if (!isNaN(value)) {
-                            dataColorsOriginLinPerc[country] = { amount: value, fillColor: colorLinPerc(value), country: country };
-                        }
-                        else {
-                            dataColorsOriginLinPerc[country] = { amount: "not available", fillColor: colorDefault, country: country };   
-                        }
-                        dataset = dataColorsOriginLinPerc;
-                    }
-                    else if (linLog == "log") {
-                        value = Math.log(refugees/population*100);
-                        if (!isNaN(value)) {
-                            if (value != 0) {
-                                dataColorsOriginLogPerc[country] = { amount: value, fillColor: colorLogPerc(value), country: country };
-                            }
-                            else {
-                                dataColorsOriginLogPerc[country] = { amount: value, fillColor: colorLeft, country: country };   
-                            }
-                        }
-                        else {
-                            dataColorsOriginLogPerc[country] = { amount: "not available", fillColor: colorDefault, country: country };   
-                        }
-                        dataset = dataColorsOriginLogPerc;    
-                    }
-                }
-            })
-        } else if (toFrom == "to" && absPerc == "percentage of inhabitants") {
-            dataPopulation.forEach(function(e) {
-                if (d.Country == e.countrycode) {
-                    population = +e[currentYear];
-                    if (linLog == "lin") {
-                        value = refugees/population*100;
-                        if (!isNaN(value)) {
-                            dataColorsAsylumLinPerc[country] = { amount: value, fillColor: colorLinPerc(value), country: country };
-                        }
-                        else {
-                            dataColorsAsylumLinPerc[country] = { amount: "not available", fillColor: colorDefault, country: country };   
-                        }
-                        dataset = dataColorsAsylumLinPerc;
-                    }
-                    else if (linLog == "log") {
-                        value = Math.log(refugees/population*100);
-                        if (!isNaN(value)) {
-                            if (value != 0) {
-                                dataColorsAsylumLogPerc[country] = { amount: value, fillColor: colorLogPerc(value), country: country };
-                            }
-                            else {
-                                dataColorsAsylumLogPerc[country] = { amount: value, fillColor: colorLeft, country: country };   
-                            }
-                        }
-                        else {
-                            dataColorsAsylumLogPerc[country] = { amount: "not available", fillColor: colorDefault, country: country };   
-                        }
-                        dataset = dataColorsAsylumLogPerc;
-                    }
-                }
-            })
-        } else {
-            console.log('No To or From was given')
+    // check every country
+    dataOriginAsylum.forEach(function(d) {
+        
+        // save variables
+        var country = d.Country;
+        var refugees = +d[currentYear];
+
+        // check for absolute or percentage
+        if (absPerc == "absolute values") {
+
+            // check for lin and log and fill data array with correct values
+            checkLinLogFillDataset(refugees, Math.log(refugees), colorLinAbs, colorLogAbs, country);
         }
+        else if (absPerc == "percentage of inhabitants") {
+            
+            // search for correct country
+            dataPopulation.forEach(function(e) {
+                if (d.Country == e.countrycode) {
+                    
+                    // save variables
+                    var population = +e[currentYear];
+                    var refugeesPerc = refugees / population * 100;
+
+                    // check for lin and log and fill data array with correct values
+                    checkLinLogFillDataset(refugeesPerc, Math.log(refugeesPerc), colorLinPerc, colorLogPerc, country);
+                }
+            });
+        };
     });
+};
+
+// check for lin and log and fill data array with correct values
+function checkLinLogFillDataset(valueLin, valueLog, colorLin, colorLog, country) {
+
+    // check for lin and log
+    if (linLog == "lin") {
+
+        // check if value is a number and fill data array with correct values
+        checkNumberFillDataset(valueLin, fillDataset(valueLin, colorLin(valueLin), country), country);
+    }
+    else if (linLog == "log") {
+
+        // check if value is a number and fill data array with correct values
+        checkNumberFillDataset(valueLin, checkZeroFillDataset(valueLin, valueLog, colorLog, country), country);
+    };
+};
+
+// check if value is zero and fill data array with correct values
+function checkZeroFillDataset(valueLin, valueLog, colorLog, country) {
+    if (valueLin != 0) {
+        fillDataset(valueLog, colorLog(valueLog), country);
+    }
+    else {
+        fillDataset(valueLog, colorLeft, country);
+    };
+};
+
+// check if value is a number and fill data array with correct values
+function checkNumberFillDataset(valueLin, ifNumber, country) {
+    if (!isNaN(valueLin)) {
+        ifNumber;
+    }
+    else {
+        fillDataset("not available", colorDefault, country);
+    };
+};
+
+// fill the dataset with the correct values
+function fillDataset(value, color, country) {
+    dataset[country] = { amount: value, fillColor: color, country: country };
 };
 
 // make the map
