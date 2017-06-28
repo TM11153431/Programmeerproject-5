@@ -79,7 +79,7 @@ var bisectDate;
 
 // set outlines for graph country & total
 var marginG = {top: 150, right: 40, bottom: 120, left: 150},
-    widthG = 800 - marginG.left - marginG.right,
+    widthG = 700 - marginG.left - marginG.right,
     heightG = 600 - marginG.top - marginG.bottom;
 
 // initialize variable for dataset graph country
@@ -480,7 +480,6 @@ function makeMap() {
 
             // set border color for mouse over
             highlightBorderColor: function(d) {
-                console.log(d)
                 return returnCorrectBorderColor(d.country);
             },
             
@@ -588,7 +587,7 @@ function makeLegendMap() {
     legendWidth = 240
     legendHeight = 10
     var xLegend = 20
-    var yLegend = 460
+    var yLegend = 500
 
     // append title
     svgMap.append("text")

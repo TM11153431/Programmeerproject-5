@@ -155,3 +155,43 @@ div.tooltip {
 .drowdown ul li {
     display: inline;
 }*/
+
+#third1 {
+    padding-left: 120px!important;
+    padding-right: 60px!important;
+}
+
+#third2 {
+    padding-left: 60px!important;
+    padding-right: 60px!important;   
+}
+
+#third3 {
+    padding-left: 60px!important;
+    padding-right: 120px!important;   
+}
+
+#third4 {
+    padding-left: 30px!important;
+    padding-right: 150px!important;   
+}
+
+#third5 {
+    padding-left: 60px!important;
+    padding-right: 120px!important;   
+}
+
+#third6 {
+    padding-left: 0px!important;
+    padding-right: 90px!important;   
+}
+
+#third7 {
+    padding-left: 30px!important;
+    padding-right: 60px!important; 
+    padding-bottom: 30px!important;  
+}
+
+#worldoverview {
+    padding-top: 0px!important;
+}
