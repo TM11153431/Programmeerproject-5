@@ -262,32 +262,49 @@ function findMinMaxOfDatasets() {
 
 };
 
+// check if value is bigger or smaller, then save it
+function checkMinMaxSave(value, minLin, maxLin, minLog, maxLog) {
+    
+    // check if data point is a number
+    if (!isNaN(value)) {
+        // save data point as new min and max if it is smaller/bigger than current
+        if (value < minLin) {
+            minLin = value;
+        }
+        if (value > maxLin) {
+            maxLin = value;
+        }
+        // check if data point is not 0, for min of log
+        if (value != 0) {
+            // save data point as new min and max if it is smaller/bigger than current
+            if (Math.log(value) < minLog) {
+                minLog = Math.log(value);
+            }
+            if (Math.log(value) > maxLog) {
+                maxLog = Math.log(value);
+            }
+        }
+    }
+
+    // return new values
+    return [minLin, maxLin, minLog, maxLog]
+};
+
 // find min and max in datasets with absolute values
 function findMinMaxAbsolute(data) {
 
     // check every data point
     data.forEach(function(d) {
         for (each in d) {
-            // check if data point is a number
-            if (!isNaN(d[each])) {
-                // save data point as new min and max if it is smaller/bigger than current
-                if (+d[each] < minLinAbs) {
-                    minLinAbs = +d[each];
-                }
-                if (+d[each] > maxLinAbs) {
-                    maxLinAbs = +d[each];
-                }
-                // check if data point is not 0, for min of log
-                if (d[each] != 0) {
-                    // save data point as new min and max if it is smaller/bigger than current
-                    if (Math.log(d[each]) < minLogAbs) {
-                        minLogAbs = Math.log(d[each]);
-                    }
-                    if (Math.log(d[each]) > maxLogAbs) {
-                        maxLogAbs = Math.log(d[each]);
-                    }
-                }
-            }
+            // save variable
+            var refugees = +d[each]
+
+            // check if value is bigger or smaller, then save it
+            var output = checkMinMaxSave(refugees, minLinAbs, maxLinAbs, minLogAbs, maxLogAbs);
+            minLinAbs = output[0]
+            maxLinAbs = output[1]
+            minLogAbs = output[2]
+            maxLogAbs = output[3]
         }
     })
 };
@@ -304,26 +321,13 @@ function findMinMaxPercentage(data) {
                 for (i = 0; i < amountOfYears; i++) {
                     // calculate percentage
                     var perc = d[yearsString[i]] / e[yearsString[i]] * 100
-                    // check if data point is a number
-                    if (!isNaN(perc)) {
-                        // save data point as new min and max if it is smaller/bigger than current
-                        if (perc < minLinPerc) {
-                            minLinPerc = perc; 
-                        }
-                        if (perc > maxLinPerc) {
-                            maxLinPerc = perc;
-                        }
-                        // check if data point is not 0, for min of log
-                        if (perc != 0) {
-                            // save data point as new min and max if it is smaller/bigger than current
-                            if (Math.log(perc) < minLogPerc) {
-                                minLogPerc = Math.log(perc);
-                            }
-                            if (Math.log(perc) > maxLogPerc) {
-                                maxLogPerc = Math.log(perc);
-                            }
-                        }
-                     }
+
+                    // check if value is bigger or smaller, then save it
+                    var output = checkMinMaxSave(perc, minLinPerc, maxLinPerc, minLogPerc, maxLogPerc);
+                    minLinPerc = output[0]
+                    maxLinPerc = output[1]
+                    minLogPerc = output[2]
+                    maxLogPerc = output[3]
                 }
             }
         })
@@ -434,6 +438,26 @@ function fillDataset(value, color, country) {
     dataset[country] = { amount: value, fillColor: color, country: country };
 };
 
+// return the correct border color for checking conflict country
+function returnCorrectBorderColor(country) {
+    if (!conflictCountries.includes(country)) {
+        return colorBorder;    
+    }
+    else {
+        return "gold";
+    };
+};
+
+// return the correct border width for checking conflict country
+function returnCorrectBorderWidth(country, widthNormal, widthConflict) {
+    if (!conflictCountries.includes(country)) {
+        return widthNormal;    
+    }
+    else {
+        return widthConflict;
+    };
+};
+
 // make the map
 function makeMap() {
     map = new Datamap({
@@ -446,46 +470,23 @@ function makeMap() {
         geographyConfig: {
             // set border colors
             borderColor: function(d) {
-                // check if country is a conflict country
-                if (!conflictCountries.includes(d.id)) {
-                    return colorBorder;    
-                }
-                else {
-                    return "gold";
-                }
+                return returnCorrectBorderColor(d.id);
             },
 
             // set border width
             borderWidth: function(d) {
-                // check if country is a conflict country
-                if (!conflictCountries.includes(d.id)) {
-                    return 1;    
-                }
-                else {
-                    return 3;
-                }
+                return returnCorrectBorderWidth(d.id, 1, 3)
             },
 
             // set border color for mouse over
             highlightBorderColor: function(d) {
-                // check if country is a conflict country
-                if (!conflictCountries.includes(d.country)) {
-                    return colorBorder;    
-                }
-                else {
-                    return "gold";
-                }
+                console.log(d)
+                return returnCorrectBorderColor(d.country);
             },
             
             // set border width for mouse over
             highlightBorderWidth: function(d) {
-                // check if country is a conflict country
-                if (!conflictCountries.includes(d.country)) {
-                    return 2;    
-                }
-                else {
-                    return 4;
-                }
+                return returnCorrectBorderWidth(d.country, 2, 4)
             },
 
             // set fill color for mouse over
@@ -837,7 +838,7 @@ function initializeGraphMakeTitleLine(countryTotal, title, data) {
         svgGraphCountry = d3.select("#container2").append("svg")
             .attr("width", widthG + marginG.left + marginG.right)
             .attr("height", heightG + marginG.top + marginG.bottom)
-            .attr("id", "graph")
+            .attr("id", "graphCountry")
             .append("g")
                 .attr("transform", "translate(" + marginG.left + "," + marginG.top + ")");
 
@@ -848,6 +849,7 @@ function initializeGraphMakeTitleLine(countryTotal, title, data) {
         svgGraphTotal = d3.select("#container5").append("svg")
             .attr("width", widthG + marginG.left + marginG.right)
             .attr("height", heightG + marginG.top + marginG.bottom)
+            .attr("id", "graphTotal")
             .append("g")
                 .attr("transform", "translate(" + marginG.left + "," + marginG.top + ")");
 
@@ -914,11 +916,13 @@ function makeAxisTimelineCountry() {
     };
 };
 
-/*// make the axis for the timeline
-function makeAxisTimeline(svg, addIDx, addIDy1, addIDy2) {
+// make the axis for the timeline
+function makeAxisTimeline(svg_name, addIDx, addIDy1, addIDy2) {
 
     console.log('hoi')
-    console.log(svg)
+    console.log(svg_name);
+    var svg = d3.select(svg_name);
+    console.log(svg);
     // make x axis
     svg.append("g")
         .attr("class", "x axis")
@@ -955,7 +959,7 @@ function makeAxisTimeline(svg, addIDx, addIDy1, addIDy2) {
     else if (svg == svgGraphTotal) {
         svg.text("Amount of refugees");
     };
-};*/
+};
 
 // set title y axis of timeline
 function setTitleYAxisTimeline(title) {
@@ -2042,7 +2046,7 @@ function makeGraphTotal() {
     var titleGraphTotal = "Amount of refugees in the world over time in " + absPercTotal;
     initializeGraphMakeTitleLine("total", titleGraphTotal, dataTotal);
 
-    //makeAxisTimeline(svgGraphTotal, "hoi", "hoi", "axisTitleYTotal");
+    //makeAxisTimeline("#graphTotal", "hoi", "hoi", "axisTitleYTotal");
 
     // HIER GEBLEVEN
     // make x axis
