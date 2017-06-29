@@ -30,7 +30,7 @@ Voor het maken van de tijdlijn per land zijn 3 javascript files:
 één voor het maken van de dataset,
 één voor het maken van de assen,
 en één voor het maken van de tooltip.
-Precies deze files met deze functionaliteiten zijn er ook voor het maken van de tijdlijn van de wereld.
+Precies deze files qua functionaliteit zijn er ook voor het maken van de tijdlijn van de wereld.
 Er is één file die beide tijdlijnen daadwerkelijk maakt.
 Daarnaast is er één file die de veranderingen toepast voor de kaart en beide tijdlijnen.
 
