@@ -51,7 +51,7 @@ De visualisaties zijn als volgt:
    ![Conflict areas](https://github.com/smeber/Programmeerproject/blob/master/doc/Conflict%20areas%20all.png)
    
 Contact+footer
-![Visualisatie 3](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%203%20nieuw.jpg)
+![Contact](https://github.com/smeber/Programmeerproject/blob/master/doc/Contact%20all.png)
 
 # Data
 Voor dit project wordt data van The World Bank en van UNHCR gebruikt. 
