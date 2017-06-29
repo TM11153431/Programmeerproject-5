@@ -272,4 +272,4 @@ terwijl de achtergrond en tekst relatief rustig is (grijs).
 om duidelijk te maken dat uit beide delen van de wereld veel vluchtelingen komen.
 Op dit moment worden voornamelijk de Syrische vluchtelingen vaak benoemd,
 terwijl er, gezien mijn visualisaties, ook een heel groot deel uit Afrika komt.
-- Bij alle getallen heb ik een , bij elke duizend geplaatst, zodat het makkelijker te lezen is.
+- Bij alle getallen heb ik een komma bij elke duizend geplaatst, zodat het makkelijker te lezen is.
