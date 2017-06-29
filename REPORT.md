@@ -8,7 +8,7 @@ Hierin wordt duidelijk van welk land ze vluchten en naar welke nabijgelegen land
 Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 Een precieze uitleg van alle features van de website is beschreven in de README.
 
-# Code
+# Technisch design
 <b>html en css</b><br>
 De html code van mijn website staat in de index.html van mijn repository.
 Deze code is gebouwd op één van de templates van W3Schools. 
