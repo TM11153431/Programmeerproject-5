@@ -62,22 +62,21 @@ De libraries die gebruikt zijn, zijn als volgt: D3, Queue, Datamaps, Topojson en
 Tijdens deze vier weken ben ik door veel ups en downs gegaan. ;)
 Hieronder licht ik toe welke problemen ik in de afgelopen tijd ben tegen gekomen en wat ik geleerd heb tijdens dit vak.
 
-Aan het begin moest ik mijn datasets in het goede format krijgen, wat mij heel veel pijn en moeite heeft gekost.
+Aan het begin moest ik mijn datasets in het goede format krijgen, 
+wat mij heel veel pijn en moeite heeft gekost. 
 Ik vond dit ontzettend ingewikkeld, omdat ik niet precies snapte wat er gebeurde. 
-Nu, aan het einde van dit vak,
-zit dit helemaal in mijn vingers en heb ik hier totaal geen moeite meer mee.
-Daarnaast heb ik veel moeite gehad met de tooltip van de tijdlijnen.
-Sowieso was het lastig om deze te implementeren, 
-en ik wilde deze tooltips graag in één functie voor beide grafieken,
-omdat de code bijna hetzelfde is.
-Helaas werkte dit helemaal niet en is het me niet gelukt om dit goed te krijgen.
-Ook bij een andere functie wanneer ik een svg wilde meegeven deed dit lastig,
-waardoor ik besloten heb om dit te laten voor later.
-Helaas was er aan het einde geen tijd meer voor om dit op te schonen en in één functie te zetten.
-Verder heb ik veel ruzie gehad met styling dingen, 
-omdat ik het heel lastig vond om dingen op de goede plek te krijgen.
-De landen in de menubalk op één lijn, de buttons op de goede plek, de grafieken op de goede plek,
-maar ook de two-sided barchart was lastig goed te plaatsen.
+Nu, aan het einde van dit vak, zit dit helemaal in mijn vingers en heb ik hier totaal geen moeite meer mee. 
+Daarnaast heb ik veel moeite gehad met de tooltip van de tijdlijnen. 
+Sowieso was het lastig om deze te implementeren, en daarnaast wilde ik deze tooltips graag in één functie voor beide grafieken, 
+omdat de code bijna hetzelfde is. 
+Helaas werkte dit helemaal niet en is het me niet gelukt om dit goed te krijgen. 
+Ook bij een andere functie waarbij ik een svg wilde meegeven was dit lastig, 
+waardoor ik besloten heb om dit later op te lossen. 
+Helaas was er aan het einde geen tijd meer voor om dit op te schonen en in één functie te zetten. 
+Verder heb ik veel moeite gehad met de styling van dingen.
+Het was heel lastig om dingen op de goede plek te krijgen:
+De landen in de menubalk op één lijn, de buttons op de goede plek, de grafieken op de goede plek, 
+maar ook de two-sided barchart was lastig goed te plaatsen. 
 Gelukkig is dit allemaal gelukt en ziet mijn website er mooi uit!
 
 Over het algemeen vond ik het dat het meeste heel erg goed lukte, 
