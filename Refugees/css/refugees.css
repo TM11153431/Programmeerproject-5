@@ -64,22 +64,22 @@ body, html {
 }
 
 .bgimg-1 {
-    background-image: url("headpicture.jpg");
+    background-image: url("../images/headpicture.jpg");
     min-height: 100%;
 }
 
 .bgimg-2 {
-    background-image: url("picture3.jpg");
+    background-image: url("../images/picture3.jpg");
     min-height: 400px;
 }
 
 .bgimg-3 {
-    background-image: url("picture6.JPG");
+    background-image: url("../images/picture6.JPG");
     min-height: 400px;
 }
 
 .bgimg-4 {
-    background-image: url("picture2.jpg");
+    background-image: url("../images/picture2.jpg");
     min-height: 400px;
 }
 
