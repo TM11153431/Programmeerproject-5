@@ -100,7 +100,7 @@ Deze vier datasets zijn één keer in het goede format gemaakt en vervolgens geb
 Op deze sites zijn ook vergelijkbare visualisaties te vinden, die ik heb gebruikt om mijn eigen idee vorm te geven.
 De BBC heb ik gebruikt voor de verschillende nieuwsitems die te vinden zijn op mijn website.
 
-# Eventuele problemen
+# Problemen
 De grote moeilijkheid in mijn project is om te zorgen dat de sterren op de kaart goed werken, en dat de pijlen goed tevoorschijn komen.
 Wanneer de sterren niet lukt, kan dit vervangen worden door een dropdown menu. Hierin staan 6 keuzes: de wereldkaart en de 5 conflictgebieden. Op die manier kunnen de verschillende kaarten weergegeven worden.
 Wanneer de pijlen niet lukken, kan dit vervangen worden door de hoeveelheid vluchtelingen aan te geven met kleuren, net zoals de standaard wereldkaart.
