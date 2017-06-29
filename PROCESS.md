@@ -316,8 +316,9 @@ Dit was een stuk ingewikkelder dan ik dacht!
 Ik wist toch nog niet zo goed hoe ik met CSS moest werken, en het was erg lastig om tekst of knoppen op de juiste plek te krijgen.
 Het is nu redelijk gelukt, maar met veel random padding, dus het is qua code niet zo mooi.
 Gelukkig ziet het er op de site wel mooi uit. :)
+Ook heb ik informatieve tekst toegevoegd, zoals nieuwsitems, hoe de visualisaties werken en een omschrijving van opmerkelijke data.
 Nu is het nog van belang dat ik echt de laatste hand leg aan m'n code, die opdelen in verschillende javascripts,
-m'n report ga afschrijven, README aanpassen etc.
+m'n report ga afschrijven, de README aanpassen, etc.
 
 # Dag 17 - 29 juni:
 Vandaag stond natuurlijk in het teken van alles afronden.
@@ -331,5 +332,7 @@ heb ik een randje om de knoppen die 'aan' staan gezet.
 Ook staan alle knoppen en grafieken nu op de goede plek. :)
 Vervolgens heb ik gezorgd dat m'n repository helemaal opgeruimd is en alles goed in mapjes staat.
 Ik heb m'n html en m'n css file gecomment, m'n filmpje opgenomen en m'n report geschreven.
-Javascripts in aparte files?
+Alle code heb ik opgedeeld in verschillende javascripts. 
+Van elke visualisatie staat het maken van de dataset, de assen, de tooltip en de veranderingen in een aparte file.
+Daarnaast zijn er files voor het maken van de legenda, de slider en het daadwerkelijk maken van de visualisaties.
 Alles is nu klaar! :)
