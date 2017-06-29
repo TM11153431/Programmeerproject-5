@@ -9,14 +9,14 @@ Daarnaast worden 5 conflictsituatie's gevisualiseerd: Hierin wordt duidelijk van
 Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 
 # Website
-<b>Home</b>
+<b>Home</b><br>
 De website heeft een startpagina die de het hele scherm vult. 
 Links bovenin zijn de 5 kopjes te zien waaruit mijn website bestaat: Home, Story, World overview, Conflict areas en Contact. 
 Op deze knoppen kan geklikt worden, om in één keer naar de gewenste informatie te gaan.
 
 ![Startpagina](https://github.com/smeber/Programmeerproject/blob/master/doc/Startpagina.png)
 
-<b>Story</b>
+<b>Story</b><br>
 De story is een korte inleiding tot mijn website. 
 Allereerst wordt de relevantie van de website aangeduid en vervolgens wordt een overzicht van de ontwikkeling van vluchtelingen over de hele wereld weergegeven. 
 Dit is te zien in absolute waarden, of in percentages van de wereldpopulatie.
@@ -25,7 +25,7 @@ Tot slot wordt de definitie van vluchtelingen beschreven.
 
 ![Story](https://github.com/smeber/Programmeerproject/blob/master/doc/Story%20all.png)
 
-<b>World overview</b>
+<b>World overview</b><br>
 Dit deel bevat twee visualisaties, die hieronder worden toegelicht.
 
 1. Wereldkaart<br>
@@ -50,7 +50,7 @@ worden de visualisaties toegelicht en is een korte beschrijving van interessante
    
    ![World overview](https://github.com/smeber/Programmeerproject/blob/master/doc/World%20overview%20all.png)
 
-<b>Conflictgebieden</b>
+<b>Conflictgebieden</b><br>
 Dit deel bevat ook twee visualisaties, die hieronder worden toegelicht.
 
 3. Uitstroom naar landen<br>
@@ -80,7 +80,7 @@ Wanneer hierop geklikt wordt, wordt doorgelinkt naar een relevant nieuwsbericht.
    
    ![Conflict areas](https://github.com/smeber/Programmeerproject/blob/master/doc/Conflict%20areas%20all.png)
    
-<b>Contact</b>
+<b>Contact</b><br>
 Tot slot bevat mijn website een contact deel, waar mijn contactgegevens te vinden zijn. 
 Onderaan de website is een footer geplaatst, waarin de bronnen vermeld staan en verdere gegevens.
 
