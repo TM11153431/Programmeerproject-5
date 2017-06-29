@@ -280,10 +280,15 @@ en kan wederom doorgeklikt worden naar een relevant en actueel nieuwsbericht,
 om de gebruiker nog meer informatie te verschaffen over het onderwerp.
 
 <b>Contact en footer</b><br>
+<em>Algemeen</em><br>
 De foto boven contact heb ik zo gekozen, omdat het het einde is van mijn webpagina.
-Ik vind het mooi dat de kinderen je als het ware 'uitzwaaien'.<br><br>
+Ik vind het mooi dat de kinderen je als het ware 'uitzwaaien'.
+
+<em>Contact</em><br>
 Dit deel van de website heb ik gemaakt, zodat mensen mij kunnen bereiken als zij vragen hebben.
-Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen.<br><br>
+Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen.
+
+<em>Footer</em><br>
 Tot slot heb ik een footer gebruikt om mijn bronnen en andere gegevens weer te geven, 
 aangezien dit natuurlijk ontzettend belangrijk is!
 
