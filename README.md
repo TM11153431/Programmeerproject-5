@@ -8,9 +8,9 @@ Mijn project visualiseert de vluchtelingen over de gehele wereld: Waar komen ze 
 Daarnaast worden 5 conflictsituatie's gevisualiseerd: Hierin wordt duidelijk van welk land ze vluchten en naar welke nabijgelegen landen.
 Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 
-# Visualisaties
-Er zijn 4 visualisaties, die als volgt geplaats worden:
-![Visualisatie overview](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%20overview.jpg)
+# Website
+De website heeft de volgende startpagina.
+![Startpagina](https://github.com/smeber/Programmeerproject/blob/master/doc/Startpagina.jpg)
 
 De visualisaties zijn als volgt:
 
