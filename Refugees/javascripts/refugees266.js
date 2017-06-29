@@ -144,10 +144,10 @@ var maxDataGraphTotalAmount;
 
 // load data
 queue()
-    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Dataset%20Origin%20goed%2023%20juni.tsv")   
-    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Dataset%20Asylum%20goed%2023%20juni.tsv")
-    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Data%20Population%20Worldbank.tsv")    
-    .defer(d3.json, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/dataBarchart.json")    
+    .defer(d3.tsv, "Dataset Origin goed 23 juni.tsv")   
+    .defer(d3.tsv, "Dataset Asylum goed 23 juni.tsv")
+    .defer(d3.tsv, "Data Population Worldbank.tsv")    
+    .defer(d3.json, "dataBarchart.json")    
     .await(makeVisualisations)
 
 // make all data visualisations
@@ -213,9 +213,9 @@ function makeArraysYears() {
 function makeAllOfMap() {
     
     // set default border buttons
-    changeBothBordersButtons("org", "asy");
-    changeBothBordersButtons("abs", "perc");
-    changeBothBordersButtons("lin", "log");
+    changeBothBordersButtons("org", "asy", " w3-half");
+    changeBothBordersButtons("abs", "perc", " w3-half");
+    changeBothBordersButtons("lin", "log", " w3-half");
 
     // find min and max for every dataset
     findMinMaxOfDatasets();
@@ -1142,40 +1142,40 @@ function changeVariablesButton(input) {
     if (input == 0) {
         toFrom = "from";
         dataOriginAsylum = dataOrigin;
-        changeBothBordersButtons("org", "asy");
+        changeBothBordersButtons("org", "asy", " w3-half");
     }
     else if (input == 1) {
         toFrom = "to";
         dataOriginAsylum = dataAsylum;
-        changeBothBordersButtons("asy", "org");
+        changeBothBordersButtons("asy", "org", " w3-half");
     }
     else if (input == 2) {
         absPerc = "absolute values";
-        changeBothBordersButtons("abs", "perc");
+        changeBothBordersButtons("abs", "perc", " w3-half");
     }
     else if (input == 3) {
         absPerc = "percentage of inhabitants";
-        changeBothBordersButtons("perc", "abs");
+        changeBothBordersButtons("perc", "abs", " w3-half");
     }
     else if (input == 4) {
         linLog = "lin";
-        changeBothBordersButtons("lin", "log");
+        changeBothBordersButtons("lin", "log", " w3-half");
     }
     else if (input == 5) {
         linLog = "log";
-        changeBothBordersButtons("log", "lin");
+        changeBothBordersButtons("log", "lin", " w3-half");
     }; 
 };
 
 // change one border of the button off and one on
-function changeBothBordersButtons(idOn, idOff) {
-    changeBorderButton(idOn, "buttonOn");
-    changeBorderButton(idOff, "buttonOff");
+function changeBothBordersButtons(idOn, idOff, halfFifth) {
+    changeBorderButton(idOn, "buttonOn", halfFifth);
+    changeBorderButton(idOff, "buttonOff", halfFifth);
 };
 
 // change one border button
-function changeBorderButton(id, onOff) {
-    document.getElementById(id).setAttribute("class", onOff);
+function changeBorderButton(id, onOff, halfFifth) {
+    document.getElementById(id).setAttribute("class", onOff + halfFifth);
 }
 
 // update the data and colors of the map
@@ -1217,19 +1217,19 @@ function newCountryClickedButton(input) {
 // save the correct conflict country according to input
 function changeConflictCountryButton(input) {
     if (input == 0) {
-        changeConflictCountryAndButtonBorder("SYR", "Syria");
+        changeConflictCountryAndButtonBorder("SYR", "Syria", "w3-third");
     } 
     else if (input == 1) {
-        changeConflictCountryAndButtonBorder("SSD", "South Sudan");
+        changeConflictCountryAndButtonBorder("SSD", "South Sudan", "w3-third");
     } 
     else if (input == 2) {
-        changeConflictCountryAndButtonBorder("COD", "Democratic Republic of the Congo");
+        changeConflictCountryAndButtonBorder("COD", "Democratic Republic of the Congo", "w3-third");
     } 
     else if (input == 3) {
-        changeConflictCountryAndButtonBorder("CAF", "Central African Republic");
+        changeConflictCountryAndButtonBorder("CAF", "Central African Republic", "w3-third");
     } 
     else if (input == 4) {
-        changeConflictCountryAndButtonBorder("SOM", "Somalia");
+        changeConflictCountryAndButtonBorder("SOM", "Somalia", "w3-third");
     };
 };
 
@@ -1240,10 +1240,10 @@ function saveConflictCountry(id, name) {
 };
 
 // change the border buttons and the current conflict country
-function changeConflictCountryAndButtonBorder(id, name) {
-    changeBorderButton(currentConflictCountry, "buttonOff");
+function changeConflictCountryAndButtonBorder(id, name, halfFifth) {
+    changeBorderButton(currentConflictCountry, "buttonOff", " w3-fifth");
     saveConflictCountry(id, name);
-    changeBorderButton(currentConflictCountry, "buttonOn");
+    changeBorderButton(currentConflictCountry, "buttonOn", " w3-fifth");
 };
 
 // update barcharts when new conflict country is clicked
@@ -1277,6 +1277,14 @@ function setDataAmountDomainBarchart() {
 
 // make the barchart
 function makeBarchart() {
+
+    // set default button border
+    changeBorderButton("SYR", "buttonOn", " w3-fifth");
+    changeBorderButton("SSD", "buttonOff", " w3-fifth");
+    changeBorderButton("SOM", "buttonOff", " w3-fifth");
+    changeBorderButton("COD", "buttonOff", " w3-fifth");
+    changeBorderButton("CAF", "buttonOff", " w3-fifth");
+
 
     // initialize the axis for the barchart            
     initializeAxisBarchart();
