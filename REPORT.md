@@ -134,10 +134,13 @@ Tot slot wordt een definitie van vluchtelingen gegeven,
 omdat dit ook belangrijk is voor het kader waarin de website geschreven is.
 
 <b>World overview</b><br>
+<em>Algemeen</em><br>
 Na de inleiding over vluchtelingen over de hele wereld, duiken we iets dieper de data in, 
 en kan er gekeken worden naar vluchtelingen uit landen en naar landen toe.
 Omdat dit een wereld overzicht is, heb ik gekozen voor een foto die een soort overzicht geeft: 
-het is meer vanuit de lucht genomen en daardoor is er een overzicht te zien van het kamp.<br><br>
+het is meer vanuit de lucht genomen en daardoor is er een overzicht te zien van het kamp.
+
+<em>Kaart</em><br>
 In deze sectie kunnen alle landen vergeleken worden om de verschillen zichtbaar te maken.
 Hierbij is de mogelijkheid om tussen absolute waarden en percentages te kiezen,
 tussen origine en asiel en tussen lineaire schaal en logaritmische schaal.
@@ -175,7 +178,9 @@ en de kleur van het land ook niet, wat naar mijn idee heel erg onhandig is.
 Daarom hebben vijf landen een gele rand, wat de vijf conflitgebieden aangeeft.
 Op deze manier is het wel duidelijk voor de gebruiker welke landen de conflictlanden zijn, 
 en de link naar het volgende hoofdstuk duidelijk is.
-Aangezien deze visualisatie een vergelijking is tussen landen heb ik een wereldkaart gebruikt.<br><br>
+Aangezien deze visualisatie een vergelijking is tussen landen heb ik een wereldkaart gebruikt.
+
+<em>Tijdlijn land</em><br>
 Om de ontwikkelingen over tijd per land duidelijk te maken,
 kan er op een land geklikt worden,
 waardoor de tijdlijn rechts verandert.
@@ -194,7 +199,9 @@ daar is de kaart al voor!
 De tooltip die ik heb toegevoegd, heb ik vastgezet op één plek.
 Dit vind ik rustiger dan wanneer de tekst meespringt naast de muis.
 De plek waar de tekst staat vind ik mooi passen in het geheel.
-Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.<br><br>
+Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.
+
+<em>Informatie</em><br>
 Onder de visualisaties staan drie verhaaltjes met informatie.
 De meest linkse is een quote uit een actueel niewsbericht van de BBC, 
 om wederom de relevantie van de website aan te tonen.
@@ -207,10 +214,11 @@ en dat de gebruiker precies weet hoe alles geïnterpreteerd kan worden.
 Nu kan de gebruiker zelf aan de slag, en wellicht nog meer mooie dingen vinden!
 
 <b>Conflictgebieden</b><br>
+<em>Algemeen</em><br>
 Nu een beeld gevormd is van de vluchtelingen over de hele wereld, 
 kunnen we nog dieper de data induiken en inzoomen op de vijf conflictgebieden.
 Aangezien ik het naar en te heftig vond om een foto van een daadwerkelijk conflict te plaatsen,
-heb ik gekozen voor een foto met kinderen. 
+heb ik gekozen voor een foto met kinderen.
 In de data die eronder te weergegeven wordt is namelijk ook aandacht besteed aan verschillende leeftijdsgroepen van vluchtelingen, 
 en hieruit blijkt dat er veel kinderen op de vlucht zijn.
 In de menubalk onder de foto staan de vijf conflictgebieden, op aflopende aantallen.
@@ -221,7 +229,9 @@ Deze grafieken kunnen ook veranderd worden door op één van de conflictgebieden
 De buttons heb ik later toegevoegd, zodat er makkelijk geswitcht kan worden tussen conflictlanden.
 De kaart is namelijk op dat moment redelijk ver weg.
 Wederom heb ik gekozen voor een rand om de tekst heen wanneer deze op dat moment wordt weergeven,
-om de hierboven genoemde redenen.<br><br>
+om de hierboven genoemde redenen.
+
+<em>Barchart</em><br>
 De barchart laat de landen zien waar vluchtelingen heen gaan, vanuit het gekozen conflictgebied.
 Aan het begin had ik in deze barchart ook het conflictland zelf staan,
 maar dit was zeer onlogisch omdat de rest van de landen optelt tot dit land.
@@ -236,7 +246,9 @@ en wanneer deze grijs oplicht is dit niet het geval.
 Ik vond deze kleuren wederom intuïtief, waardoor het naar mijn idee een goede keuze is.
 Daarnaast vind ik het handig dat je van tevoren weet of er data beschikbaar is,
 zodat de gebruiker niet onnodig hoeft te klikken.
-Aangezien deze visualisatie een vergelijking laat zien tussen de verschillende landen, heb ik een barchart gebruikt.<br><br>
+Aangezien deze visualisatie een vergelijking laat zien tussen de verschillende landen, heb ik een barchart gebruikt.
+
+<em>Two-sided barchart</em><br>
 De two-sided barchart rechts laat het geslacht en leeftijdsgroep van de vluchtelingen zien.
 Op deze manier kan goed vergeleken worden of er relatief veel ouderen of jongeren vluchten en naar welke landen.
 Om ook duidelijk te maken welk geslacht relatief veel vlucht, kunnen deze waarden afgelezen worden bij de assen.
@@ -257,7 +269,9 @@ ofwel de andere leeftijdsgroepen aan te klikken door middel van het dropdown men
 Wanneer gekozen wordt voor de jongere groep, 
 zijn de leeftijdsgroepen wederom ongeveer evenredig verdeeld,
 waardoor dit een mooi beeld geeft van de verdeling van vluchtelingen onder jongeren.
-Aangezien deze visualisatie een vergelijking over twee variabelen weergeeft, heb ik een two-sided barchart gebruikt.<br><br>
+Aangezien deze visualisatie een vergelijking over twee variabelen weergeeft, heb ik een two-sided barchart gebruikt.
+
+<em>Informatie</em><br>
 Wederom staat er onder deze twee grafieken een korte uitleg over de grafieken en een beschrijving van opmerkelijke data,
 om dezelfde reden als hierboven gegeven is. 
 Daarnaast wordt ook informatie gegeven over de vijf conflictlanden.
