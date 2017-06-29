@@ -10,31 +10,36 @@ Een precieze uitleg van alle features van de website is beschreven in de README.
 
 # Code
 De html code van mijn website staat in de index.html van mijn repository.
-Deze code is gebouwd op één van de templates van W3Schools.<br>
-Naast de html code heb ik één css file, waarin ik alle styling aangeef.<br>
+Deze code is gebouwd op één van de templates van W3Schools. 
+Naast de html code heb ik één css file, waarin ik alle styling aangeef.
+
 Mijn javascriptcode bestaat uit 25 verschillende files.
 Er is een main file, die alle visualisaties maakt door de juiste functies aan te roepen, 
 een file met alle globale variabelen en een file die arrays maakt voor alle jaren,
 die ik gebruik door heel mijn code heen.
-Daarnaast heb ik files die ik kan indelen in 5 categorieën: van mijn 5 data visualisaties.<br>
+Daarnaast heb ik files die ik kan indelen in 5 categorieën: van mijn 5 data visualisaties.
+
 Voor het maken van mijn kaart zijn 5 javascript files: 
 één voor het vinden van de minimale en maximale waarden in de datasets,
 één voor het maken van de juiste dataset,
 eén voor het maken van de legenda,
 één voor het maken van de slider,
-en tot slot één voor het daadwerkelijk maken van de kaart.<br>
+en tot slot één voor het daadwerkelijk maken van de kaart.
+
 Voor het maken van de tijdlijn per land zijn 3 javascript files:
 één voor het maken van de dataset,
 één voor het maken van de assen,
 en één voor het maken van de tooltip.
 Precies deze files met deze functionaliteiten zijn er ook voor het maken van de tijdlijn van de wereld.
-Er is één file die beide tijdlijnen daadwerkelijk maakt.<br>
-Daarnaast is er één file die de veranderingen toepast voor de kaart en beide tijdlijnen.<br>
+Er is één file die beide tijdlijnen daadwerkelijk maakt.
+Daarnaast is er één file die de veranderingen toepast voor de kaart en beide tijdlijnen.
+
 Voor het maken van de barchart zijn 4 javascript files:
 één voor het maken van de dataset, 
 één voor het maken van de assen, 
 één voor het daadwerkelijk maken van de barchart (waarbij ook de tooltip wordt gedefinieerd),
-en één voor het maken van de veranderingen voor de barchart.<br>
+en één voor het maken van de veranderingen voor de barchart.
+
 Voor de two-sided barchart zijn precies deze files qua functionaliteit gemaakt,
 waarbij nog een extra file bestaat waar het domein van de two-sided barchart gedefinieerd wordt.
 
