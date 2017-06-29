@@ -93,7 +93,7 @@ wanneer ik er rustig voor ging zitten en dingen op internet op zocht.
 Eerlijk gezegd had ik niet echt een goede start,
 aangezien ik de opdrachten van Data Processing niet heel goed gemaakt had,
 en d3 nog niet goed snapte.
-Toch is dit helemaal goed opgelost tijdens dit vak en kan ik nu goed programmeren met d3!
+Gelukkig is dit helemaal opgelost tijdens dit vak en kan ik nu goed programmeren met d3!
 Ik vind het nu relatief makkelijk om dingen aan te passen en op te zoeken.
 Daarnaast heb ik echt een website leren bouwen, wat ik ontzettend gaaf vind! 
 Persoonlijk vind ik dat het er mooi uitziet,
@@ -101,11 +101,11 @@ wat mij telkens energie gaf om het nog beter en mooier te maken.
 Ik heb ook zeer bewuste design choices gemaakt en vond het erg leuk en goed om hierover na te denken.
 Tot slot heb ik geleerd om netjes te werken, alles bij te houden,
 code goed en duidelijk neer te zetten, te commenten, in functies te plaatsen en zelfs in verschillende files.
-Het was ook zeer leerzaam om samen met je groepje telkens een stapje verder te komen.
+Het was tot slot zeer leerzaam om samen met je groepje telkens een stapje verder te komen.
 
 # Design keuzes
 Door de vier weken heen zijn veel design keuzes gemaakt. 
-Hieronder licht ik per deel van de website toe waarom ik hiervoor gekozen heb.
+Hieronder licht ik per deel van de website het idee erachter toe.
 
 <b>Home</b><br>
 Als startpagina heb ik een aangrijpende foto gekozen, om de aandacht te trekken van mensen.
