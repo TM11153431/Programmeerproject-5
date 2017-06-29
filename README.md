@@ -46,6 +46,10 @@ Dit deel bevat twee visualisaties, die hieronder worden toegelicht.
    de absolute aantallen of de percentages van vluchtelingen. 
    Op de x-as staat de tijd.
    Deze grafiek bevat een tooltip: de precieze waarden worden weergegeven wanneer over de lijn gehovered wordt.
+
+Onder beide visualisaties staan 3 kopjes: BBC News, Explanation en Remarkable data.
+Hier wordt de relevantie nogmaals aangegeven met een actueel nieuwsbericht, 
+worden de visualisaties toegelicht en is een korte beschrijving van interessante bevindingen binnen de data te gegeven.
    
    ![World overview](https://github.com/smeber/Programmeerproject/blob/master/doc/World%20overview%20all.png)
 
@@ -69,6 +73,12 @@ Dit deel bevat ook twee visualisaties, die hieronder worden toegelicht.
    Standaard staan de leeftijdsgroepen op jongeren (0-17 jaar), volwassenen (18-59 jaar) en ouderen (60+).
    Wanneer op de bars geklikt wordt, of met het dropdown menu anders gekozen wordt,
    veranderen de leeftijdsgroepen naar een specificatie van de jongere groep: 0-4 jaar, 5-11 jaar en 12-17 jaar.
+   
+Onder beide visualisaties staat verschillende informatie.
+Allereerst 2 kopjes: Explanation en Remarkable data, 
+waarbij de visualisaties worden toegelicht en een korte beschrijving van interessante bevindingen binnen de data wordt gegeven.
+Daaronder staat over elk conflictgbied een korte beschrijving wat hier gaande is.
+Wanneer hierop geklikt wordt, wordt doorgelinkt naar een relevant nieuwsbericht.
    
    ![Conflict areas](https://github.com/smeber/Programmeerproject/blob/master/doc/Conflict%20areas%20all.png)
    
