@@ -92,22 +92,22 @@ body, html {
 }
 
 .bgimg-1 {
-    background-image: url("../images/home.jpg");
+    background-image: url("https://github.com/smeber/Programmeerproject/blob/master/Refugees/images/home.jpg");
     min-height: 100%;
 }
 
 .bgimg-2 {
-    background-image: url("../images/world.jpg");
+    background-image: url("https://github.com/smeber/Programmeerproject/blob/master/Refugees/images/world.jpg");
     min-height: 400px;
 }
 
 .bgimg-3 {
-    background-image: url("../images/conflict.JPG");
+    background-image: url("https://github.com/smeber/Programmeerproject/blob/master/Refugees/images/conflict.jpg");
     min-height: 400px;
 }
 
 .bgimg-4 {
-    background-image: url("../images/contact.jpg");
+    background-image: url("https://github.com/smeber/Programmeerproject/blob/master/Refugees/images/contact.jpg");
     min-height: 400px;
 }
 
