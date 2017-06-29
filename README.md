@@ -26,15 +26,13 @@ De visualisaties zijn als volgt:
    In het conflictgebied verschijnen pijlen, die wijzen van welk land naar welk land de vluchtelingen stromen. 
    Hoe dikker de pijl, des te meer vluchtelingen.
    Nu kan ook op de landen geklikt worden, waardoor visualisatie 4 verandert.
-   
-   ![Visualisatie 1](https://github.com/smeber/Programmeerproject/blob/master/doc/Startpagina.png)
       
 2. Tijdlijn van land - 
    Deze visualisatie is een line graph van het land dat is aangeklikt.
    Op de y-as staan de aantallen (of percentages als dit is aangeklikt?) vluchtelingen en op de x-as staat de tijd.
    Deze grafiek bevat een tooltip: de precieze waarden worden weergegeven wanneer over de lijn gehovered wordt.
    
-   ![Visualisatie 2](https://github.com/smeber/Programmeerproject/blob/master/doc/World%20overview%20all.png)
+   ![World Overview](https://github.com/smeber/Programmeerproject/blob/master/doc/World%20overview%20all.png)
    
 3. Uitstroom naar landen - 
    Deze visualisatie is een barchart van de hoeveelheid vluchtelingen in alle instroomlanden en blijft gelijk per conflictgebied.
