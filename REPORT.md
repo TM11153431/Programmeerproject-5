@@ -128,116 +128,116 @@ vond ik het belangrijk dat de gebruiker allereerst een overzicht krijgt
 van de ontwikkeling van aantallen vluchtelingen over de hele wereld. 
 Met deze kennis is de rest van de visualisaties beter te plaatsen.
 Aangezien absolute getallen niet altijd een goed beeld geven,
-heb ik ervoor gekozen om de gebruiker ook de mogelijkheid te geven om te kijken naar het percentage vluchtelingen van de populatie.
+heb ik ervoor gekozen om de gebruiker de mogelijkheid te geven om ook te kijken naar het percentage vluchtelingen van de populatie.
 Deze visualisatie geeft de ontwikkeling over tijd weer, waardoor ik voor een lijngrafiek heb gekozen.
 Tot slot wordt een definitie van vluchtelingen gegeven,
-omdat dit ook belangrijk is voor het kader waarin de website geschreven is.
+omdat dit belangrijk is voor het kader waarin de website geschreven is.
 
 <b>World overview</b><br>
 <em>Algemeen</em><br>
-Na de inleiding over vluchtelingen over de hele wereld, duiken we iets dieper de data in, 
+Na de inleiding over vluchtelingen over de hele wereld, duiken we dieper de data in, 
 en kan er gekeken worden naar vluchtelingen uit landen en naar landen toe.
 Omdat dit een wereld overzicht is, heb ik gekozen voor een foto die een soort overzicht geeft: 
-het is meer vanuit de lucht genomen en daardoor is er een overzicht te zien van het kamp.
+het is vanuit een hoog perspectief genomen, waardoor er overzicht is van het kamp.
 
 <em>Kaart</em><br>
-In deze sectie kunnen alle landen vergeleken worden om de verschillen zichtbaar te maken.
-Hierbij is de mogelijkheid om tussen absolute waarden en percentages te kiezen,
-tussen origine en asiel en tussen lineaire schaal en logaritmische schaal.
-Dit heb ik gedaan, omdat ik de variabelen absoluut/percentage en origine/asiel zeer relevant vind voor de website, 
-en het beeld van de gebruiker.
+In deze sectie kunnen alle landen vergeleken worden met elkaar, en worden de verschillen zichtbaar gemaakt.
+Hierbij is er de mogelijkheid om tussen absolute waarden en percentages te kiezen,
+tussen origine en asiel en tussen lineaire en logaritmische schaal.
 Om duidelijk te maken voor de gebruiker dat dit knoppen zijn, 
 én om duidelijk te maken welke knoppen op dit moment 'aan' staan, 
 heb ik een omlijning om de tekst heen gezet, waarvan de data op dat moment weergeven wordt.
-Aangezien er één land is dat zóveel vluchtelingen heeft, wordt het contrast tussen de andere landen niet meer zichtbaar.
-Dat is de reden dat ik ook de logaritmische schaal heb toegevoegd,
-om toch ook de verschillen tussen de rest van de landen duidelijk te maken.
+De zes verschillende variabelen heb ik zo gekomen, omdat ik de variabelen absoluut/percentage en origine/asiel 
+zeer relevant vind voor de website en het beeld van de gebruiker.
+Aangezien er één land is waaruit zóveel mensen vluchten, 
+wordt het contrast tussen de andere landen niet meer zichtbaar.
+Dat is de reden waarom ook de logaritmische schaal is toegevoegd,
+om op deze manier de verschillen tussen de rest van de landen duidelijk te maken.
 Ik heb ervoor gekozen om de wereldkaart standaard op absolute waarden, origine en lineaire schaal te zetten,
 omdat dit voor mensen het meest tastbare is, 
 en om duidelijk te maken dat er uit Syrië op dit moment ontzettend veel mensen vluchten.
 De kleur van de landen waarvan geen data beschikbaar is, heb ik grijs gemaakt,
 omdat dit intuïtief voor mensen betekent dat er geen data beschikbaar is.
-Deze kleur kan ook niet verward worden met een kleur van de kleurenschaal,
+Deze kleur kan daarnaast niet verward worden met een kleur van de kleurenschaal,
 waardoor dit geen probleem vormt.
-Ik heb een kleurenschaal gebruikt voor de kaart,
-omdat dit nog preciezer het aantal weergeeft, 
-dan wanneer alleen een paar 'buckets' gebruikt worden.
+Ik heb gekozen voor een kleurenschaal voor de kaart,
+boven het gebruik van een paar 'buckets', omdat dit preciezer is.
 De kleurenschaal van origin/asylum blijft altijd gelijk, 
 terwijl de kleurenschaal verandert wanneer op absolute/percentage of lineair/logaritmisch geklikt wordt.
-Dit vind ik logisch, omdat je dan asylum en origin beter met elkaar kan vergelijken, 
-dan wanneer je deze schaal wel mee laten veranderen tussen deze categorieën.
+Dit heb ik gedaan omdat op deze manier asylum en origin beter met elkaar vergeleken kunnen worden, 
+dan wanneer je deze schaal wel mee laten veranderen tussen de twee categorieën.
 Ik heb een slider aan de kaart toegevoegd,
 zodat mensen duidelijk de ontwikkelingen over de tijd kunnen zien, over de hele wereld.
-Deze heb ik standaard op 2015 gezet, aangezien dit de acutele data is,
-en ik de website ook in het teken van de acutaliteit gemaakt heb.
+Deze heb ik standaard op 2015 gezet, aangezien dit de meest acutele data is,
+en de website in het teken van de acutaliteit gemaakt is.
 Toen ik met het project begon had ik bedacht om sterren op m'n kaart te plakken, 
 op de conflictlanden, waar je op kan klikken.
-Later vond ik dit eigenlijk toch niet zo'n mooi en praktisch idee, 
-aangezien je dan het land misschien niet meer goed ziet, 
-en de kleur van het land ook niet, wat naar mijn idee heel erg onhandig is. 
-Daarom hebben vijf landen een gele rand, wat de vijf conflitgebieden aangeeft.
-Op deze manier is het wel duidelijk voor de gebruiker welke landen de conflictlanden zijn, 
-en de link naar het volgende hoofdstuk duidelijk is.
+Later vond ik dit toch niet zo'n mooi en praktisch idee, 
+aangezien je dan het land én zijn kleur minder goed ziet, 
+wat naar mijn idee heel erg onhandig is en een deel van de functionaliteit wegneemt. 
+In plaats hiervan heb ik ervoor gekozen om de vijf conflictlanden een dikke en opvallende rand te geven,
+zodat wel duidelijk wordt welke landen de conflictlanden zijn, 
+en er een link naar het volgende deel is.
 Aangezien deze visualisatie een vergelijking is tussen landen heb ik een wereldkaart gebruikt.
 
 <em>Tijdlijn land</em><br>
-Om de ontwikkelingen over tijd per land duidelijk te maken,
-kan er op een land geklikt worden,
-waardoor de tijdlijn rechts verandert.
-Op deze manier is per land heel duidelijk te zien hoe de vluchtelingen aantallen zijn veranderd over de tijd heen per land.
-Ik heb ervoor gekozen om deze grafiek wel mee te laten veranderen 
+Om de ontwikkelingen over tijd per land duidelijk te maken kan er op een land geklikt worden,
+waardoor de tijdlijn verandert.
+Op deze manier is per land heel duidelijk te zien hoe de vluchtelingen aantallen zijn veranderd over de tijd heen.
+Ik heb ervoor gekozen om deze grafiek mee te laten veranderen 
 wanneer op absolute waarden/percentage of origine/asiel wordt geklikt, 
-maar niet bij de lineaire/logaritmische schaal, 
-aangezien de logaritmische schaal niet zoveel zegt wanneer naar één land gekeken wordt.
-Deze schaal is echt alleen maar relevant om de verschillen tussen landen duidelijk te maken,
-maar het verliest zijn waarde wanneer ingezoomd wordt op één land.
-Daarnaast vinden mensen deze schaal vaak moeilijk te interpreteren, 
-en was het over het algemeen niet nodig om het verloop duidelijk weer te geven.
+maar niet wanneer de lineaire/logaritmische schaal wordt aangepast. 
+De logaritmische schaal zegt namelijk niet zoveel wanneer naar één land gekeken wordt.
+Deze schaal is zeer nuttig om de verschillen tussen landen duidelijk te maken,
+maar verliest zijn waarde wanneer ingezoomd wordt op één land.
+Daarnaast vinden mensen deze schaal vaak moeilijk te interpreteren.
 De y-as van de grafiek heb ik laten meeveranderen per land, 
-omdat dan het verloop veel beter zichtbaar is en deze grafiek niet bedoeld is om verschillende landen met elkaar te vergelijken,
+omdat op deze manier het verloop veel beter zichtbaar is 
+en deze grafiek niet bedoeld is om verschillende landen met elkaar te vergelijken,
 daar is de kaart al voor!
-De tooltip die ik heb toegevoegd, heb ik vastgezet op één plek.
+De tooltip die ik heb toegevoegd heb ik vastgezet op één plek.
 Dit vind ik rustiger dan wanneer de tekst meespringt naast de muis.
 De plek waar de tekst staat vind ik mooi passen in het geheel.
 Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.
 
 <em>Informatie</em><br>
-Onder de visualisaties staan drie verhaaltjes met informatie.
-De meest linkse is een quote uit een actueel niewsbericht van de BBC, 
+Onder de twee visualisaties staan drie blokken tekst met informatie.
+Er is een quote uit een actueel niewsbericht van de BBC, 
 om wederom de relevantie van de website aan te tonen.
-Voor de geïnteresseerden kan er op de link geklikt worden, om meer hierover te lezen.
-In het midden is een korte uitleg van de functionaliteit van de grafieken, 
-om zeker te weten dat de gebruiker alle features weet te vinden.
-Tot slot wordt er een kort overzicht gegeven van de opmerkelijke data die gevonden kan worden in de visualisaties.
-Dit is gedaan om de gebruiker nog iets meer mee te nemen in de visualisatie,
+Voor de geïnteresseerden kan er op de link geklikt worden, om het artikel helemaal te lezen.
+Daarnaast wordt een korte uitleg van de functionaliteit van de grafieken beschreven, 
+om zeker te maken dat de gebruiker alle features weet te vinden.
+Tot slot wordt er een kort overzicht gegeven van interessante data die gevonden is met behulp van de visualisatie.
+Dit is gedaan om de gebruiker nog meer mee te nemen in de visualisatie,
 en dat de gebruiker precies weet hoe alles geïnterpreteerd kan worden.
-Nu kan de gebruiker zelf aan de slag, en wellicht nog meer mooie dingen vinden!
+Nu kan de gebruiker zelf aan de slag en wellicht nog meer interessante dingen vinden!
 
 <b>Conflictgebieden</b><br>
 <em>Algemeen</em><br>
 Nu een beeld gevormd is van de vluchtelingen over de hele wereld, 
-kunnen we nog dieper de data induiken en inzoomen op de vijf conflictgebieden.
-Aangezien ik het naar en te heftig vond om een foto van een daadwerkelijk conflict te plaatsen,
+kan nog dieper de data ingedoken worden en ingezoomd worden op de vijf conflictgebieden.
+Aangezien ik het te heftig vond om een foto van een daadwerkelijk conflict te plaatsen,
 heb ik gekozen voor een foto met kinderen.
-In de data die eronder te weergegeven wordt is namelijk ook aandacht besteed aan verschillende leeftijdsgroepen van vluchtelingen, 
+In de data die in deze sectie wordt weergegeven is namelijk aandacht besteed aan verschillende leeftijdsgroepen van vluchtelingen, 
 en hieruit blijkt dat er veel kinderen op de vlucht zijn.
 In de menubalk onder de foto staan de vijf conflictgebieden, op aflopende aantallen.
 Op deze manier wordt aangegeven vanuit welk land de meeste vluchtelingen komen. 
 Op deze landen kan geklikt worden, waardoor de grafieken eronder veranderen. 
 Deze grafieken kunnen ook veranderd worden door op één van de conflictgebieden te klikken in de kaart erboven 
 (die met de gele rand :)). 
-De buttons heb ik later toegevoegd, zodat er makkelijk geswitcht kan worden tussen conflictlanden.
+De buttons waren oorspronkelijk niet het plan en heb ik later toegevoegd, 
+zodat er makkelijk geswitcht kan worden tussen conflictlanden.
 De kaart is namelijk op dat moment redelijk ver weg.
-Wederom heb ik gekozen voor een rand om de tekst heen wanneer deze op dat moment wordt weergeven,
+Wederom heb ik gekozen voor een rand om de tekst heen wanneer deze data op dat moment wordt weergeven,
 om de hierboven genoemde redenen.
 
 <em>Barchart</em><br>
 De barchart laat de landen zien waar vluchtelingen heen gaan, vanuit het gekozen conflictgebied.
-Aan het begin had ik in deze barchart ook het conflictland zelf staan,
+Aan het begin stond in deze barchart ook het conflictland zelf,
 maar dit was zeer onlogisch omdat de rest van de landen optelt tot dit land.
-Hierdoor werd moest de y-as veel langer, waardoor de verschillen tussen de andere landen minder goed zichtbaar werden,
+Hierdoor werd de y-as veel langer, waardoor de verschillen tussen de andere landen minder goed zichtbaar werden,
 terwijl dit juist het doel is van deze visualisatie! 
-Omdat ik de informatie over het aantal vluchtelingen in totaal niet verloren wilde laten gaan,
+Omdat ik de informatie over het totale aantal vluchtelingen niet verloren wilde laten gaan,
 heb ik ervoor gekozen om dit getal bij de grafiek te plaatsen.
 Wanneer over de landen gehovered wordt, 
 zijn de absolute aantallen van vluchtelingen te zien en verandert de bar van kleur.
@@ -253,15 +253,15 @@ De two-sided barchart rechts laat het geslacht en leeftijdsgroep van de vluchtel
 Op deze manier kan goed vergeleken worden of er relatief veel ouderen of jongeren vluchten en naar welke landen.
 Om ook duidelijk te maken welk geslacht relatief veel vlucht, kunnen deze waarden afgelezen worden bij de assen.
 Ik heb ervoor gekozen om het domein bij elke weergave hetzelfde te houden, 
-zodat ook goed het verschil tussen landen gezien kan worden.
+zodat het verschil tussen landen goed gezien kan worden.
 De gebruiker kan zien of het balkje groeit of juist krimpt.
-Aan het begin had ik voor deze visualisatie vijf leeftijdsgroepen: van 0-4, 5-11, 12-17, 18-59 en 60+. 
+Aan het begin had deze visualisatie vijf leeftijdsgroepen: 0-4, 5-11, 12-17, 18-59 en 60+. 
 Aangezien deze leeftijdsgroepen zeer onevenredig verdeeld zijn, gaf dit een verkeerd beeld van de situatie.
 De groep van 18-59 was (natuurlijk) altijd veel groter dan de andere groepen.
 Daarom heb ik ervoor gekozen om de groepen 0-4, 5-11 en 12-17 bij elkaar te voegen, 
 om hier de groep 'jongeren' van te maken.
-Nu kunnen duidelijk de jongeren, volwassenen en ouderen vergeleken worden met elkaar.
-Deze groepen zijn al meer evenredig, en hebben een duidelijke betekenis,
+Nu kunnen duidelijk de jongeren, volwassenen en ouderen met elkaar vergeleken worden.
+Deze groepen zijn meer evenredig, en hebben een duidelijke betekenis,
 waardoor ik denk dat dit een goede verdeling is van de leeftijdsgroepen.
 Om de informatie niet verloren te laten gaan over de verschillen in de jongere groep,
 is er de mogelijkheid om ofwel op de bars te klikken, 
@@ -274,19 +274,19 @@ Aangezien deze visualisatie een vergelijking over twee variabelen weergeeft, heb
 <em>Informatie</em><br>
 Wederom staat er onder deze twee grafieken een korte uitleg over de grafieken en een beschrijving van opmerkelijke data,
 om dezelfde reden als hierboven gegeven is. 
-Daarnaast wordt ook informatie gegeven over de vijf conflictlanden.
-Hierin wordt kort verteld wat er in dat land aan de hand is, 
+Daarnaast wordt informatie gegeven over de vijf conflictlanden.
+Hierin wordt kort de situatie in dat land toegelicht, 
 en kan wederom doorgeklikt worden naar een relevant en actueel nieuwsbericht,
 om de gebruiker nog meer informatie te verschaffen over het onderwerp.
 
 <b>Contact en footer</b><br>
 <em>Algemeen</em><br>
-De foto boven contact heb ik zo gekozen, omdat het het einde is van mijn webpagina.
+Deze foto heb ik gekozen, omdat hier het einde is van mijn webpagina.
 Ik vind het mooi dat de kinderen je als het ware 'uitzwaaien'.
 
 <em>Contact</em><br>
-Dit deel van de website heb ik gemaakt, zodat mensen mij kunnen bereiken als zij vragen hebben.
-Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen.
+Dit deel van de website heb ik gemaakt zodat mensen mij kunnen bereiken als zij vragen hebben.
+Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen. :)
 
 <em>Footer</em><br>
 Tot slot heb ik een footer gebruikt om mijn bronnen en andere gegevens weer te geven, 
@@ -298,7 +298,7 @@ Aangezien ik het accent op de visualisaties willde leggen
 heb ik de kleuren in de grafieken een heldere en krachtige kleur gegeven (rood en geel), 
 terwijl de achtergrond en tekst relatief rustig is (grijs).
 - Ik heb bewust gekozen om foto's van Arabisch uitziende vluchtelingen af te wisselen voor Afrikaanse ogende vluchtelingen,
-om duidelijk te maken dat uit beide delen van de wereld veel vluchtelingen komen.
+om duidelijk te maken dat uit beide delen van de wereld vluchtelingen komen.
 Op dit moment worden voornamelijk de Syrische vluchtelingen vaak benoemd,
 terwijl er, gezien mijn visualisaties, ook een heel groot deel uit Afrika komt.
-- Bij alle getallen heb ik een komma bij elke duizend geplaatst, zodat het makkelijker te lezen is.
+- Bij alle getallen heb ik een komma bij de duizendtallen geplaatst, zodat het makkelijker te lezen is.
