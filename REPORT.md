@@ -60,7 +60,7 @@ De libraries die gebruikt zijn, zijn als volgt: D3, Queue, Datamaps, Topojson en
 
 # Leerproces
 Tijdens deze vier weken ben ik door veel ups en downs gegaan. ;)
-Hieronder licht ik toe welke problemen ik in de afgelopen tijd ben tegen gekomen.
+Hieronder licht ik toe welke problemen ik in de afgelopen tijd ben tegen gekomen en wat ik geleerd heb tijdens dit vak.
 
 Aan het begin moest ik mijn datasets in het goede format krijgen, wat mij heel veel pijn en moeite heeft gekost.
 Ik vond dit ontzettend ingewikkeld, omdat ik niet precies snapte wat er gebeurde. 
