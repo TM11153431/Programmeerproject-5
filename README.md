@@ -10,7 +10,7 @@ Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 
 # Website
 De website heeft de volgende startpagina.
-![Startpagina](https://github.com/smeber/Programmeerproject/blob/master/doc/Startpagina.jpg)
+![Startpagina](https://github.com/smeber/Programmeerproject/blob/master/doc/Startpagina.png)
 
 De visualisaties zijn als volgt:
 
