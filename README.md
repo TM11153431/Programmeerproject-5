@@ -59,6 +59,8 @@ Dit deel bevat ook twee visualisaties, die hieronder worden toegelicht.
 
 3. Uitstroom naar landen - 
    Deze visualisatie is een barchart van de hoeveelheid vluchtelingen in alle instroomlanden en blijft gelijk per conflictgebied.
+   De conflictgebieden kan je veranderen door ofwel op de menubalk erboven te klikken, 
+   ofwel op één van de conflictlanden op de kaart klikken.
    Elke bar is een land, waarheen de vluchtelingen vluchten.
    De hoogte geeft aan hoeveel vluchtelingen vanuit het vluchtland naar dat land zijn gevlucht.
    Wanneer over de bars gehovered wordt, worden de exacte waarden gegeven.
