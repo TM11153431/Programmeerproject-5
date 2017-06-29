@@ -144,10 +144,10 @@ var maxDataGraphTotalAmount;
 
 // load data
 queue()
-    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Data%20Population%20Worldbank.tsv")   
-    .defer(d3.tsv, "../data/Dataset Asylum goed 23 juni.tsv")
-    .defer(d3.tsv, "../data/Data Population Worldbank.tsv")    
-    .defer(d3.json, "../data/dataBarchart.json")    
+    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Dataset%20Origin%20goed%2023%20juni.tsv")   
+    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Dataset%20Asylum%20goed%2023%20juni.tsv")
+    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Data%20Population%20Worldbank.tsv")    
+    .defer(d3.json, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/dataBarchart.json")    
     .await(makeVisualisations)
 
 // make all data visualisations
