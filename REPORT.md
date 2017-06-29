@@ -122,7 +122,7 @@ Deze heb ik standaard op 2015 gezet, aangezien dit de acutele data is,
 en ik de website ook in het teken van de acutaliteit gemaakt heb.
 Er zijn vijf landen die een gele rand hebben, dit zijn de vijf conflictgebieden, waarover later meer verteld wordt.
 Deze omlijning heb ik gedaan, om de link naar het volgende hoofdstuk aan te geven.
-Aangezien deze visualisatie een vergelijking is tussen landen heb ik een wereldkaart gebruikt.<br>
+Aangezien deze visualisatie een vergelijking is tussen landen heb ik een wereldkaart gebruikt.<br><br>
 Om de ontwikkelingen over tijd per land duidelijk te maken,
 kan er op een land geklikt worden,
 waardoor de tijdlijn rechts verandert.
@@ -135,7 +135,7 @@ Deze schaal is echt alleen maar relevant om de verschillen tussen landen duideli
 maar het verliest zijn waarde wanneer ingezoomd wordt op één land.
 Daarnaast vinden mensen deze schaal vaak moeilijk te interpreteren, 
 en was het over het algemeen niet nodig om het verloop duidelijk weer te geven.
-Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.<br>
+Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.<br><br>
 Onder de visualisaties staan drie verhaaltjes met informatie.
 De meest linkse is een quote uit een actueel niewsbericht van de BBC, 
 om wederom de relevantie van de website aan te tonen.
@@ -160,7 +160,7 @@ Op deze landen kan geklikt worden, waardoor de grafieken eronder veranderen.
 Deze grafieken kunnen ook veranderd worden door op één van de conflictgebieden te klikken in de kaart erboven 
 (die met de gele rand :)). 
 Wederom heb ik gekozen voor een rand om de tekst heen wanneer deze op dat moment wordt weergeven,
-om de hierboven genoemde redenen.<br>
+om de hierboven genoemde redenen.<br><br>
 De barchart laat de landen zien waar vluchtelingen heen gaan, vanuit het gekozen conflictgebied.
 Aan het begin had ik in deze barchart ook het conflictland zelf staan,
 maar dit was zeer onlogisch omdat de rest van de landen optelt tot dit land.
@@ -175,7 +175,7 @@ en wanneer deze grijs oplicht is dit niet het geval.
 Ik vond deze kleuren wederom intuïtief, waardoor het naar mijn idee een goede keuze is.
 Daarnaast vind ik het handig dat je van tevoren weet of er data beschikbaar is,
 zodat de gebruiker niet onnodig hoeft te klikken.
-Aangezien deze visualisatie een vergelijking laat zien tussen de verschillende landen, heb ik een barchart gebruikt.<br>
+Aangezien deze visualisatie een vergelijking laat zien tussen de verschillende landen, heb ik een barchart gebruikt.<br><br>
 De two-sided barchart rechts laat het geslacht en leeftijdsgroep van de vluchtelingen zien.
 Op deze manier kan goed vergeleken worden of er relatief veel ouderen of jongeren vluchten en naar welke landen.
 Om ook duidelijk te maken welk geslacht relatief veel vlucht, kunnen deze waarden afgelezen worden bij de assen.
@@ -206,9 +206,9 @@ om de gebruiker nog meer informatie te verschaffen over het onderwerp.
 
 5. Contact + footer<br>
 De foto boven contact heb ik zo gekozen, omdat het het einde is van mijn webpagina.
-Ik vind het mooi dat de kinderen je als het ware 'uitzwaaien'.<br>
+Ik vind het mooi dat de kinderen je als het ware 'uitzwaaien'.<br><br>
 Dit deel van de website heb ik gemaakt, zodat mensen mij kunnen bereiken als zij vragen hebben.
-Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen.<br>
+Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen.<br><br>
 Tot slot heb ik een footer gebruikt om mijn bronnen en andere gegevens weer te geven, 
 aangezien dit natuurlijk ontzettend belangrijk is!
 
