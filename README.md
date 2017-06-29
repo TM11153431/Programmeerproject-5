@@ -34,7 +34,7 @@ De visualisaties zijn als volgt:
    Op de y-as staan de aantallen (of percentages als dit is aangeklikt?) vluchtelingen en op de x-as staat de tijd.
    Deze grafiek bevat een tooltip: de precieze waarden worden weergegeven wanneer over de lijn gehovered wordt.
    
-   ![Visualisatie 2](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%202%20nieuw.jpg)
+   ![Visualisatie 2](https://github.com/smeber/Programmeerproject/blob/master/doc/World overview all.png)
    
 3. Uitstroom naar landen - 
    Deze visualisatie is een barchart van de hoeveelheid vluchtelingen in alle instroomlanden en blijft gelijk per conflictgebied.
