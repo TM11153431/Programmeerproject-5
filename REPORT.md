@@ -93,6 +93,10 @@ Persoonlijk vind ik dat het er mooi uitziet,
 wat mij telkens energie gaf om het nog beter en mooier te maken.
 Ik heb ook zeer bewuste design choices gemaakt en vond het erg leuk en goed om hierover na te denken.
 
+Tot slot heb ik geleerd om netjes te werken, alles bij te houden,
+code goed en duidelijk neer te zetten, te commenten, in functies te plaatsen en zelfs in verschillende files.
+Het was ook zeer leerzaam om samen met je groepje telkens een stapje verder te komen.
+
 # Design keuzes
 Door de vier weken heen zijn veel design keuzes gemaakt. 
 Hieronder licht ik per deel van de website toe waarom ik hiervoor gekozen heb.
