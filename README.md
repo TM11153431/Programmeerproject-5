@@ -42,15 +42,16 @@ De visualisaties zijn als volgt:
    De hoogte geeft aan hoeveel vluchtelingen vanuit het vluchtland naar dat land zijn gevlucht.
    Eventueel kan hier een tooltip aan toegevoegd worden, waarbij de precieze waarden weergegeven worden.
    
-   ![Visualisatie 3](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%203%20nieuw.jpg)
-   
 4. Geslacht en leeftijd van vluchtelingen - 
    Deze visualisatie is een two-sided barchart van het land dat is aangeklikt.
    Elke bar is een leeftijdsgroep en de lengte van de bar geeft de hoeveelheid vluchtelingen per geslacht aan in die leeftijdsgroep.
    De bar naar links geeft de hoeveelheid mannen aan, naar rechts de hoeveelheid vrouwen.
    Hierbij worden de percentuele waarden weergegeven naast de bars, en de absolute gegevens met behul van een tooltip.
    
-   ![Visualisatie 4](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%204%20nieuw.jpg)
+   ![Conflict areas](https://github.com/smeber/Programmeerproject/blob/master/doc/Conflict%20areas%20all.png)
+   
+Contact+footer
+![Visualisatie 3](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%203%20nieuw.jpg)
 
 # Data
 Voor dit project wordt data van The World Bank en van UNHCR gebruikt. 
