@@ -99,7 +99,8 @@ Er zijn vier datasets nodig:
 één met informatie over de populatie per land 
 en tot slot één met informatie over de conflictgebieden.
 Deze vier datasets zijn één keer in het goede format gemaakt en vervolgens gebruikt voor de visualisaties.
-Op deze sites zijn ook vergelijkbare visualisaties te vinden, die ik heb gebruikt om mijn eigen idee vorm te geven.
+Op de sites van The World Bank en UNHCR zijn vergelijkbare visualisaties te vinden, 
+die ik heb gebruikt om mijn eigen idee vorm te geven.
 De BBC heb ik gebruikt voor de verschillende nieuwsitems die te vinden zijn op mijn website.
 
 # Problemen
