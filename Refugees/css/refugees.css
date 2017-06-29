@@ -97,17 +97,17 @@ body, html {
 }
 
 .bgimg-2 {
-    background-image: url("https://github.com/smeber/Programmeerproject/blob/master/Refugees/images/world.jpg");
+    background-image: url("../images/world.jpg");
     min-height: 400px;
 }
 
 .bgimg-3 {
-    background-image: url("https://github.com/smeber/Programmeerproject/blob/master/Refugees/images/conflict.jpg");
+    background-image: url("../images/conflict.jpg");
     min-height: 400px;
 }
 
 .bgimg-4 {
-    background-image: url("https://github.com/smeber/Programmeerproject/blob/master/Refugees/images/contact.JPG");
+    background-image: url("../images/contact.JPG");
     min-height: 400px;
 }
 
