@@ -9,39 +9,46 @@ Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 Een precieze uitleg van alle features van de website is beschreven in de README.
 
 # Code
+<b>html en css</b><br>
 De html code van mijn website staat in de index.html van mijn repository.
 Deze code is gebouwd op één van de templates van W3Schools. 
 Naast de html code heb ik één css file, waarin ik alle styling aangeef.
 
+<b>javascript</b><br>
 Mijn javascriptcode bestaat uit 25 verschillende files.
 Er is een main file, die alle visualisaties maakt door de juiste functies aan te roepen, 
 een file met alle globale variabelen en een file die arrays maakt voor alle jaren,
 die ik gebruik door heel mijn code heen.
-Daarnaast heb ik files die ik kan indelen in 5 categorieën: van mijn 5 data visualisaties.
+Daarnaast heb ik files die ik kan indelen in 5 categorieën: voor elke visualisatie één.
 
-1. Voor het maken van mijn kaart zijn 5 javascript files: 
+<em>Kaart</em><br>
+Voor het maken van mijn kaart zijn 5 javascript files: 
 één voor het vinden van de minimale en maximale waarden in de datasets,
 één voor het maken van de juiste dataset,
 eén voor het maken van de legenda,
 één voor het maken van de slider,
 en tot slot één voor het daadwerkelijk maken van de kaart.
 
-2. Voor het maken van de tijdlijn per land zijn 3 javascript files:
+<em>Tijdlijn land</em><br>
+Voor het maken van de tijdlijn per land zijn 3 javascript files:
 één voor het maken van de dataset,
 één voor het maken van de assen,
 en één voor het maken van de tooltip.
 
-3. Precies dezelfde files qua functionaliteit van de tijdlijn per land zijn er ook voor het maken van de tijdlijn van de wereld.
+<em>Tijdlijn wereld</em><br>
+Precies dezelfde files qua functionaliteit van de tijdlijn per land zijn er ook voor het maken van de tijdlijn van de wereld.
 Er is één file die beide tijdlijnen daadwerkelijk maakt.
 Daarnaast is er één file die de veranderingen toepast voor de kaart en beide tijdlijnen.
 
-4. Voor het maken van de barchart zijn 4 javascript files:
+<em>Barchart</em><br>
+Voor het maken van de barchart zijn 4 javascript files:
 één voor het maken van de dataset, 
 één voor het maken van de assen, 
 één voor het daadwerkelijk maken van de barchart (waarbij ook de tooltip wordt gedefinieerd),
 en één voor het maken van de veranderingen voor de barchart.
 
-5. Voor de two-sided barchart zijn precies dezelfde files qua functionaliteit als de barchart gemaakt,
+<em>Two-sided barchart</em><br>
+Voor de two-sided barchart zijn precies dezelfde files qua functionaliteit als de barchart gemaakt,
 waarbij nog een extra file bestaat waar het domein van de two-sided barchart gedefinieerd wordt.
 
 # Data
@@ -62,6 +69,7 @@ De libraries die gebruikt zijn, zijn als volgt: D3, Queue, Datamaps, Topojson en
 Tijdens deze vier weken ben ik door veel ups en downs gegaan. ;)
 Hieronder licht ik toe welke problemen ik in de afgelopen tijd ben tegen gekomen en wat ik geleerd heb tijdens dit vak.
 
+<b>Challenges</b><br>
 Aan het begin moest ik mijn datasets in het goede format krijgen, 
 wat mij heel veel pijn en moeite heeft gekost. 
 Ik vond dit ontzettend ingewikkeld, omdat ik niet precies snapte wat er gebeurde. 
@@ -79,19 +87,18 @@ De landen in de menubalk op één lijn, de buttons op de goede plek, de grafieke
 maar ook de two-sided barchart was lastig goed te plaatsen. 
 Gelukkig is dit allemaal gelukt en ziet mijn website er mooi uit!
 
+<b>Verworven kwaliteiten</b><br>
 Over het algemeen vond ik het dat het meeste heel erg goed lukte, 
 wanneer ik er rustig voor ging zitten en dingen op internet op zocht.
 Eerlijk gezegd had ik niet echt een goede start,
-aangezien ik de opdrachten van Data Processing niet echt goed gemaakt had,
+aangezien ik de opdrachten van Data Processing niet heel goed gemaakt had,
 en d3 nog niet goed snapte.
 Toch is dit helemaal goed opgelost tijdens dit vak en kan ik nu goed programmeren met d3!
 Ik vind het nu relatief makkelijk om dingen aan te passen en op te zoeken.
-
 Daarnaast heb ik echt een website leren bouwen, wat ik ontzettend gaaf vind! 
 Persoonlijk vind ik dat het er mooi uitziet,
 wat mij telkens energie gaf om het nog beter en mooier te maken.
 Ik heb ook zeer bewuste design choices gemaakt en vond het erg leuk en goed om hierover na te denken.
-
 Tot slot heb ik geleerd om netjes te werken, alles bij te houden,
 code goed en duidelijk neer te zetten, te commenten, in functies te plaatsen en zelfs in verschillende files.
 Het was ook zeer leerzaam om samen met je groepje telkens een stapje verder te komen.
@@ -100,7 +107,7 @@ Het was ook zeer leerzaam om samen met je groepje telkens een stapje verder te k
 Door de vier weken heen zijn veel design keuzes gemaakt. 
 Hieronder licht ik per deel van de website toe waarom ik hiervoor gekozen heb.
 
-1. Home<br>
+<b>Home</b><br>
 Als startpagina heb ik een aangrijpende foto gekozen, om de aandacht te trekken van mensen.
 Waarschijnlijk zijn mensen geraakt en daardoor ook geïnteresseerd om verder te kijken.
 Links bovenin staan 5 knoppen, 
@@ -111,7 +118,7 @@ en de twee grafieken die een overzicht geven voor de conflictgebieden.
 Daarnaast is het belangrijk om mensen een inleiding te geven, 
 zodat zij weten wat er op de website te vinden is.
 
-2. Story<br>
+<b>Story</b><br>
 Dit deel is er tijdens het maken van de website bijgekomen, 
 maar is wel een belangrijk onderdeel van het verhaal dat de website brengt.
 De story wordt gebruikt om de gebruiker een inleiding te geven voor de website,
@@ -126,7 +133,7 @@ Deze visualisatie geeft de ontwikkeling over tijd weer, waardoor ik voor een lij
 Tot slot wordt een definitie van vluchtelingen gegeven,
 omdat dit ook belangrijk is voor het kader waarin de website geschreven is.
 
-3. World overview<br>
+<b>World overview</b><br>
 Na de inleiding over vluchtelingen over de hele wereld, duiken we iets dieper de data in, 
 en kan er gekeken worden naar vluchtelingen uit landen en naar landen toe.
 Omdat dit een wereld overzicht is, heb ik gekozen voor een foto die een soort overzicht geeft: 
@@ -199,7 +206,7 @@ Dit is gedaan om de gebruiker nog iets meer mee te nemen in de visualisatie,
 en dat de gebruiker precies weet hoe alles geïnterpreteerd kan worden.
 Nu kan de gebruiker zelf aan de slag, en wellicht nog meer mooie dingen vinden!
 
-4. Conflict areas<br>
+<b>Conflictgebieden</b><br>
 Nu een beeld gevormd is van de vluchtelingen over de hele wereld, 
 kunnen we nog dieper de data induiken en inzoomen op de vijf conflictgebieden.
 Aangezien ik het naar en te heftig vond om een foto van een daadwerkelijk conflict te plaatsen,
@@ -258,7 +265,7 @@ Hierin wordt kort verteld wat er in dat land aan de hand is,
 en kan wederom doorgeklikt worden naar een relevant en actueel nieuwsbericht,
 om de gebruiker nog meer informatie te verschaffen over het onderwerp.
 
-5. Contact + footer<br>
+<b>Contact en footer</b><br>
 De foto boven contact heb ik zo gekozen, omdat het het einde is van mijn webpagina.
 Ik vind het mooi dat de kinderen je als het ware 'uitzwaaien'.<br><br>
 Dit deel van de website heb ik gemaakt, zodat mensen mij kunnen bereiken als zij vragen hebben.
@@ -266,7 +273,7 @@ Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen.<br><b
 Tot slot heb ik een footer gebruikt om mijn bronnen en andere gegevens weer te geven, 
 aangezien dit natuurlijk ontzettend belangrijk is!
 
-Algemene opmerkingen over design keuzes:
+<b>Algemene opmerkingen</b>
 - De kleuren op de website zijn zo gekozen omdat ik dit in het geheel vond passen. 
 Aangezien ik het accent op de visualisaties willde leggen
 heb ik de kleuren in de grafieken een heldere en krachtige kleur gegeven (rood en geel), 
