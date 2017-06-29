@@ -2,6 +2,7 @@
 Studentnummer: 10269290
 Minor Programmeren, Programmeerprojects*/
 
+/*Set font settings*/
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
     height: 100%;
@@ -9,9 +10,16 @@ body, html {
     line-height: 1.8;
 }
 
+/*Set container settings*/
 .w3-fifth {
     float: left;
     width: 100%;
+}
+
+@media (min-width:601px) {
+    .w3-fifth {
+        width: 20%;
+    }
 }
 
 #third1 {
@@ -50,53 +58,6 @@ body, html {
     padding-bottom: 30px!important;  
 }
 
-@media (min-width:601px) {
-    .w3-fifth {
-        width: 20%;
-    }
-}
-
-.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.bgimg-1 {
-    background-image: url("../images/headpicture.jpg");
-    min-height: 100%;
-}
-
-.bgimg-2 {
-    background-image: url("../images/picture3.jpg");
-    min-height: 400px;
-}
-
-.bgimg-3 {
-    background-image: url("../images/picture6.JPG");
-    min-height: 400px;
-}
-
-.bgimg-4 {
-    background-image: url("../images/picture2.jpg");
-    min-height: 400px;
-}
-
-.w3-wide {letter-spacing: 10px;}
-.w3-hover-opacity {cursor: pointer;}
-
-@media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
-        background-attachment: scroll;
-    }
-}
-
-#hand {
-    cursor: pointer;
-    cursor: hand;
-}
-
 #container1 {
     display: inline-block;
 }
@@ -118,20 +79,55 @@ body, html {
     display: inline-block;
 }
 
-.dropdown {
-    display: inline-block;
-}
-
 #worldoverview {
     padding-top: 0px!important;
 }
 
-#wrapper {
-    overflow: hidden;
+/*Set images settings*/
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-#buttonWomen {
-    float: left;
+.bgimg-1 {
+    background-image: url("headpicture.jpg");
+    min-height: 100%;
+}
+
+.bgimg-2 {
+    background-image: url("picture3.jpg");
+    min-height: 400px;
+}
+
+.bgimg-3 {
+    background-image: url("picture6.JPG");
+    min-height: 400px;
+}
+
+.bgimg-4 {
+    background-image: url("picture2.jpg");
+    min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+        background-attachment: scroll;
+    }
+}
+
+/*Set menu settings*/
+#hand {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.dropdown {
+    display: inline-block;
 }
 
 .buttonOn {
@@ -147,12 +143,9 @@ body, html {
     padding-top: 160px;
 }
 
+/*Set settings for visualisations*/
 .domain {
     fill: none;
-}
-
-.axis text {
-    font: 13px;
 }
 
 .axis path,
@@ -162,25 +155,8 @@ body, html {
     shape-rendering: crispEdges;
 }
 
-.x text {
-    font: 13px;
-}
-
 .graphTitle {
-    font: 20px;
     font-weight: bold;
-}
-
-.axisTitle {
-    font: 16px;
-}
-
-#legendTitle {
-    font: 12px;
-}
-
-#legendX {
-    font: 10px;
 }
 
 .left {
