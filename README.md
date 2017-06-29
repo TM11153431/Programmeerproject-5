@@ -10,10 +10,12 @@ Hierbij wordt ook het geslacht en leeftijd van de vluchtelingen weergegeven.
 
 # Website
 1. Home -
+
 De website heeft een startpagina die de het hele scherm vult. Links bovenin zijn de 5 kopjes te zien waaruit mijn website bestaat: Home, Story, World overview, Conflict areas en Contact. Op deze knoppen kan geklikt worden, om in één keer naar de gewenste informatie te gaan.
 ![Startpagina](https://github.com/smeber/Programmeerproject/blob/master/doc/Startpagina.png)
 
 2. Story -
+
 De story is een korte inleiding tot mijn website. Allereerst wordt de relevantie van de website aangeduid en vervolgens wordt een overzicht van de ontwikkeling van vluchtelingen over de hele wereld weergegeven. Dit is te zien in absolute waarden, of in percentages van de wereldpopulatie. Tot slot wordt de definitie van vluchtelingen beschreven.
 ![Story](https://github.com/smeber/Programmeerproject/blob/master/doc/Story%20all.png)
 
