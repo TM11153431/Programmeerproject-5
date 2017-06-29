@@ -27,7 +27,7 @@ Tot slot wordt de definitie van vluchtelingen beschreven.
 
 ![Story](https://github.com/smeber/Programmeerproject/blob/master/doc/Story%20all.png)
 
-- World overview
+<b>World overview</b>
 
 Dit deel bevat twee visualisaties, die hieronder worden toegelicht.
 
