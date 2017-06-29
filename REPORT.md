@@ -126,7 +126,7 @@ een kader waarin de website gemaakt is.
 Voordat de gebruiker de data induikt, op gedetailleerd niveau, 
 vond ik het belangrijk dat de gebruiker allereerst een overzicht krijgt 
 van de ontwikkeling van aantallen vluchtelingen over de hele wereld. 
-Met deze kennis zijn de rest van de visualisaties beter te plaatsen.
+Met deze kennis is de rest van de visualisaties beter te plaatsen.
 Aangezien absolute getallen niet altijd een goed beeld geven,
 heb ik ervoor gekozen om de gebruiker ook de mogelijkheid te geven om te kijken naar het percentage vluchtelingen van de populatie.
 Deze visualisatie geeft de ontwikkeling over tijd weer, waardoor ik voor een lijngrafiek heb gekozen.
