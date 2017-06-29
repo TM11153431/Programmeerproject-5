@@ -94,7 +94,7 @@ omdat dit ook belangrijk is voor het kader waarin de website geschreven is.
 Na de inleiding over vluchtelingen over de hele wereld, duiken we iets dieper de data in, 
 en kan er gekeken worden naar vluchtelingen uit landen en naar landen toe.
 Omdat dit een wereld overzicht is, heb ik gekozen voor een foto die een soort overzicht geeft: 
-het is meer vanuit de lucht genomen en daardoor is er een overzicht te zien van het kamp.
+het is meer vanuit de lucht genomen en daardoor is er een overzicht te zien van het kamp.<br><br>
 In deze sectie kunnen alle landen vergeleken worden om de verschillen zichtbaar te maken.
 Hierbij is de mogelijkheid om tussen absolute waarden en percentages te kiezen,
 tussen origine en asiel en tussen lineaire schaal en logaritmische schaal.
