@@ -317,4 +317,19 @@ Ik wist toch nog niet zo goed hoe ik met CSS moest werken, en het was erg lastig
 Het is nu redelijk gelukt, maar met veel random padding, dus het is qua code niet zo mooi.
 Gelukkig ziet het er op de site wel mooi uit. :)
 Nu is het nog van belang dat ik echt de laatste hand leg aan m'n code, die opdelen in verschillende javascripts,
-m'n report ga afschrijven, readme aanpassen etc.
+m'n report ga afschrijven, README aanpassen etc.
+
+# Dag 17 - 29 juni:
+Vandaag stond natuurlijk in het teken van alles afronden.
+Ik heb het laatste van functionaliteit aangepast:
+er zat nog een bug in: als de kaart geupdate werd, bleven de landen die in de nieuwe dataset niet beschikbaar waren hun oude kleur.
+Dit moet natuurlijk de default color worden.
+Gelukkig is het gelukt!
+Daarnaast heb ik alles van m'n website goed gestyled.
+Om duidelijker te maken dat op de knoppen in het menu geklikt kan worden én te laten zien welke op dit moment 'aan' staan,
+heb ik een randje om de knoppen die 'aan' staan gezet.
+Ook staan alle knoppen en grafieken nu op de goede plek. :)
+Vervolgens heb ik gezorgd dat m'n repository helemaal opgeruimd is en alles goed in mapjes staat.
+Ik heb m'n html en m'n css file gecomment, m'n filmpje opgenomen en m'n report geschreven.
+Javascripts in aparte files?
+Alles is nu klaar! :)
