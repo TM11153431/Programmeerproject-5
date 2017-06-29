@@ -64,7 +64,7 @@ De libraries die gebruikt zijn, zijn als volgt: D3, Queue, Datamaps, Topojson en
 Door de vier weken heen zijn veel design keuzes gemaakt. 
 Hieronder licht ik per deel van de website toe waarom ik hiervoor gekozen heb.
 
-1. Home
+1. Home<br>
 Als startpagina heb ik een aangrijpende foto gekozen, om de aandacht te trekken van mensen.
 Waarschijnlijk zijn mensen geraakt en daardoor ook geïnteresseerd om verder te kijken.
 Links bovenin staan 5 knoppen, 
@@ -75,7 +75,7 @@ en de twee grafieken die een overzicht geven voor de conflictgebieden.
 Daarnaast is het belangrijk om mensen een inleiding te geven, 
 zodat zij weten wat er op de website te vinden is.
 
-2. Story
+2. Story<br>
 Dit deel is er tijdens het maken van de website bijgekomen, 
 maar is wel een belangrijk onderdeel van het verhaal dat de website brengt.
 De story wordt gebruikt om de gebruiker een inleiding te geven voor de website,
@@ -90,7 +90,7 @@ Deze visualisatie geeft de ontwikkeling over tijd weer, waardoor ik voor een lij
 Tot slot wordt een definitie van vluchtelingen gegeven,
 omdat dit ook belangrijk is voor het kader waarin de website geschreven is.
 
-3. World overview
+3. World overview<br>
 Na de inleiding over vluchtelingen over de hele wereld, duiken we iets dieper de data in, 
 en kan er gekeken worden naar vluchtelingen uit landen en naar landen toe.
 Omdat dit een wereld overzicht is, heb ik gekozen voor een foto die een soort overzicht geeft: 
@@ -122,8 +122,7 @@ Deze heb ik standaard op 2015 gezet, aangezien dit de acutele data is,
 en ik de website ook in het teken van de acutaliteit gemaakt heb.
 Er zijn vijf landen die een gele rand hebben, dit zijn de vijf conflictgebieden, waarover later meer verteld wordt.
 Deze omlijning heb ik gedaan, om de link naar het volgende hoofdstuk aan te geven.
-Aangezien deze visualisatie een vergelijking is tussen landen heb ik een wereldkaart gebruikt.
-
+Aangezien deze visualisatie een vergelijking is tussen landen heb ik een wereldkaart gebruikt.<br>
 Om de ontwikkelingen over tijd per land duidelijk te maken,
 kan er op een land geklikt worden,
 waardoor de tijdlijn rechts verandert.
@@ -136,8 +135,7 @@ Deze schaal is echt alleen maar relevant om de verschillen tussen landen duideli
 maar het verliest zijn waarde wanneer ingezoomd wordt op één land.
 Daarnaast vinden mensen deze schaal vaak moeilijk te interpreteren, 
 en was het over het algemeen niet nodig om het verloop duidelijk weer te geven.
-Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.
-
+Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.<br>
 Onder de visualisaties staan drie verhaaltjes met informatie.
 De meest linkse is een quote uit een actueel niewsbericht van de BBC, 
 om wederom de relevantie van de website aan te tonen.
@@ -149,7 +147,7 @@ Dit is gedaan om de gebruiker nog iets meer mee te nemen in de visualisatie,
 en dat de gebruiker precies weet hoe alles geïnterpreteerd kan worden.
 Nu kan de gebruiker zelf aan de slag, en wellicht nog meer mooie dingen vinden!
 
-4. Conflict areas
+4. Conflict areas<br>
 Nu een beeld gevormd is van de vluchtelingen over de hele wereld, 
 kunnen we nog dieper de data induiken en inzoomen op de vijf conflictgebieden.
 Aangezien ik het naar en te heftig vond om een foto van een daadwerkelijk conflict te plaatsen,
@@ -162,8 +160,7 @@ Op deze landen kan geklikt worden, waardoor de grafieken eronder veranderen.
 Deze grafieken kunnen ook veranderd worden door op één van de conflictgebieden te klikken in de kaart erboven 
 (die met de gele rand :)). 
 Wederom heb ik gekozen voor een rand om de tekst heen wanneer deze op dat moment wordt weergeven,
-om de hierboven genoemde redenen.
-
+om de hierboven genoemde redenen.<br>
 De barchart laat de landen zien waar vluchtelingen heen gaan, vanuit het gekozen conflictgebied.
 Aan het begin had ik in deze barchart ook het conflictland zelf staan,
 maar dit was zeer onlogisch omdat de rest van de landen optelt tot dit land.
@@ -178,8 +175,7 @@ en wanneer deze grijs oplicht is dit niet het geval.
 Ik vond deze kleuren wederom intuïtief, waardoor het naar mijn idee een goede keuze is.
 Daarnaast vind ik het handig dat je van tevoren weet of er data beschikbaar is,
 zodat de gebruiker niet onnodig hoeft te klikken.
-Aangezien deze visualisatie een vergelijking laat zien tussen de verschillende landen, heb ik een barchart gebruikt.
-
+Aangezien deze visualisatie een vergelijking laat zien tussen de verschillende landen, heb ik een barchart gebruikt.<br>
 De two-sided barchart rechts laat het geslacht en leeftijdsgroep van de vluchtelingen zien.
 Op deze manier kan goed vergeleken worden of er relatief veel ouderen of jongeren vluchten en naar welke landen.
 Om ook duidelijk te maken welk geslacht relatief veel vlucht, kunnen deze waarden afgelezen worden bij de assen.
@@ -200,8 +196,7 @@ ofwel de andere leeftijdsgroepen aan te klikken door middel van het dropdown men
 Wanneer gekozen wordt voor de jongere groep, 
 zijn de leeftijdsgroepen wederom ongeveer evenredig verdeeld,
 waardoor dit een mooi beeld geeft van de verdeling van vluchtelingen onder jongeren.
-Aangezien deze visualisatie een vergelijking over twee variabelen weergeeft, heb ik een two-sided barchart gebruikt.
-
+Aangezien deze visualisatie een vergelijking over twee variabelen weergeeft, heb ik een two-sided barchart gebruikt.<br>
 Wederom staat er onder deze twee grafieken een korte uitleg over de grafieken en een beschrijving van opmerkelijke data,
 om dezelfde reden als hierboven gegeven is. 
 Daarnaast wordt ook informatie gegeven over de vijf conflictlanden.
@@ -209,13 +204,11 @@ Hierin wordt kort verteld wat er in dat land aan de hand is,
 en kan wederom doorgeklikt worden naar een relevant en actueel nieuwsbericht,
 om de gebruiker nog meer informatie te verschaffen over het onderwerp.
 
-5. Contact + footer
+5. Contact + footer<br>
 De foto boven contact heb ik zo gekozen, omdat het het einde is van mijn webpagina.
-Ik vind het mooi dat de kinderen je als het ware 'uitzwaaien'.
-
+Ik vind het mooi dat de kinderen je als het ware 'uitzwaaien'.<br>
 Dit deel van de website heb ik gemaakt, zodat mensen mij kunnen bereiken als zij vragen hebben.
-Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen.
-
+Ik ben altijd bereid om toelichting te geven wanneer mensen daarom vragen.<br>
 Tot slot heb ik een footer gebruikt om mijn bronnen en andere gegevens weer te geven, 
 aangezien dit natuurlijk ontzettend belangrijk is!
 
