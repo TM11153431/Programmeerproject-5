@@ -196,7 +196,7 @@ ofwel de andere leeftijdsgroepen aan te klikken door middel van het dropdown men
 Wanneer gekozen wordt voor de jongere groep, 
 zijn de leeftijdsgroepen wederom ongeveer evenredig verdeeld,
 waardoor dit een mooi beeld geeft van de verdeling van vluchtelingen onder jongeren.
-Aangezien deze visualisatie een vergelijking over twee variabelen weergeeft, heb ik een two-sided barchart gebruikt.<br>
+Aangezien deze visualisatie een vergelijking over twee variabelen weergeeft, heb ik een two-sided barchart gebruikt.<br><br>
 Wederom staat er onder deze twee grafieken een korte uitleg over de grafieken en een beschrijving van opmerkelijke data,
 om dezelfde reden als hierboven gegeven is. 
 Daarnaast wordt ook informatie gegeven over de vijf conflictlanden.
