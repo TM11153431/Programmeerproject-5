@@ -31,7 +31,7 @@ en tot slot één voor het daadwerkelijk maken van de kaart.
 één voor het maken van de assen,
 en één voor het maken van de tooltip.
 
-3. Precies deze files qua functionaliteit zijn er ook voor het maken van de tijdlijn van de wereld.
+3. Precies dezelfde files qua functionaliteit van de tijdlijn per land zijn er ook voor het maken van de tijdlijn van de wereld.
 Er is één file die beide tijdlijnen daadwerkelijk maakt.
 Daarnaast is er één file die de veranderingen toepast voor de kaart en beide tijdlijnen.
 
@@ -41,7 +41,7 @@ Daarnaast is er één file die de veranderingen toepast voor de kaart en beide t
 één voor het daadwerkelijk maken van de barchart (waarbij ook de tooltip wordt gedefinieerd),
 en één voor het maken van de veranderingen voor de barchart.
 
-5. Voor de two-sided barchart zijn precies deze files qua functionaliteit gemaakt,
+5. Voor de two-sided barchart zijn precies dezelfde files qua functionaliteit als de barchart gemaakt,
 waarbij nog een extra file bestaat waar het domein van de two-sided barchart gedefinieerd wordt.
 
 # Data
@@ -54,3 +54,11 @@ Deze vier datasets zijn één keer in het goede format gemaakt en vervolgens geb
 Op de sites van The World Bank en UNHCR zijn vergelijkbare visualisaties te vinden, 
 die ik heb gebruikt om mijn eigen idee vorm te geven. 
 De BBC heb ik gebruikt voor de verschillende nieuwsitems die te vinden zijn op mijn website.
+
+# Libraries
+De libraries die gebruikt zijn, zijn als volgt: D3, Queue, Datamaps, Topojson en Bootstrap.
+
+# Challenges
+
+# Design keuzes
+
