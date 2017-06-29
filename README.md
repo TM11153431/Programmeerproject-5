@@ -14,6 +14,8 @@ De website heeft de volgende startpagina.
 
 De visualisaties zijn als volgt:
 
+![Story](https://github.com/smeber/Programmeerproject/blob/master/doc/Story%20all.png)
+
 1. Wereldkaart - 
    Dit is een kaart met overview, de start van de visualisatie.
    De kaart laat met kleuren de hoeveelheden van vluchtelingen per land zien.
@@ -32,7 +34,7 @@ De visualisaties zijn als volgt:
    Op de y-as staan de aantallen (of percentages als dit is aangeklikt?) vluchtelingen en op de x-as staat de tijd.
    Deze grafiek bevat een tooltip: de precieze waarden worden weergegeven wanneer over de lijn gehovered wordt.
    
-   ![World Overview](https://github.com/smeber/Programmeerproject/blob/master/doc/World%20overview%20all.png)
+   ![World overview](https://github.com/smeber/Programmeerproject/blob/master/doc/World%20overview%20all.png)
    
 3. Uitstroom naar landen - 
    Deze visualisatie is een barchart van de hoeveelheid vluchtelingen in alle instroomlanden en blijft gelijk per conflictgebied.
