@@ -58,7 +58,40 @@ De BBC heb ik gebruikt voor de verschillende nieuwsitems die te vinden zijn op m
 # Libraries
 De libraries die gebruikt zijn, zijn als volgt: D3, Queue, Datamaps, Topojson en Bootstrap.
 
-# Challenges
+# Leerproces
+Tijdens deze vier weken ben ik door veel ups en downs gegaan. ;)
+Hieronder licht ik toe welke problemen ik in de afgelopen tijd ben tegen gekomen.
+
+Aan het begin moest ik mijn datasets in het goede format krijgen, wat mij heel veel pijn en moeite heeft gekost.
+Ik vond dit ontzettend ingewikkeld, omdat ik niet precies snapte wat er gebeurde. 
+Nu, aan het einde van dit vak,
+zit dit helemaal in mijn vingers en heb ik hier totaal geen moeite meer mee.
+Daarnaast heb ik veel moeite gehad met de tooltip van de tijdlijnen.
+Sowieso was het lastig om deze te implementeren, 
+en ik wilde deze tooltips graag in één functie voor beide grafieken,
+omdat de code bijna hetzelfde is.
+Helaas werkte dit helemaal niet en is het me niet gelukt om dit goed te krijgen.
+Ook bij een andere functie wanneer ik een svg wilde meegeven deed dit lastig,
+waardoor ik besloten heb om dit te laten voor later.
+Helaas was er aan het einde geen tijd meer voor om dit op te schonen en in één functie te zetten.
+Verder heb ik veel ruzie gehad met styling dingen, 
+omdat ik het heel lastig vond om dingen op de goede plek te krijgen.
+De landen in de menubalk op één lijn, de buttons op de goede plek, de grafieken op de goede plek,
+maar ook de two-sided barchart was lastig goed te plaatsen.
+Gelukkig is dit allemaal gelukt en ziet mijn website er mooi uit!
+
+Over het algemeen vond ik het dat het meeste heel erg goed lukte, 
+wanneer ik er rustig voor ging zitten en dingen op internet op zocht.
+Eerlijk gezegd had ik niet echt een goede start,
+aangezien ik de opdrachten van Data Processing niet echt goed gemaakt had,
+en d3 nog niet goed snapte.
+Toch is dit helemaal goed opgelost tijdens dit vak en kan ik nu goed programmeren met d3!
+Ik vind het nu relatief makkelijk om dingen aan te passen en op te zoeken.
+
+Daarnaast heb ik echt een website leren bouwen, wat ik ontzettend gaaf vind! 
+Persoonlijk vind ik dat het er mooi uitziet,
+wat mij telkens energie gaf om het nog beter en mooier te maken.
+Ik heb ook zeer bewuste design choices gemaakt en vond het erg leuk en goed om hierover na te denken.
 
 # Design keuzes
 Door de vier weken heen zijn veel design keuzes gemaakt. 
@@ -116,12 +149,22 @@ waardoor dit geen probleem vormt.
 Ik heb een kleurenschaal gebruikt voor de kaart,
 omdat dit nog preciezer het aantal weergeeft, 
 dan wanneer alleen een paar 'buckets' gebruikt worden.
+De kleurenschaal van origin/asylum blijft altijd gelijk, 
+terwijl de kleurenschaal verandert wanneer op absolute/percentage of lineair/logaritmisch geklikt wordt.
+Dit vind ik logisch, omdat je dan asylum en origin beter met elkaar kan vergelijken, 
+dan wanneer je deze schaal wel mee laten veranderen tussen deze categorieën.
 Ik heb een slider aan de kaart toegevoegd,
 zodat mensen duidelijk de ontwikkelingen over de tijd kunnen zien, over de hele wereld.
 Deze heb ik standaard op 2015 gezet, aangezien dit de acutele data is,
 en ik de website ook in het teken van de acutaliteit gemaakt heb.
-Er zijn vijf landen die een gele rand hebben, dit zijn de vijf conflictgebieden, waarover later meer verteld wordt.
-Deze omlijning heb ik gedaan, om de link naar het volgende hoofdstuk aan te geven.
+Toen ik met het project begon had ik bedacht om sterren op m'n kaart te plakken, 
+op de conflictlanden, waar je op kan klikken.
+Later vond ik dit eigenlijk toch niet zo'n mooi en praktisch idee, 
+aangezien je dan het land misschien niet meer goed ziet, 
+en de kleur van het land ook niet, wat naar mijn idee heel erg onhandig is. 
+Daarom hebben vijf landen een gele rand, wat de vijf conflitgebieden aangeeft.
+Op deze manier is het wel duidelijk voor de gebruiker welke landen de conflictlanden zijn, 
+en de link naar het volgende hoofdstuk duidelijk is.
 Aangezien deze visualisatie een vergelijking is tussen landen heb ik een wereldkaart gebruikt.<br><br>
 Om de ontwikkelingen over tijd per land duidelijk te maken,
 kan er op een land geklikt worden,
@@ -138,6 +181,9 @@ en was het over het algemeen niet nodig om het verloop duidelijk weer te geven.
 De y-as van de grafiek heb ik laten meeveranderen per land, 
 omdat dan het verloop veel beter zichtbaar is en deze grafiek niet bedoeld is om verschillende landen met elkaar te vergelijken,
 daar is de kaart al voor!
+De tooltip die ik heb toegevoegd, heb ik vastgezet op één plek.
+Dit vind ik rustiger dan wanneer de tekst meespringt naast de muis.
+De plek waar de tekst staat vind ik mooi passen in het geheel.
 Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.<br><br>
 Onder de visualisaties staan drie verhaaltjes met informatie.
 De meest linkse is een quote uit een actueel niewsbericht van de BBC, 
@@ -162,6 +208,8 @@ Op deze manier wordt aangegeven vanuit welk land de meeste vluchtelingen komen.
 Op deze landen kan geklikt worden, waardoor de grafieken eronder veranderen. 
 Deze grafieken kunnen ook veranderd worden door op één van de conflictgebieden te klikken in de kaart erboven 
 (die met de gele rand :)). 
+De buttons heb ik later toegevoegd, zodat er makkelijk geswitcht kan worden tussen conflictlanden.
+De kaart is namelijk op dat moment redelijk ver weg.
 Wederom heb ik gekozen voor een rand om de tekst heen wanneer deze op dat moment wordt weergeven,
 om de hierboven genoemde redenen.<br><br>
 De barchart laat de landen zien waar vluchtelingen heen gaan, vanuit het gekozen conflictgebied.
@@ -224,3 +272,4 @@ terwijl de achtergrond en tekst relatief rustig is (grijs).
 om duidelijk te maken dat uit beide delen van de wereld veel vluchtelingen komen.
 Op dit moment worden voornamelijk de Syrische vluchtelingen vaak benoemd,
 terwijl er, gezien mijn visualisaties, ook een heel groot deel uit Afrika komt.
+- Bij alle getallen heb ik een , bij elke duizend geplaatst, zodat het makkelijker te lezen is.
