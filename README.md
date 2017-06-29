@@ -27,7 +27,7 @@ De visualisaties zijn als volgt:
    Hoe dikker de pijl, des te meer vluchtelingen.
    Nu kan ook op de landen geklikt worden, waardoor visualisatie 4 verandert.
    
-   ![Visualisatie 1](https://github.com/smeber/Programmeerproject/blob/master/doc/Visualisatie%201.jpg)
+   ![Visualisatie 1](https://github.com/smeber/Programmeerproject/blob/master/doc/Startpagina.png)
       
 2. Tijdlijn van land - 
    Deze visualisatie is een line graph van het land dat is aangeklikt.
