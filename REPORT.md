@@ -109,7 +109,7 @@ Hieronder licht ik per deel van de website het idee erachter toe.
 
 <b>Home</b><br>
 Als startpagina heb ik een aangrijpende foto gekozen, om de aandacht te trekken van mensen.
-Waarschijnlijk zijn mensen geraakt en daardoor ook geïnteresseerd om verder te kijken.
+Waarschijnlijk zijn mensen geraakt en daardoor geïnteresseerd om verder te kijken.
 Links bovenin staan 5 knoppen, 
 waardoor het voor de gebruiker makkelijk is om gelijk naar de informatie te scrollen die zij willen zien.
 Ik heb de website in deze 5 delen opgedeeld, omdat ik dit logisch vond.
