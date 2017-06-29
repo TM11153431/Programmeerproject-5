@@ -144,10 +144,10 @@ var maxDataGraphTotalAmount;
 
 // load data
 queue()
-    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Dataset%20Origin%20goed%2023%20juni.tsv")   
-    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Dataset%20Asylum%20goed%2023%20juni.tsv")
-    .defer(d3.tsv, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/Data%20Population%20Worldbank.tsv")    
-    .defer(d3.json, "https://raw.githubusercontent.com/smeber/Programmeerproject/master/Refugees/data/dataBarchart.json") 
+    .defer(d3.tsv, "Dataset Origin goed 23 juni.tsv")   
+    .defer(d3.tsv, "Dataset Asylum goed 23 juni.tsv")
+    .defer(d3.tsv, "Data Population Worldbank.tsv")    
+    .defer(d3.json, "dataBarchart.json")    
     .await(makeVisualisations)
 
 // make all data visualisations
@@ -1055,9 +1055,8 @@ function newCountryClickedMap(geo) {
     // change barcharts if one of 5 conflict countries is clicked
     if (conflictCountries.includes(currentCountry)) {
         
-        // update conflict country
-        currentConflictCountry = geo.id;
-        currentConflictCountryName = geo.properties.name;
+        // update conflict country and change button borders
+        changeConflictCountryAndButtonBorder(geo.id, geo.properties.name);
         
         // update barcharts with new conflict country    
         updateBarcharts();
@@ -1217,19 +1216,19 @@ function newCountryClickedButton(input) {
 // save the correct conflict country according to input
 function changeConflictCountryButton(input) {
     if (input == 0) {
-        changeConflictCountryAndButtonBorder("SYR", "Syria", "w3-third");
+        changeConflictCountryAndButtonBorder("SYR", "Syria");
     } 
     else if (input == 1) {
-        changeConflictCountryAndButtonBorder("SSD", "South Sudan", "w3-third");
+        changeConflictCountryAndButtonBorder("SSD", "South Sudan");
     } 
     else if (input == 2) {
-        changeConflictCountryAndButtonBorder("COD", "Democratic Republic of the Congo", "w3-third");
+        changeConflictCountryAndButtonBorder("COD", "Democratic Republic of the Congo");
     } 
     else if (input == 3) {
-        changeConflictCountryAndButtonBorder("CAF", "Central African Republic", "w3-third");
+        changeConflictCountryAndButtonBorder("CAF", "Central African Republic");
     } 
     else if (input == 4) {
-        changeConflictCountryAndButtonBorder("SOM", "Somalia", "w3-third");
+        changeConflictCountryAndButtonBorder("SOM", "Somalia");
     };
 };
 
@@ -1240,7 +1239,7 @@ function saveConflictCountry(id, name) {
 };
 
 // change the border buttons and the current conflict country
-function changeConflictCountryAndButtonBorder(id, name, halfFifth) {
+function changeConflictCountryAndButtonBorder(id, name) {
     changeBorderButton(currentConflictCountry, "buttonOff", " w3-fifth");
     saveConflictCountry(id, name);
     changeBorderButton(currentConflictCountry, "buttonOn", " w3-fifth");
@@ -1284,7 +1283,6 @@ function makeBarchart() {
     changeBorderButton("SOM", "buttonOff", " w3-fifth");
     changeBorderButton("COD", "buttonOff", " w3-fifth");
     changeBorderButton("CAF", "buttonOff", " w3-fifth");
-
 
     // initialize the axis for the barchart            
     initializeAxisBarchart();
