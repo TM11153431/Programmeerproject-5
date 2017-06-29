@@ -135,6 +135,9 @@ Deze schaal is echt alleen maar relevant om de verschillen tussen landen duideli
 maar het verliest zijn waarde wanneer ingezoomd wordt op één land.
 Daarnaast vinden mensen deze schaal vaak moeilijk te interpreteren, 
 en was het over het algemeen niet nodig om het verloop duidelijk weer te geven.
+De y-as van de grafiek heb ik laten meeveranderen per land, 
+omdat dan het verloop veel beter zichtbaar is en deze grafiek niet bedoeld is om verschillende landen met elkaar te vergelijken,
+daar is de kaart al voor!
 Aangezien deze visualisatie een ontwikkeling over tijd is heb ik een lijngrafiek gebruikt.<br><br>
 Onder de visualisaties staan drie verhaaltjes met informatie.
 De meest linkse is een quote uit een actueel niewsbericht van de BBC, 
